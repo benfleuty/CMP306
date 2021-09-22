@@ -1,0 +1,28 @@
+p{
+	line-height: 1.5em;
+	font-size: 2em;
+}
+
+.card {
+	margin-bottom : 5px ;
+}
+
+#header{position: relative;}
+
+.card-img-overlay{
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+}
+
+img{
+	width: 100%;
+}
+
+.card-img-overlay h1{
+	background: rgba(200,200,200,0.7);
+	width: fit-content;
+	padding: 10px;
+	border-radius: 10px;
+}
