@@ -1,82 +1,100 @@
 <!DOCTYPE html>
-<!-- Exam Template 	-->
-<!-- version 1 2020-12-01 -->
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <title>CMP306 - Dynamic Web Development 2</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- The site uses Bootstrap v5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- add a local stylesheet -->
-    <link rel="stylesheet" href="plants.css?v=20210922"/>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link rel="stylesheet" href="../../assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="../../assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="../../assets/css/Header-Dark.css">
+    <link rel="stylesheet" href="../../assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="../../assets/css/Projects-Horizontal.css">
+    <link rel="stylesheet" href="../../assets/css/styles.css">
+    <link rel="stylesheet" href="../../assets/css/Team-Boxed.css">
 </head>
 
 <body>
+<style>
+    /* https://stackoverflow.com/questions/1638223/is-there-a-way-to-word-wrap-long-words-in-a-div
+    Source: http://snipplr.com/view/10979/css-cross-browser-word-wrap */
+    p {
+        white-space: pre-wrap;      /* CSS3 */
+        white-space: -moz-pre-wrap; /* Firefox */
+        white-space: -o-pre-wrap;   /* Opera 7 */
+        word-wrap: break-word;      /* IE */
+    }
+</style>
 
-<!-- overall container for page -->
-<div class="container">
-
-    <!-- header row -->
-    <div id="header" class="card text-center">
-        <img src="../image/plants/header.jpg" alt="header image"/>
-        <div class="card-img-overlay">
-            <h1 class="">CMP306 Dynamic Web Development 2 | 2020-21<br/>Ben Fleuty | 1900040</h1>
+<header class="header-blue">
+    <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
+        <div class="container-fluid"><a class="navbar-brand" href="../../"><strong>Ben Fleuty |&nbsp;CMP 306</strong><br><strong>Dynamic Web Development</strong><br></a></div>
+    </nav>
+    <div class="container hero">
+        <div class="row">
+            <div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
+                <h1>Meet my plants</h1>
+                <p>Help... I keep spending money</p>
+            </div>
+            <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
+                <div class="phone-mockup"><img class="device" src="../image/plants/header.png"></div>
+            </div>
         </div>
-    </div><!-- Header  row -->
+    </div>
+</header>
+<section class="team-boxed">
+    <div class="container">
+        <div class="intro">
+            <h2 class="text-center">Plants</h2>
+            <p class="text-center">Meet my plants</p>
+        </div>
 
-    <br/><!--simple way to get some space -->
-
-    <div class="row">
         <!-- Display items -->
-        <?php
-        include("../model/api-plants.php");
-        $item = getAllPlants();
-        $item = json_decode($item);
-        for ($i = 0; $i < sizeof($item); $i++) {
-            $latin_name = $item[$i]->latin_name;
-            $common_name = $item[$i]->common_name;
-            $keep_location = $item[$i]->keep_location;
-            $description_parts = preg_split("/\r\n|\n|\r/", $item[$i]->description);
-            $description = "";
+        <div class="row people">
+            <?php
+            include("../model/api-plants.php");
+            $item = getAllPlants();
+            $item = json_decode($item);
+            for ($i = 0; $i < sizeof($item); $i++) {
+                $latin_name = $item[$i]->latin_name;
+                $common_name = $item[$i]->common_name;
+                $keep_location = $item[$i]->keep_location;
+                $description_parts = preg_split("/\r\n|\n|\r/", $item[$i]->description);
+                $description = "";
 
-            for($j = 0; $j < sizeof($description_parts);$j++)
-            {
-                // If the line isn't empty, add it to the description.
-                if(!empty($description_parts[$j]))
-                    $description .= "<p class='card-text'>" . $description_parts[$j] . "</p>";
+                for ($j = 0; $j < sizeof($description_parts); $j++) {
+                    // If the line isn't empty, add it to the description.
+                    if (!empty($description_parts[$j]))
+                        $description .= "<p class='card-text'>" . $description_parts[$j] . "</p>";
+                }
+                $image = $item[$i]->image;
+                echo '<div class="col-md-6 col-lg-4 item">';
+                echo '<div class="box"><img class="rounded-circle overflow-hidden" src="../image/plants/' . $image . '">';
+//            echo '<div class="card-header">';
+                echo '<h3 class="name">' . $common_name . '</h3>';
+                echo '<p class="title">' . $latin_name . '</p>';
+                echo '<p class="description">' . $description . '</p>';
+                echo '</div></div>';
             }
-            $image = $item[$i]->image;
-            echo '<div class="col-sm-4">';
-            echo '<div class="card">';
-            echo '<div class="card-header">';
-            echo '<h1>' . $common_name . ', <span class="muted">(' . $latin_name . ')</span></h1>';
-            echo '</div>';
-            echo '<div class="card-body">';
-            echo '<img src="../image/plants/' . $image . '" alt="Image of ' . $common_name . '" />';
-            echo '<p>' . $description . '</p>';
-            echo '</div>';
-            echo '<div class="card-footer">';
-//            echo '<a href="' . $link . '">' . $name . '</a>';
-            echo '</div>';
-            echo '</div>';
-            echo '</div>';
-            echo '<br/><br/>';
-        }
-        ?>
-    </div><!-- row -->
-
-    <!-- footer row -->
-    <div id="footer" class="card text-center">
-        <p>email : 1900040@abertay.ac.uk</p>
-    </div><!-- Footer  row -->
-
-
-</div><!-- container -->
+            ?>
+        </div>
+    </div>
+</section>
+<footer class="footer-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 item text">
+                <h3>Ben Fleuty | 1900040</h3>
+                <p>This website is for educational purposes only. Content may be subject to copyright.</p>
+            </div>
+        </div>
+        <p class="copyright">Ben Fleuty and whoever owns the stuff I'm... borrowing © 2021</p>
+    </div>
+</footer>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
+
 </html>
-   
