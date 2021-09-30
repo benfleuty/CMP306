@@ -1,5 +1,5 @@
 .header-dark {
-  background: url("../../week-one/image/plants/header.jpg"), #444;
+  background: url("../../assets/img/header.jpg"), #444;
   background-size: cover, auto;
   padding-bottom: 80px;
 }
@@ -124,7 +124,6 @@
   border: none;
   border-bottom: 1px solid transparent;
   border-radius: 0;
-  color: #ccc;
   box-shadow: none;
   color: inherit;
   transition: border-bottom-color 0.3s;
