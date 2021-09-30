@@ -5,16 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Untitled</title>
-    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-    <link rel="stylesheet" href="../../assets/css/Footer-Dark.css">
-    <link rel="stylesheet" href="../../assets/css/Header-Blue.css">
-    <link rel="stylesheet" href="../../assets/css/Header-Dark.css">
-    <link rel="stylesheet" href="../../assets/css/Navigation-Clean.css">
-    <link rel="stylesheet" href="../../assets/css/Projects-Horizontal.css">
-    <link rel="stylesheet" href="../../assets/css/styles.css">
-    <link rel="stylesheet" href="../../assets/css/Team-Boxed.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Header-Dark.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Projects-Horizontal.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/assets/css/styles.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Team-Boxed.css">
 </head>
 
 <body>
@@ -94,7 +94,7 @@
         <p class="copyright">Ben Fleuty and whoever owns the stuff I'm... borrowing © 2021</p>
     </div>
 </footer>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/~1900040/cmp306/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
