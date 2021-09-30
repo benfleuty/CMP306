@@ -4,13 +4,13 @@
     <title>CMP 306 Home | 1900040</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-    <link rel="stylesheet" href="../assets/css/Footer-Dark.css">
-    <link rel="stylesheet" href="../assets/css/Header-Blue.css">
-    <link rel="stylesheet" href="../assets/css/Navigation-Clean.css">
-    <link rel="stylesheet" href="../assets/css/Projects-Horizontal.css">
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Header-Blue.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Navigation-Clean.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Projects-Horizontal.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/assets/css/styles.css">
 </head>
 <body>
 <header class="header-blue">
@@ -55,7 +55,7 @@
             <div class="col-sm-6 item">
                 <div class="row">
                     <div class="col-md-12 col-lg-5"><a href="../week-one"><img class="img-fluid"
-                                                                               src="../assets/img/desk.jpg" alt="plant on a desk"></a>
+                                                                               src="/~1900040/cmp306/assets/img/desk.jpg" alt="plant on a desk"></a>
                     </div>
                     <div class="col">
                         <h3 class="name">Week 1</h3>
@@ -77,6 +77,6 @@
         <p class="copyright">Ben Fleuty and whoever owns the stuff I'm... borrowing © 2021</p>
     </div>
 </footer>
-<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/~1900040/cmp306/assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
