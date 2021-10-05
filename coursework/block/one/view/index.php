@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Block One | PLANTS!</title>
-    <link rel="stylesheet" href="/~1900040/cmp306/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
     <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Footer-Dark.css">
@@ -61,6 +62,7 @@
             $item = getAllPlants();
             $item = json_decode($item);
             for ($i = 0; $i < sizeof($item); $i++) {
+                $id = $item[$i]->id;
                 $scientific_name = $item[$i]->scientific_name;
                 $common_name = $item[$i]->common_name;
                 $keep_location = $item[$i]->keep_location;
@@ -71,36 +73,40 @@
                 echo '<div class="box"><img class="rounded-circle overflow-hidden" src="../image/plants/' . $image . '">';
                 echo '<h3 class="name">' . $common_name . '</h3>';
                 echo '<p class="title">' . $scientific_name . '</p>';
-                echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-'.$i.'">';
+                echo '<button type="button" id='.$id.' class="btn btn-primary plant-modal-button" data-toggle="modal" data-target="#plantModal">';
                 echo 'Learn More';
                 echo '</button>';
                 echo '</div></div>';
-
-                // not ideal and needs improved
-                /*
-                 *
-                 */
-                echo '<div class="modal" id="modal-' . $i . '"><div class="modal-dialog">';
-                echo '<div class="modal-content">';
-
-                // <!--Modal Header-- >
-                echo '<div class="modal-header">';
-                echo '<h4 class="modal-title">' . $scientific_name . ' </h4>';
-                echo '<button type = "button" class="btn-close" data-bs-dismiss = "modal" ></button >                </div >';
-
-                // <!--Modal body-- >
-                echo '<div class="modal-body">' . $description . '</div>';
-                // <!--Modal footer-- >
-                echo '<div class="modal-footer">';
-                echo '<button type = "button" class="btn btn-warning" id="modal-edit-btn-'.$i.'">Edit</button></div >';
-                echo '</div></div></div>';
             }
             ?>
         </div>
     </div>
-
-    <!-- The Modal -->
 </section>
+<!-- Plant Info Modal START -->
+
+<!-- Modal -->
+<div class="modal fade" id="plantModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Body
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Plant Info Modal END-->
 <footer class="footer-dark">
     <div class="container">
         <div class="row">
@@ -112,7 +118,17 @@
         <p class="copyright">Ben Fleuty and whoever owns the stuff I'm... borrowing © 2021</p>
     </div>
 </footer>
-<script src="/~1900040/cmp306/assets/bootstrap/js/bootstrap.min.js"></script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 <script src="../model/edit-modal.js"></script>
 
 </body>
