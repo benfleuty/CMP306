@@ -40,7 +40,7 @@
                 <p>Help... I keep spending money</p>
             </div>
             <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
-                <div class="phone-mockup"><img class="device" src="../image/plants/header.png"></div>
+                <div class="phone-mockup"><img class="device" src="../../coursework/block/one/image/plants/header.png"></div>
             </div>
         </div>
     </div>
