@@ -4,15 +4,7 @@ header('Content-Type: text/html; charset=utf-8');
 // Connect to database
 include("../model/connection.php");
 
-function console_log($output, $with_script_tags = true)
-{
-    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
-        ');';
-    if ($with_script_tags) {
-        $js_code = '<script>' . $js_code . '</script>';
-    }
-    echo $js_code;
-}
+
 
 //  function to get all the items
 function getAllPlants()
