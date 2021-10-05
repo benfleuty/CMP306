@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Projects-Horizontal.css">
     <link rel="stylesheet" href="/~1900040/cmp306/assets/css/styles.css">
     <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Team-Boxed.css">
+
 </head>
 
 <body>
@@ -22,16 +23,17 @@
     /* https://stackoverflow.com/questions/1638223/is-there-a-way-to-word-wrap-long-words-in-a-div
     Source: http://snipplr.com/view/10979/css-cross-browser-word-wrap */
     p {
-        white-space: pre-wrap;      /* CSS3 */
+        white-space: pre-wrap; /* CSS3 */
         white-space: -moz-pre-wrap; /* Firefox */
-        white-space: -o-pre-wrap;   /* Opera 7 */
-        word-wrap: break-word;      /* IE */
+        white-space: -o-pre-wrap; /* Opera 7 */
+        word-wrap: break-word; /* IE */
     }
 </style>
 
 <header class="header-blue">
     <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
-        <div class="container-fluid"><a class="navbar-brand" href="../../"><strong>Ben Fleuty |&nbsp;CMP 306</strong><br><strong>Dynamic Web Development</strong><br></a></div>
+        <div class="container-fluid"><a class="navbar-brand" href="../../"><strong>Ben Fleuty |&nbsp;CMP
+                    306</strong><br><strong>Dynamic Web Development</strong><br></a></div>
     </nav>
     <div class="container hero">
         <div class="row">
@@ -59,20 +61,45 @@
             $item = getAllPlants();
             $item = json_decode($item);
             for ($i = 0; $i < sizeof($item); $i++) {
-                $latin_name = $item[$i]->latin_name;
+                $scientific_name = $item[$i]->scientific_name;
                 $common_name = $item[$i]->common_name;
                 $keep_location = $item[$i]->keep_location;
-
+                $description = $item[$i]->description;
                 $image = $item[$i]->image;
+
                 echo '<div class="col-md-6 col-lg-4 item">';
                 echo '<div class="box"><img class="rounded-circle overflow-hidden" src="../image/plants/' . $image . '">';
-                echo '<h3 class="name"><a href="#">' . $common_name . '</a></h3>';
-                echo '<p class="title">' . $latin_name . '</p>';
+                echo '<h3 class="name">' . $common_name . '</h3>';
+                echo '<p class="title">' . $scientific_name . '</p>';
+                echo '<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-'.$i.'">';
+                echo 'Learn More';
+                echo '</button>';
                 echo '</div></div>';
+
+                // not ideal and needs improved
+                /*
+                 *
+                 */
+                echo '<div class="modal" id="modal-' . $i . '"><div class="modal-dialog">';
+                echo '<div class="modal-content">';
+
+                // <!--Modal Header-- >
+                echo '<div class="modal-header">';
+                echo '<h4 class="modal-title">' . $scientific_name . ' </h4>';
+                echo '<button type = "button" class="btn-close" data-bs-dismiss = "modal" ></button >                </div >';
+
+                // <!--Modal body-- >
+                echo '<div class="modal-body">' . $description . '</div>';
+                // <!--Modal footer-- >
+                echo '<div class="modal-footer">';
+                echo '<button type = "button" class="btn btn-warning" id="modal-edit-btn-'.$i.'">Edit</button></div >';
+                echo '</div></div></div>';
             }
             ?>
         </div>
     </div>
+
+    <!-- The Modal -->
 </section>
 <footer class="footer-dark">
     <div class="container">
@@ -86,6 +113,8 @@
     </div>
 </footer>
 <script src="/~1900040/cmp306/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../model/edit-modal.js"></script>
+
 </body>
 
 </html>
