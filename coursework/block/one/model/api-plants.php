@@ -18,7 +18,7 @@ function console_log($output, $with_script_tags = true)
 function getAllPlants()
 {
     global $conn;
-    $sql = "SELECT * FROM cmp306week1plants";
+    $sql = "SELECT * FROM CMP306BlockOnePlants";
     $result = mysqli_query($conn, $sql);
     //  convert to JSON
     $rows = array();
