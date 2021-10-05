@@ -98,8 +98,8 @@
                 Body
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" id="btnDeletePlant" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                <button type="button" id="btnEditPlant" class="btn btn-warning">Edit</button>
             </div>
         </div>
     </div>
@@ -129,6 +129,8 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script src="../model/populate-modal.js"></script>
+<script src="../model/delete-plant-modal.js"></script>
+<script src="../model/edit-plant-modal.js"></script>
 
 </body>
 
