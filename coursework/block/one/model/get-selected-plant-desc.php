@@ -22,7 +22,7 @@ $description = $res["description"];
 $image = $res["image"];
 
 
-$data = array('plant_id' => $plant_id,
+$data = array(
     'scientific_name' => $scientific_name,
     'common_name' => $common_name,
     'keep_location' => $keep_location,
