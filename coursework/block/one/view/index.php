@@ -77,11 +77,11 @@ session_start();
                 $description = $item[$i]->description;
                 $image = $item[$i]->image;
 
-                echo "<div class=\"col-md-6 col-lg-4 item\" id=\"plant-{$id}\">";
-                echo "<div class=\"box\"><img class=\"rounded-circle overflow-hidden\" src=\"../image/plants/{$image}\">";
-                echo "<h3 class=\"name\">{$common_name}</h3>";
-                echo "<p class=\"title\">{$scientific_name}</p>";
-                echo "<button type=\"button\" id=\"{$id}\" class=\"btn btn-primary plant-modal-button\" data-toggle=\"modal\" data-target=\"#plantModal\">";
+                echo "<div class=\"col-md-6 col-lg-4 item\" id=\"plant-$id\">";
+                echo "<div class=\"box\"><img class=\"rounded-circle overflow-hidden\" src=\"../image/plants/$image\">";
+                echo "<h3 class=\"name\">$common_name</h3>";
+                echo "<p class=\"title\">$scientific_name</p>";
+                echo "<button type=\"button\" id=\"$id\" class=\"btn btn-primary plant-modal-button\" data-toggle=\"modal\" data-target=\"#plantModal\">";
                 echo "Learn More";
                 echo "</button>";
                 echo "</div></div>";
