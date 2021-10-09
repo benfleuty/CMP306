@@ -10,7 +10,7 @@ if (empty($pid)) {
     die();
 }
 
-$sql = "DELETE FROM CMP306BlockOnePlants WHERE id=" . $pid . ";";
+$sql = "DELETE FROM CMP306BlockOnePlants WHERE id={$pid}";
 
 $data = array();
 
@@ -19,6 +19,8 @@ if (mysqli_query($conn, $sql)) {
 } else {
     $data = array('status' => 'error');
 }
+
+$data = array_merge($data,array('plant_id' => $pid));
 
 $data = json_encode($data);
 
