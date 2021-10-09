@@ -12,11 +12,11 @@ $(function () {
         modal.html(tb);
 
         // Replace edit button with save
-        let saveBtn = '<button type="button" id="btnSave" class="btn btn-success">Save</button>';
+        let saveBtn = '<button type="button" id="btnSavePlant" class="btn btn-success">Save</button>';
         $("#btnEditPlant").replaceWith(saveBtn);
 
         // Replace delete button with reset
-        let resetBtn = '<button type="button" id="btnReset" class="btn btn-danger">Reset</button>';
+        let resetBtn = '<button type="button" id="btnResetPlant" class="btn btn-danger">Reset</button>';
         $("#btnDeletePlant").replaceWith(resetBtn);
     })
 })
