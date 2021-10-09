@@ -11,7 +11,7 @@ if (!isset($_POST["plant_id"]) || empty($_POST["plant_id"])) {
 
 $_SESSION["plant_id"] = $_POST["plant_id"];
 
-$sql = "SELECT * FROM CMP306BlockOnePlants WHERE id = " . $_POST["plant_id"] ;
+$sql = "SELECT * FROM CMP306BlockOnePlants WHERE id = {$_POST["plant_id"]}" ;
 $res = mysqli_query($conn, $sql)->fetch_assoc();
 
 $plant_id = $res["id"];
