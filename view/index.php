@@ -39,7 +39,7 @@
                 <h1>CMP 306 Dynamic Web Development 2 | 2021 - 2022</h1>
                 <p>Here you will find all my work for this module. The block work and their reports can be found in the
                     above navigation bar.<br>Any weekly work can be found below.</p>
-                <button class="btn btn-light btn-lg action-button" type="button">View the blocks</button>
+<!--                <button class="btn btn-light btn-lg action-button" type="button">View the blocks</button>-->
             </div>
         </div>
     </div>
