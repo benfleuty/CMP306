@@ -9,8 +9,6 @@ $(function () {
                 var jsonData = JSON.parse(response);
                 let title = jsonData.common_name + " (" + jsonData.scientific_name + ")";
                 let desc = jsonData.description;
-                let plantId = jsonData.plant_id;
-                title += '<span id="plantID" style="display: none">' + plantId + '</span>';
 
                 $("#plantModal .modal-title").html(title);
                 $("#plantModal .modal-body").html(desc);
