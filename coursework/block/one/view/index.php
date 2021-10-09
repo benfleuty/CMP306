@@ -39,7 +39,7 @@ session_start();
 
 <header class="header-blue">
     <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
-        <div class="container-fluid"><a class="navbar-brand" href="../../"><strong>Ben Fleuty |&nbsp;CMP
+        <div class="container-fluid"><a class="navbar-brand" href="/~1900040/cmp306/"><strong>Ben Fleuty |&nbsp;CMP
                     306</strong><br><strong>Dynamic Web Development</strong><br></a></div>
     </nav>
     <div class="container hero">
