@@ -1,6 +1,7 @@
 $(function () {
-    let og_text = ""
-    $("#plantModal").on("click","#btnEditPlant", function () {
+    let og_text = "";
+    var plantModal = $("#plantModal");
+    plantModal.on("click", "#btnEditPlant", function () {
         // Store modal for access
         var modal = $("#plantModal .modal-body");
         // Get text to edit
@@ -18,5 +19,9 @@ $(function () {
         // Replace delete button with reset
         let resetBtn = '<button type="button" id="btnResetPlant" class="btn btn-danger">Reset</button>';
         $("#btnDeletePlant").replaceWith(resetBtn);
+    })
+
+    plantModal.on("click", "#btnResetPlant", function () {
+        $("#plantDescription").val(og_text);
     })
 })
