@@ -18,6 +18,7 @@ $(function () {
                 }
                 // Otherwise successful deletion
                 console.log("Plant successfully deleted");
+
             }
         })
 
