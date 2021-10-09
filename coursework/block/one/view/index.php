@@ -47,6 +47,7 @@ session_start();
             <div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
                 <h1>Meet my plants</h1>
                 <p>Help... I keep spending money</p>
+                <button id="btnRestoreDatabase" class="btn btn-light btn-lg action-button" type="button">Restore database</button>
             </div>
             <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
                 <div class="phone-mockup"><img class="device" src="../image/plants/header.png"></div>
@@ -59,6 +60,7 @@ session_start();
         <div class="intro">
             <h2 class="text-center">Plants</h2>
             <p class="text-center">Meet my plants</p>
+            <p class="text-center">Click the restore database above to ensure you are seeing the original, unedited data.</p>
         </div>
 
         <!-- Display items -->
@@ -134,6 +136,7 @@ session_start();
 <script src="../model/populate-modal.js"></script>
 <script src="../model/delete-plant-modal.js"></script>
 <script src="../model/edit-plant-modal.js"></script>
+<script src="../model/restore-database.js"></script>
 
 </body>
 
