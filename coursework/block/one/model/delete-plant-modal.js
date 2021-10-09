@@ -1,5 +1,5 @@
 $(function () {
-    $("#btnDeletePlant").on("click", function () {
+    $("#plantModal").on("click","#btnDeletePlant", function () {
         alert("Plant 'deleted'");
     })
 })
