@@ -1,6 +1,6 @@
 $(function () {
     let og_text = ""
-    $("#btnEditPlant").on("click", function () {
+    $("#plantModal").on("click","#btnEditPlant", function () {
         // Store modal for access
         var modal = $("#plantModal .modal-body");
         // Get text to edit
@@ -20,12 +20,3 @@ $(function () {
         $("#btnDeletePlant").replaceWith(resetBtn);
     })
 })
-
-
-
-/*
-TODO
-On closing reset to delete / edit buttons
-
-
- */
