@@ -19,6 +19,9 @@ $(function () {
                 // Otherwise successful deletion
                 console.log("Plant successfully deleted");
 
+                let selector = "#plant-" + jsonData.plant_id;
+                console.log(selector);
+                $(selector).remove();
             }
         })
 
