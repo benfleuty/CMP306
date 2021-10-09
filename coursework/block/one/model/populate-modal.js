@@ -15,7 +15,7 @@ $(function () {
             }
         })
 
-        let x = '<button type="button" id="btnDeletePlant" class="btn btn-danger modal-button" data-dismiss="modal">Delete</button>' +
+        let x = '<button type="button" id="btnDeletePlant" class="btn btn-danger modal-button">Delete</button>' +
             '<button type="button" id="btnEditPlant" class="btn btn-warning modal-button">Edit</button>';
        $("#plantModal .modal-footer").html(x);
     })
