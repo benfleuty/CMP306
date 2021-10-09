@@ -6,7 +6,7 @@ $(function () {
             url: '../model/get-selected-plant-desc.php',
             data: {plant_id: pid},
             success: function (response) {
-                var jsonData = JSON.parse(response);
+                let jsonData = JSON.parse(response);
                 let title = jsonData.common_name + " (" + jsonData.scientific_name + ")";
                 let desc = jsonData.description;
 
