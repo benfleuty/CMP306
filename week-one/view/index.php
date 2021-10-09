@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Untitled</title>
+    <title>Week One | Plants</title>
     <link rel="stylesheet" href="/~1900040/cmp306/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bitter:400,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="/~1900040/cmp306/assets/css/styles.css">
     <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Team-Boxed.css">
 </head>
-
-<body>
 <style>
     /* https://stackoverflow.com/questions/1638223/is-there-a-way-to-word-wrap-long-words-in-a-div
     Source: http://snipplr.com/view/10979/css-cross-browser-word-wrap */
@@ -28,6 +26,8 @@
         word-wrap: break-word;      /* IE */
     }
 </style>
+<body>
+
 
 <header class="header-blue">
     <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
@@ -40,7 +40,7 @@
                 <p>Help... I keep spending money</p>
             </div>
             <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
-                <div class="phone-mockup"><img class="device" src="../../coursework/block/one/image/plants/header.png"></div>
+                <div class="phone-mockup"><img class="device" src="../../coursework/block/one/image/plants/header.png" alt="picture of a plant"></div>
             </div>
         </div>
     </div>
