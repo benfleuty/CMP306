@@ -8,7 +8,7 @@ $(function () {
         // store backup for reset
         og_text = text;
         // Replace text with textarea and text
-        let tb = "<textarea style='width: 100%;min-height: 150px'>" + text + "</textarea>";
+        let tb = "<textarea id=\"plantDescription\" style=\"width: 100%;min-height: 150px\">" + text + "</textarea>";
         modal.html(tb);
 
         // Replace edit button with save
