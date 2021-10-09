@@ -97,10 +97,7 @@
             <div class="modal-body">
                 Body
             </div>
-            <div class="modal-footer">
-                <button type="button" id="btnDeletePlant" class="btn btn-danger" data-dismiss="modal">Delete</button>
-                <button type="button" id="btnEditPlant" class="btn btn-warning">Edit</button>
-            </div>
+            <div class="modal-footer"></div>
         </div>
     </div>
 </div>
