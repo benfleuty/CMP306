@@ -4,7 +4,6 @@ header('Content-Type: text/html; charset=utf-8');
 // Connect to database
 include("../model/connection.php");
 
-
 //  function to get all the items
 function getAllPlants()
 {
@@ -106,4 +105,49 @@ function restoreDatabase()
         $data = array_merge($data, $res);
     }
     return json_encode($data);
+}
+
+function createPlant($common_name, $scientific_name, $description)
+{
+    global $conn;
+
+    $clean_common_name = sanitiseUserInput($common_name);
+    $clean_scientific_name = sanitiseUserInput($scientific_name);
+    $clean_description = sanitiseUserInput($description);
+
+    $sql = "INSERT INTO CMP306BlockOnePlants (common_name, scientific_name, description)  VALUES ('$clean_common_name','$clean_scientific_name','$clean_description')";
+
+    if (mysqli_query($conn, $sql)) {
+        $data = array('status' => 'success');
+    } else {
+        $data = array('status' => 'fail');
+    }
+
+    return json_encode($data);
+}
+
+function createPlantFull($common_name, $scientific_name, $description, $keep_location, $image)
+{
+    global $conn;
+
+    $clean_common_name = sanitiseUserInput($common_name);
+    $clean_scientific_name = sanitiseUserInput($scientific_name);
+    $clean_description = sanitiseUserInput($description);
+    $clean_keep_location = sanitiseUserInput($keep_location);
+    $clean_img = sanitiseUserInput($image);
+
+    $sql = "INSERT INTO CMP306BlockOnePlants (scientific_name, common_name, keep_location, description, image) VALUES ($clean_scientific_name,$clean_common_name,$clean_keep_location,$clean_description,$clean_img)";
+
+    if (mysqli_query($conn, $sql)) {
+        $data = array('status' => 'success');
+    } else {
+        $data = array('status' => 'fail');
+    }
+
+    return json_encode($data);
+}
+
+function sanitiseUserInput($input)
+{
+    return filter_var($input);
 }
