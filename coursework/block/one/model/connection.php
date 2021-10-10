@@ -1,6 +1,6 @@
 <?php
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
+
+include_once "config.php";
 
 //  Database connections
 $servername = "lochnagar.abertay.ac.uk";
