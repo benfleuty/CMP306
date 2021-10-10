@@ -50,7 +50,7 @@ session_start();
                 <button id="btnRestoreDatabase" class="btn btn-light btn-lg action-button" type="button">Restore database</button>
             </div>
             <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
-                <div class="phone-mockup"><img class="device" src="../image/plants/header.png"></div>
+                <div class="phone-mockup"><img class="device" src="../../../../assets/img/plants/header.png"></div>
             </div>
         </div>
     </div>
@@ -78,7 +78,7 @@ session_start();
                 $image = $item[$i]->image;
 
                 echo "<div class=\"col-md-6 col-lg-4 item\" id=\"plant-$id\">";
-                echo "<div class=\"box\"><img class=\"rounded-circle overflow-hidden\" src=\"../image/plants/$image\">";
+                echo "<div class=\"box\"><img class=\"rounded-circle overflow-hidden\" src=\"/~1900040/cmp306/assets/img/plants/$image\" alt=\"Image of a $common_name\">";
                 echo "<h3 class=\"name\">$common_name</h3>";
                 echo "<p class=\"title\">$scientific_name</p>";
                 echo "<button type=\"button\" id=\"$id\" class=\"btn btn-primary plant-modal-button\" data-toggle=\"modal\" data-target=\"#plantModal\">";
