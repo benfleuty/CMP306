@@ -66,7 +66,7 @@ session_start();
         <!-- Display items -->
         <div class="row people">
             <?php
-            include("../model/api-plants.php");
+            include("../model/api.php");
             $item = getAllPlants();
             $item = json_decode($item);
             for ($i = 0; $i < sizeof($item); $i++) {
@@ -134,7 +134,7 @@ session_start();
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
 <script src="../model/populate-modal.js"></script>
-<script src="../model/delete-plant-modal.js"></script>
+<script src="../controller/delete-plant-modal.js"></script>
 <script src="../model/edit-plant-modal.js"></script>
 <script src="../model/restore-database.js"></script>
 <script src="../model/edit-plant.js"></script>
