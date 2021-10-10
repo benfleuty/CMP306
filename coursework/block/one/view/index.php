@@ -22,7 +22,7 @@ session_start();
     <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Projects-Horizontal.css">
     <link rel="stylesheet" href="/~1900040/cmp306/assets/css/styles.css">
     <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Team-Boxed.css">
-
+    <link rel="stylesheet" href="content/css/plants.css">
 </head>
 
 <body>
@@ -47,7 +47,9 @@ session_start();
             <div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
                 <h1>Meet my plants</h1>
                 <p>Help... I keep spending money</p>
-                <button id="btnRestoreDatabase" class="btn btn-light btn-lg action-button" type="button">Restore database</button>
+                <button id="btnRestoreDatabase" class="btn btn-light btn-lg action-button" type="button">Restore
+                    database
+                </button>
             </div>
             <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
                 <div class="phone-mockup"><img class="device" src="../../../../assets/img/plants/header.png"></div>
@@ -60,11 +62,21 @@ session_start();
         <div class="intro">
             <h2 class="text-center">Plants</h2>
             <p class="text-center">Meet my plants</p>
-            <p class="text-center">Click the restore database above to ensure you are seeing the original, unedited data.</p>
+            <p class="text-center">Click the restore database above to ensure you are seeing the original, unedited
+                data.</p>
         </div>
 
         <!-- Display items -->
         <div class="row people">
+            <div class="col-md-6 col-lg-4 item" id="new-plant">
+                <div class="box">
+                    <h3 class="name">Add a new plant</h3>
+                    <button type="button" id="btnCardAddNewPlant" class="btn btn-primary" data-toggle="modal"
+                            data-target="#newPlantModal">
+                        Start >>>
+                    </button>
+                </div>
+            </div>
             <?php
             include("../model/api.php");
             $item = getAllPlants();
@@ -78,7 +90,9 @@ session_start();
                 $image = $item[$i]->image;
 
                 echo "<div class=\"col-md-6 col-lg-4 item\" id=\"plant-$id\">";
-                echo "<div class=\"box\"><img class=\"rounded-circle overflow-hidden\" src=\"/~1900040/cmp306/assets/img/plants/$image\" alt=\"Image of a $common_name\">";
+                echo "<div class=\"box\">";
+                if (!empty($image))
+                    echo "<img class=\"rounded-circle overflow-hidden\" src=\"/~1900040/cmp306/assets/img/plants/$image\" alt=\"Image of a $common_name\">";
                 echo "<h3 class=\"name\">$common_name</h3>";
                 echo "<p class=\"title\">$scientific_name</p>";
                 echo "<button type=\"button\" id=\"$id\" class=\"btn btn-primary plant-modal-button\" data-toggle=\"modal\" data-target=\"#plantModal\">";
@@ -91,27 +105,66 @@ session_start();
     </div>
 </section>
 <!-- Plant Info Modal START -->
-
-<!-- Modal -->
-<div class="modal fade" id="plantModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<!-- Plant Modal -->
+<div class="modal fade" id="plantModal" tabindex="-1" role="dialog" aria-labelledby="plantModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Body
             </div>
             <div class="modal-footer"></div>
         </div>
     </div>
 </div>
-
-
 <!-- Plant Info Modal END-->
+
+
+<!-- New Plant Modal START -->
+<!-- New Plant Modal -->
+<div class="modal fade" id="newPlantModal" tabindex="-1" role="dialog" aria-labelledby="newPlantModal"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Plant</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <label for="newPlantCommonName" class="font-weight-bold">Common Name</label>
+                        <input type="text" id="newPlantCommonName" class="form-control"/>
+                        <span id="newPlantCommonNameMsg"></span>
+                    </div>
+                    <div class="form-row">
+                        <label for="newPlantScientificName" class="font-weight-bold">Scientific Name</label>
+                        <input type="text" id="newPlantScientificName" class="form-control"/>
+                        <span id="newPlantScientificNameMsg"></span>
+                    </div>
+                    <div class="form-row">
+                        <label for="newPlantDescription" class="font-weight-bold">Description</label>
+                        <textarea id="newPlantDescription" class="form-control"></textarea>
+                        <span id="newPlantDescriptionMsg"></span>
+                    </div>
+                    <div class="form-row">
+                        <button id="btnSaveNewPlant" class="btn btn-primary btn-block">Save</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+<!-- New Plant Modal END-->
+
+
 <footer class="footer-dark">
     <div class="container">
         <div class="row">
@@ -138,6 +191,7 @@ session_start();
 <script src="../controller/edit-plant.js"></script>
 <script src="../controller/edit-plant-modal.js"></script>
 <script src="../controller/restore-database.js"></script>
+<script src="../controller/save-new-plant.js"></script>
 
 </body>
 
