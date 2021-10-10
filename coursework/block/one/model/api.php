@@ -19,10 +19,11 @@ function getAllPlants()
     return json_encode($rows, JSON_INVALID_UTF8_IGNORE);
 }
 
-function getPlant($id){
+function getPlant($id)
+{
     global $conn;
 
-    $sql = "SELECT * FROM CMP306BlockOnePlants WHERE id = $id" ;
+    $sql = "SELECT * FROM CMP306BlockOnePlants WHERE id = $id";
 
 
     $res = mysqli_query($conn, $sql)->fetch_assoc();
@@ -44,7 +45,7 @@ function getPlant($id){
         'image' => $image
     );
 
-    return json_encode($data,JSON_INVALID_UTF8_IGNORE);
+    return json_encode($data, JSON_INVALID_UTF8_IGNORE);
 }
 
 function deletePlant($id)
@@ -64,15 +65,45 @@ function deletePlant($id)
     return json_encode($data);
 }
 
-function editPlant($id,$description){
+function editPlant($id, $description)
+{
     global $conn;
     $sql = "UPDATE CMP306BlockOnePlants SET description = '$description' WHERE id = $id";
 
-    if (mysqli_query($conn,$sql)){
+    if (mysqli_query($conn, $sql)) {
         $data = array('status' => 'success');
-    }else{
+    } else {
         $data = array('status' => 'fail');
     }
 
+    return json_encode($data);
+}
+
+function restoreDatabase()
+{
+    global $conn;
+
+    $clearTableQuery = "DELETE FROM CMP306BlockOnePlants";
+    $fillTableQuery = "INSERT INTO CMP306BlockOnePlants SELECT * FROM cmp306week1plants";
+
+    $sql = $clearTableQuery;
+    $data = array();
+
+    if (mysqli_query($conn, $sql)) {
+        // good delete
+        $sql = $fillTableQuery;
+        $res = array('drop_status' => 'success');
+    } else {
+        // delete fail
+        $res = array('drop_status' => 'fail');
+    }
+
+    $data = array_merge($data, $res);
+
+    if ($sql == $fillTableQuery && mysqli_query($conn, $sql)) {
+        // good insert
+        $res = array('fill_status' => 'success');
+        $data = array_merge($data, $res);
+    }
     return json_encode($data);
 }

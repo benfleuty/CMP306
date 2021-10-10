@@ -137,7 +137,7 @@ session_start();
 <script src="../controller/delete-plant-modal.js"></script>
 <script src="../controller/edit-plant.js"></script>
 <script src="../controller/edit-plant-modal.js"></script>
-<script src="../model/restore-database.js"></script>
+<script src="../controller/restore-database.js"></script>
 
 </body>
 
