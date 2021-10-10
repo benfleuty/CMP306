@@ -40,7 +40,7 @@
                 <p>Help... I keep spending money</p>
             </div>
             <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
-                <div class="phone-mockup"><img class="device" src="../../coursework/block/one/image/plants/header.png" alt="picture of a plant"></div>
+                <div class="phone-mockup"><img class="device" src="../../assets/img/plants/header.png" alt="picture of a plant"></div>
             </div>
         </div>
     </div>
@@ -71,13 +71,12 @@
                         $description .= "<p class='card-text'>" . $description_parts[$j] . "</p>";
                 }
                 $image = $item[$i]->image;
-                echo '<div class="col-md-6 col-lg-4 item">';
-                echo '<div class="box"><img class="rounded-circle overflow-hidden" src="../image/plants/' . $image . '">';
-//            echo '<div class="card-header">';
-                echo '<h3 class="name">' . $common_name . '</h3>';
-                echo '<p class="title">' . $latin_name . '</p>';
-                echo '<p class="description">' . $description . '</p>';
-                echo '</div></div>';
+                echo "<div class=\"col-md-6 col-lg-4 item\">";
+                echo "<div class=\"box\"><img class=\"rounded-circle overflow-hidden\" src=\"/~1900040/cmp306/assets/img/plants/$image\" alt=\"Image of a $common_name\">";
+                echo "<h3 class=\"name\">$common_name</h3>";
+                echo "<p class=\"title\">$latin_name</p>";
+                echo "<p class=\"description\">$description</p>";
+                echo "</div></div>";
             }
             ?>
         </div>
