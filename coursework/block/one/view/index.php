@@ -133,7 +133,7 @@ session_start();
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-<script src="../model/populate-modal.js"></script>
+<script src="../controller/populate-modal.js"></script>
 <script src="../controller/delete-plant-modal.js"></script>
 <script src="../controller/edit-plant.js"></script>
 <script src="../controller/edit-plant-modal.js"></script>

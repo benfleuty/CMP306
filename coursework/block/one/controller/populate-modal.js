@@ -3,7 +3,7 @@ $(function () {
         let pid = e.target.id;
         $.ajax({
             type: "POST",
-            url: '../model/get-selected-plant-desc.php',
+            url: '../model/load-plant.php',
             data: {plant_id: pid},
             success: function (response) {
                 let jsonData = JSON.parse(response);
