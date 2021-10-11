@@ -142,6 +142,7 @@ function createPlantFull($common_name, $scientific_name, $description, $keep_loc
         $data = array('status' => 'success');
     } else {
         $data = array('status' => 'fail');
+
     }
 
     return json_encode($data);
@@ -149,5 +150,5 @@ function createPlantFull($common_name, $scientific_name, $description, $keep_loc
 
 function sanitiseUserInput($input)
 {
-    return filter_var($input);
+    return htmlspecialchars(addslashes($input));
 }
