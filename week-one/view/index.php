@@ -61,7 +61,7 @@
             for ($i = 0; $i < sizeof($item); $i++) {
                 $latin_name = $item[$i]->latin_name;
                 $common_name = $item[$i]->common_name;
-                $keep_location = $item[$i]->keep_location;
+                $link = $item[$i]->link;
                 $description_parts = preg_split("/\r\n|\n|\r/", $item[$i]->description);
                 $description = "";
 

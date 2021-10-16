@@ -85,7 +85,7 @@ session_start();
                 $id = $item[$i]->id;
                 $scientific_name = $item[$i]->scientific_name;
                 $common_name = $item[$i]->common_name;
-                $keep_location = $item[$i]->keep_location;
+                $link = $item[$i]->link;
                 $description = $item[$i]->description;
                 $image = $item[$i]->image;
 
