@@ -82,7 +82,7 @@ function restoreDatabase()
 {
     global $conn;
 
-    $clearTableQuery = "DELETE FROM CMP306BlockOnePlants";
+    $clearTableQuery = "DELETE FROM CMP306BlockOnePlants WHERE 1";
     $fillTableQuery = "INSERT INTO CMP306BlockOnePlants SELECT * FROM cmp306week1plants";
 
     $sql = $clearTableQuery;
