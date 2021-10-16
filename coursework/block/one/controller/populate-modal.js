@@ -9,9 +9,12 @@ $(function () {
                 let jsonData = JSON.parse(response);
                 let title = jsonData.common_name + " (" + jsonData.scientific_name + ")";
                 let desc = jsonData.description;
+                let link = jsonData.link;
 
                 $("#plantModal .modal-title").html(title);
-                $("#plantModal .modal-body").html(desc);
+                $("#plantModal .modal-body > .description").html(desc);
+                $("#plantModal .modal-body > .link > a").attr("href", link);
+
             }
         })
 
