@@ -32,7 +32,6 @@ function getPlant($id)
     $common_name = $res["common_name"];
     $link = $res["link"];
     $description = $res["description"];
-    $image = $res["image"];
 
 
     $data = array(
@@ -40,8 +39,7 @@ function getPlant($id)
         'scientific_name' => $scientific_name,
         'common_name' => $common_name,
         'link' => $link,
-        'description' => $description,
-        'image' => $image
+        'description' => $description
     );
 
     return json_encode($data, JSON_INVALID_UTF8_IGNORE);
