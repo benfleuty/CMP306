@@ -30,7 +30,7 @@ function getPlant($id)
     $plant_id = $res["id"];
     $scientific_name = $res["scientific_name"];
     $common_name = $res["common_name"];
-    $keep_location = $res["keep_location"];
+    $link = $res["link"];
     $description = $res["description"];
     $image = $res["image"];
 
@@ -39,7 +39,7 @@ function getPlant($id)
         'id' => $plant_id,
         'scientific_name' => $scientific_name,
         'common_name' => $common_name,
-        'keep_location' => $keep_location,
+        'link' => $link,
         'description' => $description,
         'image' => $image
     );
@@ -107,15 +107,16 @@ function restoreDatabase()
     return json_encode($data);
 }
 
-function createPlant($common_name, $scientific_name, $description)
+function createPlant($common_name, $scientific_name, $description,$link)
 {
     global $conn;
 
     $clean_common_name = sanitiseUserInput($common_name);
     $clean_scientific_name = sanitiseUserInput($scientific_name);
     $clean_description = sanitiseUserInput($description);
+    $clean_link = sanitiseUserInput($link);
 
-    $sql = "INSERT INTO CMP306BlockOnePlants (common_name, scientific_name, description)  VALUES ('$clean_common_name','$clean_scientific_name','$clean_description')";
+    $sql = "INSERT INTO CMP306BlockOnePlants (common_name, scientific_name, description,link)  VALUES ('$clean_common_name','$clean_scientific_name','$clean_description','$clean_link')";
 
     if (mysqli_query($conn, $sql)) {
         $data = array('status' => 'success');
@@ -126,17 +127,16 @@ function createPlant($common_name, $scientific_name, $description)
     return json_encode($data);
 }
 
-function createPlantFull($common_name, $scientific_name, $description, $keep_location, $image)
+function createPlantFull($common_name, $scientific_name, $description, $link)
 {
     global $conn;
 
     $clean_common_name = sanitiseUserInput($common_name);
     $clean_scientific_name = sanitiseUserInput($scientific_name);
     $clean_description = sanitiseUserInput($description);
-    $clean_keep_location = sanitiseUserInput($keep_location);
-    $clean_img = sanitiseUserInput($image);
+    $clean_link = sanitiseUserInput($link);
 
-    $sql = "INSERT INTO CMP306BlockOnePlants (scientific_name, common_name, keep_location, description, image) VALUES ($clean_scientific_name,$clean_common_name,$clean_keep_location,$clean_description,$clean_img)";
+    $sql = "INSERT INTO CMP306BlockOnePlants (scientific_name, common_name, link, description) VALUES ($clean_scientific_name,$clean_common_name,$clean_link,$clean_description)";
 
     if (mysqli_query($conn, $sql)) {
         $data = array('status' => 'success');
@@ -148,7 +148,7 @@ function createPlantFull($common_name, $scientific_name, $description, $keep_loc
     return json_encode($data);
 }
 
-function sanitiseUserInput($input)
+function sanitiseUserInput($input): string
 {
     return htmlspecialchars(addslashes($input));
 }
