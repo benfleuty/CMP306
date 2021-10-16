@@ -86,12 +86,11 @@ session_start();
                 $common_name = $item[$i]->common_name;
                 $link = $item[$i]->link;
                 $description = $item[$i]->description;
-                $image = $item[$i]->image;
 
                 echo "<div class=\"col-md-6 col-lg-4 item\" id=\"plant-$id\">";
                 echo "<div class=\"box\">";
-                if (!empty($image))
-                    echo "<img class=\"rounded-circle overflow-hidden\" src=\"/~1900040/cmp306/assets/img/plants/$image\" alt=\"Image of a $common_name\">";
+                if (!empty($link))
+                    echo "<img class=\"rounded-circle overflow-hidden\" src=\"/~1900040/cmp306/assets/img/plants/$link\" alt=\"Image of a $common_name\">";
                 echo "<h3 class=\"name\">$common_name</h3>";
                 echo "<p class=\"title\">$scientific_name</p>";
                 echo "<button type=\"button\" id=\"$id\" class=\"btn btn-primary plant-modal-button\" data-toggle=\"modal\" data-target=\"#plantModal\">";
@@ -115,6 +114,8 @@ session_start();
                 </button>
             </div>
             <div class="modal-body">
+                <div class="description"></div>
+                <div class="link"><a target="_blank">Click here to learn more!</a></div>
             </div>
             <div class="modal-footer"></div>
         </div>
