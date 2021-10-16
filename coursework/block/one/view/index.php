@@ -62,7 +62,8 @@ session_start();
         <div class="intro">
             <h2 class="text-center">Plants</h2>
             <p class="text-center">Meet my plants</p>
-            <p class="text-center">Click the restore database above to ensure you are seeing the original, unedited data.</p>
+            <p class="text-center">Click the restore database above to ensure you are seeing the original, unedited
+                data.</p>
         </div>
 
         <!-- Display items -->
@@ -85,12 +86,12 @@ session_start();
                 $scientific_name = $item[$i]->scientific_name;
                 $common_name = $item[$i]->common_name;
                 $link = $item[$i]->link;
+                $imageHeader = $item[$i]->image;
                 $description = $item[$i]->description;
 
                 echo "<div class=\"col-md-6 col-lg-4 item\" id=\"plant-$id\">";
                 echo "<div class=\"box\">";
-                if (!empty($link))
-                    echo "<img class=\"rounded-circle overflow-hidden\" src=\"/~1900040/cmp306/assets/img/plants/$link\" alt=\"Image of a $common_name\">";
+                echo "<img class=\"rounded-circle overflow-hidden\" src=\"/~1900040/cmp306/assets/img/plants/block1/$id/$imageHeader\" alt=\"Image of a $common_name\">";
                 echo "<h3 class=\"name\">$common_name</h3>";
                 echo "<p class=\"title\">$scientific_name</p>";
                 echo "<button type=\"button\" id=\"$id\" class=\"btn btn-primary plant-modal-button\" data-toggle=\"modal\" data-target=\"#plantModal\">";
@@ -116,6 +117,7 @@ session_start();
             <div class="modal-body">
                 <div class="description"></div>
                 <div class="link"><a target="_blank">Click here to learn more!</a></div>
+                <div class="images"></div>
             </div>
             <div class="modal-footer"></div>
         </div>
