@@ -8,10 +8,12 @@ include("../model/connection.php");
 function getAllPlants()
 {
     global $conn;
-    $sql = "SELECT * FROM CMP306BlockOnePlants";
+    $sql = "SELECT CMP306BlockOnePlants.id, scientific_name, common_name, link, description,image
+FROM CMP306BlockOnePlants,CMP306BlockOnePlantsImages where isHeader = 1 AND plant_id = CMP306BlockOnePlants.id";
     $result = mysqli_query($conn, $sql);
     //  convert to JSON
     $rows = array();
+
     while ($r = mysqli_fetch_assoc($result)) {
         $rows[] = $r;
     }
@@ -32,17 +34,44 @@ function getPlant($id)
     $common_name = $res["common_name"];
     $link = $res["link"];
     $description = $res["description"];
-
+    $images = getPlantImages($id);
 
     $data = array(
         'id' => $plant_id,
         'scientific_name' => $scientific_name,
         'common_name' => $common_name,
         'link' => $link,
-        'description' => $description
+        'description' => $description,
+        'images' => $images
     );
 
     return json_encode($data, JSON_INVALID_UTF8_IGNORE);
+}
+
+function getAllPlantImages()
+{
+    global $conn;
+    $sql = "SELECT plant_id, image FROM CMP306BlockOnePlantsImages";
+    $result = mysqli_query($conn, $sql);
+    $images = array();
+    while ($r = mysqli_fetch_assoc($result)) {
+        $images[] = $r;
+    }
+
+    return $images;
+}
+
+function getPlantImages($id)
+{
+    global $conn;
+    $sql = "SELECT plant_id, image FROM CMP306BlockOnePlantsImages WHERE plant_id = $id";
+    $result = mysqli_query($conn, $sql);
+    $images = array();
+    while ($r = mysqli_fetch_assoc($result)) {
+        $images[] = $r["image"];
+    }
+
+    return $images;
 }
 
 function deletePlant($id)
@@ -105,7 +134,7 @@ function restoreDatabase()
     return json_encode($data);
 }
 
-function createPlant($common_name, $scientific_name, $description,$link)
+function createPlant($common_name, $scientific_name, $description, $link)
 {
     global $conn;
 
