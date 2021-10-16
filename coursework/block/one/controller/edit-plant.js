@@ -13,11 +13,14 @@ $(function () {
                 }
                 console.log("Description updated");
 
-                $("#plantModal .modal-body").html(text);
+                $("#plantModal .modal-body > .description").html(text);
 
-                let x = '<button type="button" id="btnDeletePlant" class="btn btn-danger modal-button">Delete</button>' +
-                    '<button type="button" id="btnEditPlant" class="btn btn-warning modal-button">Edit</button>';
-                $("#plantModal .modal-footer").html(x);
+
+
+                let deleteButton = '<button type="button" id="btnDeletePlant" class="btn btn-danger modal-button">Delete</button>';
+                let editButton = '<button type="button" id="btnEditPlant" class="btn btn-warning modal-button">Edit</button>';
+                let content = deleteButton + editButton;
+                $("#plantModal .modal-footer").html(content);
             }
         })
     })
