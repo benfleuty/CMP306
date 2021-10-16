@@ -62,8 +62,7 @@ session_start();
         <div class="intro">
             <h2 class="text-center">Plants</h2>
             <p class="text-center">Meet my plants</p>
-            <p class="text-center">Click the restore database above to ensure you are seeing the original, unedited
-                data.</p>
+            <p class="text-center">Click the restore database above to ensure you are seeing the original, unedited data.</p>
         </div>
 
         <!-- Display items -->
