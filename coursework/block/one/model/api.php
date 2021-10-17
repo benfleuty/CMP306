@@ -20,7 +20,7 @@ FROM CMP306BlockOnePlants,CMP306BlockOnePlantsImages where isHeader = 1 AND plan
     return json_encode($rows, JSON_INVALID_UTF8_IGNORE);
 }
 
-function getPlant($id)
+function getPlant($id, $json_encode = false)
 {
     global $conn;
 
@@ -44,8 +44,9 @@ function getPlant($id)
         'description' => $description,
         'images' => $images
     );
-
-    return json_encode($data, JSON_INVALID_UTF8_IGNORE);
+    if ($json_encode)
+        return json_encode($data, JSON_INVALID_UTF8_IGNORE);
+    return $data;
 }
 
 function getAllPlantImages()
@@ -91,7 +92,7 @@ function deletePlant($id)
     return json_encode($data);
 }
 
-function updatePlant($id, $description,$link)
+function updatePlant($id, $description, $link)
 {
     global $conn;
     $sql = "UPDATE CMP306BlockOnePlants SET description = '$description',link = '$link' WHERE id = $id";
