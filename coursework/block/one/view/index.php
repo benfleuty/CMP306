@@ -81,12 +81,14 @@
             include("../model/api.php");
             $item = getAllPlants();
             $item = json_decode($item);
+            var_dump($item);  exit();
             for ($i = 0; $i < sizeof($item); $i++) {
                 $id = $item[$i]->id;
                 $scientific_name = $item[$i]->scientific_name;
                 $common_name = $item[$i]->common_name;
                 $link = $item[$i]->link;
                 $imageHeader = $item[$i]->image;
+
                 $description = $item[$i]->description;
 
                 echo "<div class=\"col-md-6 col-lg-4 item\" id=\"plant-$id\">";
