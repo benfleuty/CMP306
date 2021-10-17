@@ -91,10 +91,10 @@ function deletePlant($id)
     return json_encode($data);
 }
 
-function editPlant($id, $description)
+function updatePlant($id, $description,$link)
 {
     global $conn;
-    $sql = "UPDATE CMP306BlockOnePlants SET description = '$description' WHERE id = $id";
+    $sql = "UPDATE CMP306BlockOnePlants SET description = '$description',link = '$link' WHERE id = $id";
 
     if (mysqli_query($conn, $sql)) {
         $data = array('status' => 'success');
