@@ -94,7 +94,7 @@
                 echo "<img class=\"rounded-circle overflow-hidden\" src=\"/~1900040/cmp306/assets/img/plants/block1/$id/$imageHeader\" alt=\"Image of a $common_name\">";
                 echo "<h3 class=\"name\">$common_name</h3>";
                 echo "<p class=\"title\">$scientific_name</p>";
-                echo "<button type=\"button\" id=\"$id\">";
+                echo "<button type=\"button\" class=\"btn btn-primary plant-button\" id=\"$id\">";
                 echo "Learn More";
                 echo "</button>";
                 echo "</div></div>";
@@ -119,6 +119,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="/~1900040/cmp306/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../controller/plant-learn-more.js"></script>
 
 </body>
 
