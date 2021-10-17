@@ -116,7 +116,7 @@ session_start();
             </div>
             <div class="modal-body">
                 <div class="description"></div>
-                <div class="link"><a target="_blank">Click here to learn more!</a></div>
+                <div class="link"></div>
                 <div class="images"></div>
             </div>
             <div class="modal-footer"></div>
@@ -190,7 +190,7 @@ session_start();
         crossorigin="anonymous"></script>
 <script src="../controller/populate-modal.js"></script>
 <script src="../controller/delete-plant-modal.js"></script>
-<script src="../controller/edit-plant.js"></script>
+<script src="../controller/update-plant.js"></script>
 <script src="../controller/edit-plant-modal.js"></script>
 <script src="../controller/restore-database.js"></script>
 <script src="../controller/save-new-plant.js"></script>
