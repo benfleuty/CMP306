@@ -2,10 +2,11 @@ $(function () {
     $("#plantModal").on("click", "#btnSavePlant", function () {
         let text = $("#plantDescription").val();
         let link = $("#plantLinkText").val().toLowerCase();
-        // Force new root
-        if (link.startsWith("//") === false)
+        // Force new root if no external // http/s link
+        if (link.startsWith("//") === false && link.startsWith("https://") === false && link.startsWith("http://") === false) 
             link = `//${link}`;
-        
+
+
         $.ajax({
             type: "POST",
             url: '../model/update-plant.php',
