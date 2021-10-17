@@ -14,6 +14,7 @@ $(function () {
 
                 $("#plantModal .modal-title").html(title);
                 $("#plantModal .modal-body > .description").html(desc);
+                $("#plantModal .modal-body > .link").html(`<a target="_blank">Click here to learn more!</a></div>`);
                 $("#plantModal .modal-body > .link > a").attr("href", link);
 
                 let out;
