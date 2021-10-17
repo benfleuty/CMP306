@@ -17,11 +17,13 @@
     <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Projects-Horizontal.css">
     <link rel="stylesheet" href="/~1900040/cmp306/assets/css/styles.css">
     <link rel="stylesheet" href="/~1900040/cmp306/assets/css/Team-Boxed.css">
-    <link rel="stylesheet" href="content/css/plants.css">
+    <link rel="stylesheet" href="content/css/forms.css">
 </head>
+
+<body>
 <header class="header-blue">
     <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
-        <div class="container-fluid"><a class="navbar-brand" href="/~1900040/cmp306/">Ben Fleuty |&nbsp;CMP 306<br>Dynamic
+    <div class="container-fluid"><a class="navbar-brand" href="/~1900040/cmp306/">Ben Fleuty |&nbsp;CMP 306<br>Dynamic
                 Web
                 Development</a>
             <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
@@ -47,7 +49,7 @@
                 <p>Help... I keep spending money</p>
                 <button id="btnRestoreDatabase" class="btn btn-light btn-lg action-button" type="button">Restore
                     database
-                </button>
+                    </button>
             </div>
             <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
                 <div class="phone-mockup"><img class="device" src="/~1900040/cmp306/assets/img/plants/header.png"></div>
@@ -56,53 +58,38 @@
     </div>
 </header>
 
-
-<section class="team-boxed">
-    <div class="container">
-        <div class="intro">
-            <h2 class="text-center">Plants</h2>
-            <p class="text-center">Meet my plants</p>
-            <p class="text-center">Click the restore database above to ensure you are seeing the original, unedited
-                data.</p>
+<section class="contact-clean mx-auto w-50">
+    <form method="post">
+        <h2 class="text-center">Add a new plant</h2>
+        <div class="mb-3">
+            <label for="newPlantCommonName">Common Name*:</label>
+            <input id="newPlantCommonName" class="form-control" type="text" placeholder="Common Name*" required aria-required="true">
+            <label for="newPlantCommonName" class="required">This field is required!</label>
         </div>
-
-        <!-- Display items -->
-        <div class="row people">
-            <div class="col-md-6 col-lg-4 item" id="new-plant">
-                <div class="box">
-                    <h3 class="name">Add a new plant</h3>
-                    <button type="button" id="btnCardAddNewPlant" class="btn btn-primary" data-toggle="modal"
-                            data-target="#newPlantModal">
-                        Start >>>
-                    </button>
-                </div>
-            </div>
-            <?php
-            include("../model/api.php");
-            $item = getAllPlants();
-            $item = json_decode($item);
-            for ($i = 0; $i < sizeof($item); $i++) {
-                $id = $item[$i]->id;
-                $scientific_name = $item[$i]->scientific_name;
-                $common_name = $item[$i]->common_name;
-                $link = $item[$i]->link;
-                $imageHeader = $item[$i]->image;
-                $description = $item[$i]->description;
-
-                echo "<div class=\"col-md-6 col-lg-4 item\" id=\"plant-$id\">";
-                echo "<div class=\"box\">";
-                echo "<img class=\"rounded-circle overflow-hidden\" src=\"/~1900040/cmp306/assets/img/plants/block1/$id/$imageHeader\" alt=\"Image of a $common_name\">";
-                echo "<h3 class=\"name\">$common_name</h3>";
-                echo "<p class=\"title\">$scientific_name</p>";
-                echo "<button type=\"button\" class=\"btn btn-primary plant-button\" id=\"$id\">";
-                echo "Learn More";
-                echo "</button>";
-                echo "</div></div>";
-            }
-            ?>
+        <div class="mb-3">
+            <label for="newPlantScientificName">Scientific Name*:</label>
+            <input id="newPlantScientificName" class="form-control" type="text" placeholder="Scientific Name*" required aria-required="true">
+            <label for="newPlantScientificName" class="required">This field is required!</label>
         </div>
-    </div>
+        <div class="mb-3">
+            <label for="newPlantLink">Link*:</label>
+            <input id="newPlantLink" class="form-control" type="text" placeholder="Link*" required aria-required="true">
+            <label for="newPlantLink" class="required">This field is required!</label>
+        </div>
+        <div class="mb-3">
+            <label for="newPlantDescription">Description*:</label>
+            <textarea id="newPlantDescription" class="form-control" type="text" placeholder="Enter some information about this plant!*" required aria-required="true"></textarea>
+            <label for="newPlantDescription" class="required">This field is required!</label>
+        </div>
+        <div class="mb-3">
+            <button id="btnSaveNewPlant" class="btn btn-warning w-100 btn-lg action-button" type="button" disabled>
+                Empty fields!
+            </button>
+        </div>
+    </form>
 </section>
+
+
 <footer class="footer-dark">
     <div class="container">
         <div class="row">
@@ -119,8 +106,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="/~1900040/cmp306/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="../controller/plant-learn-more.js"></script>
-<script src="../controller/add-new-plant.js"></script>
+<script src="../controller/send-new-plant-data.js"></script>
 
 </body>
 
