@@ -1,19 +1,27 @@
 $(function () {
     let og_text = "";
-    var plantModal = $("#plantModal");
+    let og_link = "";
+    let plantModal = $("#plantModal");
     plantModal.on("click", "#btnEditPlant", function () {
-        // Store modal for access
-        var modalDescription = $("#plantModal .modal-body > .description");
+        let modalDescription = $("#plantModal .modal-body > .description");
+        let modalLink = $("#plantModal .modal-body > .link");
+        let modalLinkAnchor = $("#plantModal .modal-body > .link a");
         // Get text to edit
-        let text = modalDescription.html();
+        let descText = modalDescription.html();
+        // Get link to edit
+        let linkText = modalLinkAnchor.attr("href");
         // store backup for reset
-        og_text = text;
+        og_text = descText;
+        og_link = linkText;
         // Replace text with textarea and text
-        let tb = "<textarea id=\"plantDescription\" style=\"width: 100%;min-height: 150px\">" + text + "</textarea>";
-        modalDescription.html(tb);
+        let descTextarea = "<label for=\"plantDescription\">Description:</label><textarea id=\"plantDescription\" style=\"width: 100%;min-height: 150px\">" + descText + "</textarea>";
+        modalDescription.html(descTextarea);
+
+        let linkTextarea = `<label for="plantLinkText">Link:</label><input class="d-inline-block w-100" type="text" id="plantLinkText" value="${linkText}">`;
+        modalLink.html(linkTextarea);
 
         // Replace edit button with save
-        let saveBtn = '<button type="button" id="btnSavePlant" class="btn btn-success">Save</button>';
+        let saveBtn = `<button type="button" id="btnSavePlant" class="btn btn-success">Save</button>`;
         $("#btnEditPlant").replaceWith(saveBtn);
 
         // Replace delete button with reset
@@ -23,5 +31,6 @@ $(function () {
 
     plantModal.on("click", "#btnResetPlant", function () {
         $("#plantDescription").val(og_text);
+        $("#plantLinkText").val(og_link);
     })
 })
