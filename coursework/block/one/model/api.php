@@ -8,8 +8,8 @@ include("../model/connection.php");
 function getAllPlants()
 {
     global $conn;
-    $sql = "SELECT CMP306BlockOnePlants.id, scientific_name, common_name, link, description,image
-FROM CMP306BlockOnePlants,CMP306BlockOnePlantsImages where isHeader = 1 AND plant_id = CMP306BlockOnePlants.id";
+    $sql = "SELECT CMP306BlockOnePlants.id, scientific_name, common_name, link, description,CMP306BlockOnePlantsImages.image
+FROM CMP306BlockOnePlants left join CMP306BlockOnePlantsImages on CMP306BlockOnePlants.id = CMP306BlockOnePlantsImages.id;";
     $result = mysqli_query($conn, $sql);
     //  convert to JSON
     $rows = array();
