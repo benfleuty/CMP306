@@ -1,5 +1,5 @@
-(function () {
-    $("#btnCardAddNewPlant").on("click",function (e) {
-        window.location.href = "newplant.php";
+$(function () {
+    $("#btnCardAddNewPlant").on("click",function () {
+        window.location.href = "../view/newplant.php";
     })
 })
