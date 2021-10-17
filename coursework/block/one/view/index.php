@@ -94,7 +94,7 @@
                 echo "<img class=\"rounded-circle overflow-hidden\" src=\"/~1900040/cmp306/assets/img/plants/block1/$id/$imageHeader\" alt=\"Image of a $common_name\">";
                 echo "<h3 class=\"name\">$common_name</h3>";
                 echo "<p class=\"title\">$scientific_name</p>";
-                echo "<button type=\"button\" id=\"$id\" class=\"btn btn-primary plant-modal-button\" data-toggle=\"modal\" data-target=\"#plantModal\">";
+                echo "<button type=\"button\" id=\"$id\">";
                 echo "Learn More";
                 echo "</button>";
                 echo "</div></div>";
@@ -103,69 +103,6 @@
         </div>
     </div>
 </section>
-<!-- Plant Info Modal START -->
-<!-- Plant Modal -->
-<div class="modal fade" id="plantModal" tabindex="-1" role="dialog" aria-labelledby="plantModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="description"></div>
-                <div class="link"></div>
-                <div class="images"></div>
-            </div>
-            <div class="modal-footer"></div>
-        </div>
-    </div>
-</div>
-<!-- Plant Info Modal END-->
-
-
-<!-- New Plant Modal START -->
-<!-- New Plant Modal -->
-<div class="modal fade" id="newPlantModal" tabindex="-1" role="dialog" aria-labelledby="newPlantModal"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">New Plant</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-row">
-                        <label for="newPlantCommonName" class="font-weight-bold">Common Name</label>
-                        <input type="text" id="newPlantCommonName" class="form-control"/>
-                        <span id="newPlantCommonNameMsg"></span>
-                    </div>
-                    <div class="form-row">
-                        <label for="newPlantScientificName" class="font-weight-bold">Scientific Name</label>
-                        <input type="text" id="newPlantScientificName" class="form-control"/>
-                        <span id="newPlantScientificNameMsg"></span>
-                    </div>
-                    <div class="form-row">
-                        <label for="newPlantDescription" class="font-weight-bold">Description</label>
-                        <textarea id="newPlantDescription" class="form-control"></textarea>
-                        <span id="newPlantDescriptionMsg"></span>
-                    </div>
-                    <div class="form-row">
-                        <button id="btnSaveNewPlant" class="btn btn-primary btn-block">Save</button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer"></div>
-        </div>
-    </div>
-</div>
-<!-- New Plant Modal END-->
-
 <footer class="footer-dark">
     <div class="container">
         <div class="row">
@@ -182,14 +119,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="/~1900040/cmp306/assets/bootstrap/js/bootstrap.min.js"></script>
-
-
-<script src="../controller/populate-modal.js"></script>
-<script src="../controller/delete-plant-modal.js"></script>
-<script src="../controller/update-plant.js"></script>
-<script src="../controller/edit-plant-modal.js"></script>
-<script src="../controller/restore-database.js"></script>
-<script src="../controller/save-new-plant.js"></script>
 
 </body>
 
