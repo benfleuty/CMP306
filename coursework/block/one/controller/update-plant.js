@@ -3,7 +3,7 @@ $(function () {
         let text = $("#plantDescription").val();
         let link = $("#plantLinkText").val().toLowerCase();
         // Force new root if no external // http/s link
-        if (link.startsWith("//") === false && link.startsWith("https://") === false && link.startsWith("http://") === false) 
+        if (link.startsWith("https://") === false && link.startsWith("http://") === false && link.startsWith("//") === false)
             link = `//${link}`;
 
 
