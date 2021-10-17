@@ -1,5 +1,6 @@
 .header-blue {
-  background: #184e8e linear-gradient(135deg, #172a74, #21a9af);
+  background: linear-gradient(135deg, #172a74, #21a9af);
+  background-color: #184e8e;
   padding-bottom: 80px;
   font-family: 'Source Sans Pro', sans-serif;
 }
@@ -125,6 +126,7 @@
   border-radius: 0;
   color: #ccc;
   box-shadow: none;
+  color: inherit;
   transition: border-bottom-color 0.3s;
 }
 
@@ -193,9 +195,11 @@
   left: 3%;
   border: 1px solid #444;
   border-radius: 20px;
+  background-color: #aaa;
   overflow: hidden;
+  background: url(../../assets/img/screen-content-phone.jpg);
   background-size: cover;
-  background: #aaa url(/~1900040/cmp306/assets/img/screen-content-phone.jpg) center;
+  background-position: center;
   z-index: -1;
 }
 
