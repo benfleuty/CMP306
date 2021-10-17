@@ -91,13 +91,13 @@ if ($isplant):
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <?php
-                                        echo "<img class=\"w-100 d-block\" src=\"https://cdn.bootstrapstudio.io/placeholders/1400x800.png\" alt=\"Slide Image\">";
+                                        echo "<img class=\"img-fluid mx-auto d-block\" src=\"/~1900040/cmp306/assets/img/plants/block1/$pid/$images[0]\" alt=\"Slide Image\">";
                                         ?>
                                     </div>
                                     <?php
                                     for ($i = 1; $i < count($images); $i++) {
                                         echo "<div class=\"carousel-item\">";
-                                        echo "<img class=\"w-100 d-block\" src=\"https://cdn.bootstrapstudio.io/placeholders/1400x800.png\" alt=\"Slide Image\">";
+                                        echo "<img class=\"img-fluid mx-auto d-block\" src=\"/~1900040/cmp306/assets/img/plants/block1/$pid/$images[$i]\" alt=\"Slide Image\">";
                                         echo "</div>";
                                     }
                                     ?>
@@ -110,11 +110,19 @@ if ($isplant):
                                                 class="visually-hidden">Next</span></a></div>
                                 <ol class="carousel-indicators">
                                     <li data-bs-target="#carousel-1" data-bs-slide-to="0" class="active"></li>
-                                    <li data-bs-target="#carousel-1" data-bs-slide-to="1"></li>
-                                    <li data-bs-target="#carousel-1" data-bs-slide-to="2"></li>
+                                    <?php
+                                    for ($i = 1; $i < count($images); $i++) {
+                                        echo "<li data-bs-target=\"#carousel-1\" data-bs-slide-to=\"$i\"></li>";
+                                    }
+                                    ?>
                                 </ol>
                             </div>
-                        <?php else: echo "<img class=\"mx-auto h-50 d-block\" src=\"/~1900040/cmp306/assets/img/plants/block1/{$plant["id"]}/$images[0]\" alt=\"Slide Image\">";
+                        <?php
+
+                        elseif (count($images) == 0):
+                            echo "there is no image for this plant";
+
+                        else: echo "<img class=\"img-fluid mx-auto d-block\" src=\"/~1900040/cmp306/assets/img/plants/block1/{$plant["id"]}/$images[0]\" alt=\"Slide Image\">";
                             ?>
 
                         <?php endif; ?>
