@@ -82,7 +82,7 @@
             <label for="newPlantDescription" class="required">This field is required!</label>
         </div>
         <div class="mb-3">
-            <button id="btnSaveNewPlant" class="btn btn-warning w-100 btn-lg action-button" type="button" disabled>
+            <button id="btnSaveNewPlant" class="btn btn-warning w-100 btn-lg action-button" type="button" >
                 Empty fields!
             </button>
         </div>

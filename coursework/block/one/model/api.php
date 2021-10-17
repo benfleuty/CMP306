@@ -72,6 +72,9 @@ function getPlantImages($id)
         $images[] = $r["image"];
     }
 
+    if (empty($images))
+        $images = "";
+
     return $images;
 }
 
