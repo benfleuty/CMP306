@@ -65,7 +65,7 @@ $isplant = true;
 $pid = -1;
 $plant = [];
 
-if (!empty($_GET["plant_id"]))
+if (!empty($_GET["plant_id"]) && ctype_digit($_GET["plant_id"]))
     $pid = $_GET["plant_id"];
 else
     $isplant = false;
@@ -74,7 +74,19 @@ if ($isplant):
     $plant = getPlant($pid);
     $images = $plant["images"];
 
-    $add_carousel = count($images) > 1;
+    $custom = false;
+    $add_carousel = false;
+
+    if (is_array($images))
+        $add_carousel = count($images) > 1;
+    else
+        $custom = empty($images);
+
+    $dir_base = "/~1900040/cmp306/assets/img/plants/block1/";
+    $img_base = "$dir_base/$pid";
+
+    if ($custom)
+        $img_base = "https://via.placeholder.com/150";
 
     ?>
     <body>
@@ -91,13 +103,13 @@ if ($isplant):
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <?php
-                                        echo "<img class=\"img-fluid mx-auto d-block\" src=\"/~1900040/cmp306/assets/img/plants/block1/$pid/$images[0]\" alt=\"Slide Image\">";
+                                        echo "<img class=\"img-fluid mx-auto d-block\" src=\"$img_base/$images[0]\" alt=\"Picture of a {$plant["common_name"]}\">";
                                         ?>
                                     </div>
                                     <?php
                                     for ($i = 1; $i < count($images); $i++) {
                                         echo "<div class=\"carousel-item\">";
-                                        echo "<img class=\"img-fluid mx-auto d-block\" src=\"/~1900040/cmp306/assets/img/plants/block1/$pid/$images[$i]\" alt=\"Slide Image\">";
+                                        echo "<img class=\"img-fluid mx-auto d-block\" src=\"$img_base/$images[$i]\" alt=\"Picture of a {$plant["common_name"]}\">";
                                         echo "</div>";
                                     }
                                     ?>
@@ -118,14 +130,13 @@ if ($isplant):
                                 </ol>
                             </div>
                         <?php
+                        elseif ($custom):
+                            echo "<img class=\"img-fluid mx-auto d-block\" src=\"$img_base\" alt=\"Picture of a {$plant["common_name"]}\">";
 
-                        elseif (count($images) == 0):
-                            echo "there is no image for this plant";
-
-                        else: echo "<img class=\"img-fluid mx-auto d-block\" src=\"/~1900040/cmp306/assets/img/plants/block1/{$plant["id"]}/$images[0]\" alt=\"Slide Image\">";
-                            ?>
-
-                        <?php endif; ?>
+                        else:
+                            echo "<img class=\"img-fluid mx-auto d-block\" src=\"$img_base/$images[0]\" alt=\"Picture of a {$plant["common_name"]}\">";
+                        endif;
+                        ?>
                     </div>
                     <div class="text">
                         <p><?= $plant["description"] ?></p>
