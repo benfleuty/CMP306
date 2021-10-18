@@ -11,7 +11,6 @@ $(function () {
         }
         switch (e.target.id) {
             case "newPlantCommonName":
-                validate_common(e.target);
                 break;
             case "newPlantScientificName":
                 break;
@@ -29,21 +28,42 @@ $(function () {
         let sname = $(SCIENCE).val();
         let desc = $(DESCRIPTION).val();
         let link = $(LINK).val();
-
-            $.ajax({
-                type: "POST",
-                url: '../model/add-new-plant.php',
-                data:{
-                    cname:cname,
-                    sname:sname,
-                    desc:desc,
-                    link:link
-                },
-                success: function (response) {
-                    let jsonData = JSON.parse(response);
-                    console.log(jsonData.status);
+        $.ajax({
+            type: "POST",
+            url: '../model/add-new-plant.php',
+            data: {
+                cname: cname,
+                sname: sname,
+                desc: desc,
+                link: link
+            },
+            success: function (response) {
+                let jsonData = JSON.parse(response);
+                let fail = false;
+                if (jsonData.create_status === "fail") {
+                    console.error("Error creating new plant");
+                    fail = true;
                 }
-            })
+
+                if (jsonData.get_id_status === "fail") {
+                    console.error("Error getting new plant id");
+                    fail = true;
+                }
+
+                if (jsonData.plant_id === "" || jsonData.plant_id === null || isNaN(parseInt(jsonData.plant_id))) {
+                    console.error("Error: incorrect plant id: " + jsonData.plant_id);
+                    fail = true;
+                }
+
+                if(fail){
+                    alert("There was an error and your action could not be processed!")
+                    resetForm();
+                    return;
+                }
+
+                window.location.href = "viewplant.php?plant_id=" + jsonData.plant_id;
+            }
+        })
     })
 })
 
@@ -97,18 +117,10 @@ function check_empty_all(display = true) {
     return fail;
 }
 
-function validate_common(inbound) {
+function resetForm() {
+    $("input, textarea").val("");
+    $(saveBtn).html("Save Plant");
+    $(saveBtn).prop("disabled",false);
 }
 
-function validate_science(inbound) {
-
-}
-
-function validate_link(inbound) {
-
-}
-
-function validate_description(inbound) {
-
-}
 

@@ -149,31 +149,23 @@ function createPlant($common_name, $scientific_name, $description, $link)
 
     $sql = "INSERT INTO CMP306BlockOnePlants (common_name, scientific_name, description,link)  VALUES ('$clean_common_name','$clean_scientific_name','$clean_description','$clean_link')";
 
+    $data = [];
+
     if (mysqli_query($conn, $sql)) {
-        $data = array('status' => 'success');
+        $data += array('create_status' => 'success');
     } else {
-        $data = array('status' => 'fail');
+        $data += array('create_status' => 'fail');
+        return json_encode($data);
     }
 
-    return json_encode($data);
-}
-
-function createPlantFull($common_name, $scientific_name, $description, $link)
-{
-    global $conn;
-
-    $clean_common_name = sanitiseUserInput($common_name);
-    $clean_scientific_name = sanitiseUserInput($scientific_name);
-    $clean_description = sanitiseUserInput($description);
-    $clean_link = sanitiseUserInput($link);
-
-    $sql = "INSERT INTO CMP306BlockOnePlants (scientific_name, common_name, link, description) VALUES ($clean_scientific_name,$clean_common_name,$clean_link,$clean_description)";
-
-    if (mysqli_query($conn, $sql)) {
-        $data = array('status' => 'success');
+    $sql = "SELECT LAST_INSERT_ID() AS id";
+    if ($res = mysqli_query($conn, $sql)) {
+        $data += array('get_id_status' => 'success');
+        $res = $res->fetch_assoc();
+        $id = $res["id"];
+        $data += array('plant_id' => $id);
     } else {
-        $data = array('status' => 'fail');
-
+        $data += array('get_id_status' => 'fail');
     }
 
     return json_encode($data);
