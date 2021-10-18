@@ -28,6 +28,10 @@ $(function () {
         let sname = $(SCIENCE).val();
         let desc = $(DESCRIPTION).val();
         let link = $(LINK).val();
+
+        link = "//" + link;
+
+
         $.ajax({
             type: "POST",
             url: '../model/add-new-plant.php',
