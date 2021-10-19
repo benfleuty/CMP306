@@ -82,27 +82,27 @@ if($isplant):
     <form method="post">
         <h2 class="text-center">Add a new plant</h2>
         <div class="mb-3">
-            <label for="newPlantCommonName">Common Name*:</label>
-            <input id="newPlantCommonName" class="form-control" type="text" placeholder="<?= ?>" value="" required aria-required="true">
-            <label for="newPlantCommonName" class="required">This field is required!</label>
+            <label for="editPlantCommonName">Common Name*:</label>
+            <input id="editPlantCommonName" class="form-control" type="text" placeholder="<?= $plant["common_name"] ?>" value="<?= $plant["common_name"] ?>" required aria-required="true">
+            <label for="editPlantCommonName" class="required">This field is required!</label>
         </div>
         <div class="mb-3">
-            <label for="newPlantScientificName">Scientific Name*:</label>
-            <input id="newPlantScientificName" class="form-control" type="text" placeholder="Scientific Name*" required aria-required="true">
-            <label for="newPlantScientificName" class="required">This field is required!</label>
+            <label for="editPlantScientificName">Scientific Name*:</label>
+            <input id="editPlantScientificName" class="form-control" type="text" placeholder="<?= $plant["scientific_name"] ?>" value="<?= $plant["scientific_name"] ?>" required aria-required="true">
+            <label for="editPlantScientificName" class="required">This field is required!</label>
         </div>
         <div class="mb-3">
-            <label for="newPlantLink">Link*:</label>
-            <input id="newPlantLink" class="form-control" type="text" placeholder="Link*" required aria-required="true">
-            <label for="newPlantLink" class="required">This field is required!</label>
+            <label for="editPlantLink">Link*:</label>
+            <input id="editPlantLink" class="form-control" type="text" placeholder="<?= $plant["link"] ?>" value="<?= $plant["link"] ?>" required aria-required="true">
+            <label for="editPlantLink" class="required">This field is required!</label>
         </div>
         <div class="mb-3">
-            <label for="newPlantDescription">Description*:</label>
-            <textarea id="newPlantDescription" class="form-control" type="text" placeholder="Enter some information about this plant!*" required aria-required="true"></textarea>
-            <label for="newPlantDescription" class="required">This field is required!</label>
+            <label for="editPlantDescription">Description*:</label>
+            <textarea id="editPlantDescription" class="form-control" type="text" placeholder="<?= $plant["description"] ?>" required aria-required="true"><?= $plant["description"] ?></textarea>
+            <label for="editPlantDescription" class="required">This field is required!</label>
         </div>
         <div class="mb-3">
-            <button id="btnSaveNewPlant" class="btn btn-warning w-100 btn-lg action-button" type="button" >
+            <button id="btnSaveEditPlant" class="btn btn-warning w-100 btn-lg action-button" type="button" >
                 Empty fields!
             </button>
         </div>
