@@ -63,7 +63,7 @@
             <h2 class="text-center">Plants</h2>
             <p class="text-center">Meet my plants</p>
             <p class="text-center">Click the restore database above to ensure you are seeing the original, unedited
-                data.</p>
+                data. The Snake Plant has multiple images.</p>
         </div>
 
         <!-- Display items -->
@@ -91,7 +91,7 @@
 
                 echo "<div class=\"col-md-6 col-lg-4 item\" id=\"plant-$id\">";
                 echo "<div class=\"box\">";
-                if(!is_null($imageHeader))
+                if (!is_null($imageHeader))
                     echo "<img class=\" img-thumbnail overflow-hidden\" src=\"/~1900040/cmp306/assets/img/plants/block1/$id/$imageHeader\" alt=\"Image of a $common_name\">";
                 else
                     echo "<img class=\" img-thumbnail overflow-hidden\" src=\"https://via.placeholder.com/150\" alt=\"Image of a $common_name\">";
