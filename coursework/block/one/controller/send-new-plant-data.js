@@ -29,8 +29,6 @@ $(function () {
         let desc = $(DESCRIPTION).val();
         let link = $(LINK).val();
 
-        link = "//" + link;
-
 
         $.ajax({
             type: "POST",
