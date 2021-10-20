@@ -43,7 +43,6 @@ $(function () {
                 link: link
             },
             success: function (response) {
-                console.log(response);
                 let jsonData = JSON.parse(response);
                 let fail = false;
                 if (jsonData.update_status === "fail") {
