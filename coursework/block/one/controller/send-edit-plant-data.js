@@ -29,9 +29,6 @@ $(function () {
         let link = $(LINK).val();
         let id = $(".plant-id").html();
 
-        link = "//" + link;
-
-
         $.ajax({
             type: "POST",
             url: '../model/update-plant.php',
