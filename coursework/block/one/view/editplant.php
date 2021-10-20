@@ -93,7 +93,7 @@ if($isplant):
             <label for="editPlantScientificName" class="required">This field is required!</label>
         </div>
         <div class="mb-3">
-            <label for="editPlantLink">Link*:</label>
+            <label for="editPlantLink">Link (include https://)*:</label>
             <input id="editPlantLink" class="form-control" type="text" placeholder="<?= $plant["link"] ?>" value="<?= $plant["link"] ?>" required aria-required="true">
             <label for="editPlantLink" class="required">This field is required!</label>
         </div>
