@@ -96,8 +96,19 @@ if ($isplant):
                 <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
                     <div class="intro">
                         <h1 class="text-center"><?= $plant["common_name"] ?> (<?= $plant["scientific_name"] ?>)</h1>
-                        <p class="text-center"><span class="link"><a
-                                        href="<?= $plant["link"] ?>">Learn more here</a></span></p>
+                        <p class="text-center">
+                            <span class="link">
+                                <a href="<?= $plant["link"] ?>">Learn more here</a>
+                            </span>
+                            <span class="seperator"> | </span>
+                            <span class="link">
+                                <a href="editplant.php?plant_id=<?= $plant["id"] ?>">Edit</a>
+                            </span>
+                            <span class="seperator"> | </span>
+                            <span class="link">
+                                <a href="deleteplant.php?plant_id=<?= $plant["id"] ?>">Delete</a>
+                            </span>
+                        </p>
                         <?php if ($add_carousel): ?>
                             <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
                                 <div class="carousel-inner">
