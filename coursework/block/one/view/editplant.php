@@ -79,7 +79,7 @@ if($isplant):
 
 ?>
 <section class="contact-clean mx-auto w-50">
-    <form method="post">
+    <form>
         <h2 class="text-center">Edit a plant</h2>
         <span class="plant-id d-none"><?= $pid ?></span>
         <div class="mb-3">
