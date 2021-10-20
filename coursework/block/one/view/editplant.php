@@ -80,7 +80,8 @@ if($isplant):
 ?>
 <section class="contact-clean mx-auto w-50">
     <form method="post">
-        <h2 class="text-center">Add a new plant</h2>
+        <h2 class="text-center">Edit a plant</h2>
+        <span class="plant-id d-none"><?= $pid ?></span>
         <div class="mb-3">
             <label for="editPlantCommonName">Common Name*:</label>
             <input id="editPlantCommonName" class="form-control" type="text" placeholder="<?= $plant["common_name"] ?>" value="<?= $plant["common_name"] ?>" required aria-required="true">
@@ -103,7 +104,7 @@ if($isplant):
         </div>
         <div class="mb-3">
             <button id="btnSaveEditPlant" class="btn btn-warning w-100 btn-lg action-button" type="button" >
-                Empty fields!
+                Save
             </button>
         </div>
     </form>
@@ -132,7 +133,7 @@ endif;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="/~1900040/cmp306/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="../controller/send-new-plant-data.js"></script>
+<script src="../controller/send-edit-plant-data.js"></script>
 
 </body>
 

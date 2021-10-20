@@ -95,15 +95,17 @@ function deletePlant($id)
     return json_encode($data);
 }
 
-function updatePlant($id, $description, $link)
+function updatePlant($id,$common,$scientific, $description, $link)
 {
     global $conn;
-    $sql = "UPDATE CMP306BlockOnePlants SET description = '$description',link = '$link' WHERE id = $id";
+    $sql = "UPDATE CMP306BlockOnePlants SET common_name = '$common', scientific_name = '$scientific', description = '$description',link = '$link' WHERE id = $id";
+
+    $data = [];
 
     if (mysqli_query($conn, $sql)) {
-        $data = array('status' => 'success');
+        $data += array('update_status' => 'success');
     } else {
-        $data = array('status' => 'fail');
+        $data += array('update_status' => 'fail');
     }
 
     return json_encode($data);
