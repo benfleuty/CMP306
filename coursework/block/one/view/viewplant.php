@@ -125,13 +125,18 @@ if ($isplant):
                                     }
                                     ?>
                                 </div>
-                                <div><a class="carousel-control-prev" href="#carousel-1" role="button"
-                                        data-bs-slide="prev"><span
-                                                class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><a
-                                            class="carousel-control-next" href="#carousel-1" role="button"
-                                            data-bs-slide="next"><span class="carousel-control-next-icon"></span><span
-                                                class="visually-hidden">Next</span></a></div>
-                                <ol class="carousel-indicators">
+                                <div>
+                                    <a class="carousel-control-prev" href="#carousel-1" role="button"
+                                       data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon bg-black bg-opacity-50 rounded"></span>
+                                        <span class="visually-hidden">Previous</span></a>
+                                    <a class="carousel-control-next" href="#carousel-1" role="button"
+                                       data-bs-slide="next">
+                                        <span class="carousel-control-next-icon bg-black bg-opacity-50 rounded"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </a>
+                                </div>
+                                <ol class="carousel-indicators bg-black bg-opacity-50 w-25 mx-auto rounded">
                                     <li data-bs-target="#carousel-1" data-bs-slide-to="0" class="active"></li>
                                     <?php
                                     for ($i = 1; $i < count($images); $i++) {
