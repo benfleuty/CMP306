@@ -4,7 +4,7 @@ session_start();
 require_once "api.php";
 global $conn;
 
-$pid = $_SESSION["plant_id"];
+$pid = $_POST["pid"];
 
 if (empty($pid)) {
     die();
