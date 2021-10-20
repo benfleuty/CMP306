@@ -5,6 +5,12 @@ let DESCRIPTION = "#editPlantDescription";
 let saveBtn = "#btnSaveEditPlant";
 
 $(function () {
+
+    let og_cname = $(COMMON).val();
+    let og_sname = $(SCIENCE).val();
+    let og_desc = $(DESCRIPTION).val();
+    let og_link = $(LINK).val();
+
     $(".form-control").on("input", function (e) {
         if (check_empty(e.target)) {
             $(saveBtn).prop("disabled", true);
@@ -13,51 +19,45 @@ $(function () {
 
 
     $(saveBtn).on("click", function (e) {
-        if (check_empty_all())
+        if (check_empty_all()) {
             return;
+        }
 
         let cname = $(COMMON).val();
         let sname = $(SCIENCE).val();
         let desc = $(DESCRIPTION).val();
         let link = $(LINK).val();
+        let id = $(".plant-id").html();
 
         link = "//" + link;
 
 
         $.ajax({
             type: "POST",
-            url: '../model/edit-plant.php',
+            url: '../model/update-plant.php',
             data: {
+                pid: id,
                 cname: cname,
                 sname: sname,
                 desc: desc,
                 link: link
             },
             success: function (response) {
+                console.log(response);
                 let jsonData = JSON.parse(response);
                 let fail = false;
-                if (jsonData.create_status === "fail") {
-                    console.error("Error creating new plant");
+                if (jsonData.update_status === "fail") {
+                    console.error("Error updating new plant");
                     fail = true;
                 }
 
-                if (jsonData.get_id_status === "fail") {
-                    console.error("Error getting new plant id");
-                    fail = true;
-                }
-
-                if (jsonData.plant_id === "" || jsonData.plant_id === null || isNaN(parseInt(jsonData.plant_id))) {
-                    console.error("Error: incorrect plant id: " + jsonData.plant_id);
-                    fail = true;
-                }
-
-                if(fail){
+                if (fail) {
                     alert("There was an error and your action could not be processed!")
                     resetForm();
                     return;
                 }
 
-                window.location.href = "viewplant.php?plant_id=" + jsonData.plant_id;
+                window.location.href = "viewplant.php?plant_id=" + id;
             }
         })
     })
@@ -114,7 +114,5 @@ function check_empty_all(display = true) {
 }
 
 function resetForm() {
-    $("input, textarea").val("");
-    $(saveBtn).html("Save Plant");
-    $(saveBtn).prop("disabled",false);
+    window.location.href = "editplant.php?plant_id=" + id;
 }

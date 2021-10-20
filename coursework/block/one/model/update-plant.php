@@ -2,13 +2,16 @@
 
 require_once "api.php";
 
-session_start();
-
-$newDescription = $_POST["text"];
+$id = $_POST["pid"];
+$newCommon = $_POST["cname"];
+$newScientific = $_POST["sname"];
+$newDescription = $_POST["desc"];
 $newLink = $_POST["link"];
-$id = $_SESSION["plant_id"];
 
+$cleanId = filter_var($id);
+$cleanCommon = filter_var($newCommon);
+$cleanScientific = filter_var($newScientific);
 $cleanDescription = filter_var($newDescription);
 $cleanLink = filter_var($newLink);
 
-echo updatePlant($id,$cleanDescription,$cleanLink);
+echo updatePlant($cleanId,$cleanCommon,$cleanScientific,$cleanDescription,$cleanLink);
