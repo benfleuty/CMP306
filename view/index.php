@@ -29,6 +29,13 @@
                             <a class="dropdown-item" href="../coursework/block/one/report">Report</a>
                         </div>
                     </li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false"
+                                                     data-bs-toggle="dropdown">Block Two</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="../coursework/block/two">Work</a>
+                            <a class="dropdown-item" href="../coursework/block/two/report">Report</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
