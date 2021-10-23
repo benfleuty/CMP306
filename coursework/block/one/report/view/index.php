@@ -23,8 +23,23 @@
 <body>
 <header class="header-blue">
     <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
-        <div class="container-fluid"><a class="navbar-brand" href="#"><strong>Ben Fleuty |&nbsp;CMP
-                    306</strong><br><strong>Dynamic Web Development</strong><br></a></div>
+        <div class="container-fluid"><a class="navbar-brand" href="#">Ben Fleuty |&nbsp;CMP 306<br>Dynamic Web
+                Development</a>
+            <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span
+                        class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false"
+                                                     data-bs-toggle="dropdown">Block One</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="../coursework/block/one">Work</a>
+                            <a class="dropdown-item" href="../coursework/block/one/report">Report</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
     <div class="container hero">
         <div class="row">
