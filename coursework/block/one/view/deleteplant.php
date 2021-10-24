@@ -65,10 +65,12 @@ $isplant = true;
 $pid = -1;
 $plant = [];
 
-if (!empty($_GET["plant_id"]) && ctype_digit($_GET["plant_id"]))
+if (!empty($_GET["plant_id"]) && ctype_digit($_GET["plant_id"])) {
     $pid = $_GET["plant_id"];
-else
+}
+else {
     $isplant = false;
+}
 
 if ($isplant):
     $plant = getPlant($pid);
@@ -77,16 +79,19 @@ if ($isplant):
     $custom = false;
     $add_carousel = false;
 
-    if (is_array($images))
+    if (is_array($images)) {
         $add_carousel = count($images) > 1;
-    else
+    }
+    else {
         $custom = empty($images);
+    }
 
     $dir_base = "/~1900040/cmp306/assets/img/plants/block1/";
     $img_base = "$dir_base/$pid";
 
-    if ($custom)
+    if ($custom) {
         $img_base = "https://via.placeholder.com/150";
+    }
 
     ?>
     <body>
@@ -108,7 +113,7 @@ if ($isplant):
                                         ?>
                                     </div>
                                     <?php
-                                    for ($i = 1; $i < count($images); $i++) {
+                                    for ($i = 1, $iMax = count($images); $i < $iMax; $i++) {
                                         echo "<div class=\"carousel-item\">";
                                         echo "<img class=\"img-fluid mx-auto d-block\" src=\"$img_base/$images[$i]\" alt=\"Picture of a {$plant["common_name"]}\">";
                                         echo "</div>";
@@ -124,7 +129,7 @@ if ($isplant):
                                 <ol class="carousel-indicators">
                                     <li data-bs-target="#carousel-1" data-bs-slide-to="0" class="active"></li>
                                     <?php
-                                    for ($i = 1; $i < count($images); $i++) {
+                                    for ($i = 1, $iMax = count($images); $i < $iMax; $i++) {
                                         echo "<li data-bs-target=\"#carousel-1\" data-bs-slide-to=\"$i\"></li>";
                                     }
                                     ?>
