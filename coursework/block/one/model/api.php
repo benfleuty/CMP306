@@ -44,8 +44,9 @@ function getPlant($id, $json_encode = false)
         'description' => $description,
         'images' => $images
     );
-    if ($json_encode)
+    if ($json_encode) {
         return json_encode($data, JSON_INVALID_UTF8_IGNORE);
+    }
     return $data;
 }
 
@@ -72,8 +73,9 @@ function getPlantImages($id)
         $images[] = $r["image"];
     }
 
-    if (empty($images))
+    if (empty($images)) {
         $images = "";
+    }
 
     return $images;
 }
@@ -132,7 +134,7 @@ function restoreDatabase()
 
     $data = array_merge($data, $res);
 
-    if ($sql == $fillTableQuery && mysqli_query($conn, $sql)) {
+    if ($sql === $fillTableQuery && mysqli_query($conn, $sql)) {
         // good insert
         $res = array('fill_status' => 'success');
         $data = array_merge($data, $res);
