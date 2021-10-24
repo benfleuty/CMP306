@@ -82,12 +82,12 @@
             $item = getAllPlants();
             $item = json_decode($item, true);
             for ($i = 0, $iMax = count($item); $i < $iMax; $i++) {
-                $id = $item[$i]->id;
-                $scientific_name = $item[$i]->scientific_name;
-                $common_name = $item[$i]->common_name;
-                $link = $item[$i]->link;
-                $imageHeader = $item[$i]->image;
-                $description = $item[$i]->description;
+                $id = $item[$i]["id"];
+                $scientific_name = $item[$i]["scientific_name"];
+                $common_name = $item[$i]["common_name"];
+                $link = $item[$i]["link"];
+                $imageHeader = $item[$i]["image"];
+                $description = $item[$i]["description"];
 
                 echo "<div class=\"col-md-6 col-lg-4 item\" id=\"plant-$id\">";
                 echo "<div class=\"box\">";
