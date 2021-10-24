@@ -80,8 +80,8 @@
             <?php
             include("../model/api.php");
             $item = getAllPlants();
-            $item = json_decode($item);
-            for ($i = 0; $i < sizeof($item); $i++) {
+            $item = json_decode($item, true);
+            for ($i = 0, $iMax = count($item); $i < $iMax; $i++) {
                 $id = $item[$i]->id;
                 $scientific_name = $item[$i]->scientific_name;
                 $common_name = $item[$i]->common_name;
@@ -91,10 +91,12 @@
 
                 echo "<div class=\"col-md-6 col-lg-4 item\" id=\"plant-$id\">";
                 echo "<div class=\"box\">";
-                if (!is_null($imageHeader))
+                if (!is_null($imageHeader)) {
                     echo "<img class=\" img-thumbnail overflow-hidden\" src=\"/~1900040/cmp306/assets/img/plants/block1/$id/$imageHeader\" alt=\"Image of a $common_name\">";
-                else
+                }
+                else {
                     echo "<img class=\" img-thumbnail overflow-hidden\" src=\"https://via.placeholder.com/150\" alt=\"Image of a $common_name\">";
+                }
                 echo "<h3 class=\"name\">$common_name</h3>";
                 echo "<p class=\"title\">$scientific_name</p>";
                 echo "<button type=\"button\" class=\"btn btn-primary plant-button\" id=\"$id\">";
