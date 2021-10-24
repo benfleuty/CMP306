@@ -1,5 +1,8 @@
 <?php ?>
 
+<?php include_once __DIR__ . "/body-scripts.php"; ?>
+<script src="content/modules/btn-login.js"></script>
+<script src="content/modules/btn-register.js"></script>
 <header>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="#">B&Cue</a>
@@ -18,8 +21,8 @@
                 </li>
             </ul>
             <form class="form-inline m-2 my-lg-0">
-                <button class="btn btn-info m-1 my-sm-0" type="submit">Login</button>
-                <button class="btn btn-outline-info m-1 my-sm-0" type="submit">Sign Up</button>
+                <button class="btn btn-info m-1 my-sm-0 btn-login">Login</button>
+                <button class="btn btn-outline-info m-1 my-sm-0 btn-register">Sign Up</button>
             </form>
         </div>
     </nav>
