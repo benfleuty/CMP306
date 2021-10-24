@@ -39,11 +39,12 @@
             <label for="confirmPasswordInput" class="form-label">Confirm Password</label>
             <input type="password" class="form-control" id="confirmPasswordInput" required aria-required="true">
         </div>
-        <button type="submit" class="btn btn-primary w-100">Register</button>
+        <button id="btnRegister" type="submit" class="btn btn-primary w-100">Register</button>
     </form>
 </div>
 
 <?php include_once "content/modules/body-scripts.php"; ?>
+<script src="../controller/register.js"></script>
 
 </body>
 </html>
