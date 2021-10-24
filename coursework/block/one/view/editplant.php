@@ -5,10 +5,12 @@ $isplant = true;
 $pid = -1;
 $plant = [];
 
-if (!empty($_GET["plant_id"]) && ctype_digit($_GET["plant_id"]))
+if (!empty($_GET["plant_id"]) && ctype_digit($_GET["plant_id"])) {
     $pid = $_GET["plant_id"];
-else
+}
+else {
     $isplant = false;
+}
 
 ?>
 
