@@ -10,6 +10,10 @@ $(function () {
         let pword2 = $("#confirmPasswordInput").val();
         let match = pword === pword2;
 
+        if (!fname.length || !lname.length || !uname.length || !pword.length || !pword2.length) {
+            document.forms[0].reportValidity();
+        }
+
         if (!match) {
             alert("Your passwords do not match!");
             return;
@@ -25,7 +29,9 @@ $(function () {
                 pword: pword
             },
             success: function (response) {
+                console.log(response);
                 let jsonData = JSON.parse(response);
+                console.log(jsonData);
                 let fail = false;
                 if (jsonData.status === "fail") {
                     console.error(jsonData.message);
@@ -36,8 +42,10 @@ $(function () {
                     alert("There was an error and you were not registered!");
                     return;
                 }
-
                 window.location.href = "index.php";
+            },
+            error: function (a,b,c){
+                console.log(c);
             }
         })
     })

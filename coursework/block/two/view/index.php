@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php session_start();
+
+include_once "../model/api.php";
+
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -13,6 +18,9 @@
     <link rel="stylesheet" href="./content/css/header.css">
 </head>
 <body>
+<?php if (isset($_SESSION["user_id"])) {
+    echo "Welcome " . getUserById($_SESSION["user_id"])["username"];
+} ?>
 <?php include_once __DIR__ . "/content/modules/header.php"; ?>
 
 </body>
