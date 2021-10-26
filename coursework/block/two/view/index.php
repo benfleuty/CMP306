@@ -39,6 +39,6 @@ include_once "../model/api.php";
     </div>
 </div>
 
-
+<?php include_once __DIR__ . "/content/modules/footer.php"; ?>
 </body>
 </html>
