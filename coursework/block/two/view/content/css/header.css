@@ -5,3 +5,6 @@
     font-size: 2em;
 }
 
+.user-welcome::before {
+    content: "Welcome, ";
+}
