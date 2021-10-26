@@ -110,9 +110,12 @@ function logInUser($uname, $pword)
 
     $data = array();
 
-    $sql = "SELECT id FROM CMP306BlockTwoUsers WHERE username = '$uname'";
+    $sql = "SELECT id,password FROM CMP306BlockTwoUsers WHERE username = '$uname'";
 
     $res = mysqli_query($conn, $sql);
+
+    // TODO: add error handling here if res is false
+
     $row = $res->fetch_assoc();
 
     $output = array();
@@ -124,19 +127,32 @@ function logInUser($uname, $pword)
         return $output;
     }
 
+    global $salt;
+    $match = password_verify( $pword, $row["password"]);
+    if (!$match) {
+        $output += [
+            "status" => "fail",
+            "message" => "Wrong username/password!",
+            "input" => $pword,
+            "pass" => $row["password"]
+        ];
+        return $output;
+    }
+
     $output += [
         "status" => "success",
-        "message" => "User created!",
         "user_id" => $row["id"]
     ];
 
     return $output;
 }
 
+$salt = "this is some salt";
+
 function hash_password($pword)
 {
-    $salt = "this is some salt";
-    $toHash = $salt . $pword;
+    global $salt;
+    $toHash = $pword;
     return password_hash($toHash, PASSWORD_DEFAULT);
 }
 

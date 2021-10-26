@@ -8,7 +8,7 @@ if (!isset($_POST["uname"]) || empty($_POST["uname"]) || !isset($_POST["pword"])
 }
 
 $uname = sanitiseUserInput($_POST["uname"]);
-$pword = hash_password($_POST["pword"]);
+$pword = $_POST["pword"];
 
 $output = logInUser($uname, $pword);
 
