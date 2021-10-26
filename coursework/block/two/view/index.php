@@ -16,7 +16,8 @@ include_once "../model/api.php";
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./content/css/header.css">
-    <link rel="stylesheet" href="./content/css/index.css">
+    <link rel="stylesheet" href="content/css/global-body.css">
+    <link rel="stylesheet" href="content/css/viewproduct.css">
 </head>
 <body>
 <?php if (isset($_SESSION["user_id"])) {
