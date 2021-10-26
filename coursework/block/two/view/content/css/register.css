@@ -1,9 +1,9 @@
-.content{
+.content {
     width: 50%;
     position: absolute;
     top: 20%;
     left: 50%;
-    transform: translate(-50%,-20%);
+    transform: translate(-50%, -20%);
 
     border: 1px solid gray;
     padding: 25px;
