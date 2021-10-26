@@ -13,7 +13,7 @@ $pword = hash_password($_POST["pword"]);
 
 $output = registerUser($uname,$pword,$fname,$lname);
 
-if ($output["status"] == "success") {
+if ($output["status"] === "success") {
     $_SESSION["user_id"] = $output["user_id"];
 }
 
