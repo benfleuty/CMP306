@@ -29,7 +29,7 @@
 </div>
 
 <?php include_once "content/modules/body-scripts.php"; ?>
-<script src="../controller/login.js"></script>
+<script src="../controller/login-customer.js"></script>
 
 </body>
 </html>
