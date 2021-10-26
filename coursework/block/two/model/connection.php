@@ -1,6 +1,6 @@
 <?php
 
-include_once "config.php";
+include_once "/home/1900040/public_html/cmp306/coursework/block/two/model/config.php";
 
 //  Database connections
 $servername = "lochnagar.abertay.ac.uk";

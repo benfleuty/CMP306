@@ -1,7 +1,7 @@
 <?php
 
 // Connect to database
-include("../model/connection.php");
+include("/home/1900040/public_html/cmp306/coursework/block/two/model/connection.php");
 
 function getUserByUsername($uname)
 {
@@ -41,7 +41,8 @@ function getUserById($id)
     return array_merge($output, $res);
 }
 
-function isSpecialUserByID($id){
+function isSpecialUserByID($id)
+{
     global $conn;
 
     $sql = "SELECT special FROM CMP306BlockTwoUsers WHERE id = $id";

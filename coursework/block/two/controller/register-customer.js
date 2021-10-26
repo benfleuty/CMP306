@@ -21,7 +21,7 @@ $(function () {
 
         $.ajax({
             type: "POST",
-            url: '../model/register-user.php',
+            url: '/~1900040/cmp306/coursework/block/two/model/register-user.php',
             data: {
                 fname: fname,
                 lname: lname,
@@ -42,7 +42,7 @@ $(function () {
                     alert("There was an error and you were not registered!");
                     return;
                 }
-                window.location.href = "index.php";
+                window.location.href = "/~1900040/cmp306/coursework/block/two/view/index.php";
             },
             error: function (a,b,c){
                 console.log(c);

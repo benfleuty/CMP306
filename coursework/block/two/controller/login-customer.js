@@ -12,7 +12,7 @@ $(function () {
 
         $.ajax({
             type: "POST",
-            url: '../model/login-user.php',
+            url: '/~1900040/cmp306/coursework/block/two/model/login-user.php',
             data: {
                 uname: uname,
                 pword: pword
@@ -34,7 +34,7 @@ $(function () {
 
                 window.location.href = "index.php";
             },
-            error: function (a,b,c){
+            error: function (a, b, c) {
                 console.log(c);
             }
         })

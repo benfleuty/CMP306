@@ -10,7 +10,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="content/css/register.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/coursework/block/two/view/content/css/register.css">
 </head>
 <body>
 
@@ -43,8 +43,8 @@
     </form>
 </div>
 
-<?php include_once "content/modules/body-scripts.php"; ?>
-<script src="../controller/register-customer.js"></script>
+<?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/view/content/modules/body-scripts.php"; ?>
+<script src="/~1900040/cmp306/coursework/block/two/controller/register-customer.js"></script>
 
 </body>
 </html>

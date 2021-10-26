@@ -1,9 +1,9 @@
 <?php ?>
 
-<?php include_once __DIR__ . "/body-scripts.php"; ?>
-<script src="content/modules/btn-signIn.js"></script>
-<script src="content/modules/btn-signUp.js"></script>
-<script src="content/modules/btn-signOut.js"></script>
+<?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/view/content/modules/body-scripts.php"; ?>
+<script src="/~1900040/cmp306/coursework/block/two/view/content/modules/btn-signIn.js"></script>
+<script src="/~1900040/cmp306/coursework/block/two/view/content/modules/btn-signUp.js"></script>
+<script src="/~1900040/cmp306/coursework/block/two/view/content/modules/btn-signOut.js"></script>
 <header>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="/~1900040/cmp306/coursework/block/two/">B&Cue</a>
@@ -15,15 +15,15 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="../view/">Home</a>
+                    <a class="nav-link" href="/~1900040/cmp306/coursework/block/two/view/">Home</a>
                 </li>
                 <?php if (isset($_SESSION["user_id"]) && isSpecialUserByID($_SESSION["user_id"])) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="../../admin.php">Admin Panel</a>
+                        <a class="nav-link" href="/~1900040/cmp306/coursework/block/two/view/admin.php">Admin Panel</a>
                     </li>
                 <?php endif; ?>
             </ul>
-            <?php require __DIR__ . "/signInUI.php"; ?>
+            <?php require "/home/1900040/public_html/cmp306/coursework/block/two/view/content/modules/signInUI.php"; ?>
         </div>
     </nav>
 </header>
