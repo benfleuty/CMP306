@@ -20,7 +20,7 @@ include_once "../model/api.php";
 <?php include_once __DIR__ . "/content/modules/header.php"; ?>
 
 <div class="content mx-auto my-3">
-    <?php include_once __DIR__ . "/admin-products-options.php"; ?>
+    <?php include_once __DIR__ . "/admin/admin-products-options.php"; ?>
 </div>
 
 <?php include_once __DIR__ . "/content/modules/footer.php"; ?>
