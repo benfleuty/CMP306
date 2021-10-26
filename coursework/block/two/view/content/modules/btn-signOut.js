@@ -3,9 +3,9 @@ $(function () {
         e.preventDefault();
         $.ajax({
             type:"POST",
-            url:"../model/sign-out.php",
+            url:"/~1900040/cmp306/coursework/block/two/model/sign-out.php",
             success: function () {
-                window.location.href="../view/index.php"
+                window.location.href="/~1900040/cmp306/coursework/block/two/view/index.php"
             },
             error: function (a,b,c){
                 console.log(c);
