@@ -20,7 +20,7 @@
                     <a class="nav-link" href="#">Link</a>
                 </li>
             </ul>
-            <?php require __DIR__ . "/signinUI.php"; ?>
+            <?php require __DIR__ . "/signInUI.php"; ?>
         </div>
     </nav>
 </header>
