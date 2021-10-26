@@ -1,8 +1,9 @@
 <?php ?>
 
 <?php include_once __DIR__ . "/body-scripts.php"; ?>
-<script src="btn-signIn.js"></script>
-<script src="btn-signUp.js"></script>
+<script src="content/modules/btn-signIn.js"></script>
+<script src="content/modules/btn-signUp.js"></script>
+<script src="content/modules/btn-signOut.js"></script>
 <header>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="/~1900040/cmp306/coursework/block/two/">B&Cue</a>
