@@ -44,7 +44,7 @@
 </div>
 
 <?php include_once "content/modules/body-scripts.php"; ?>
-<script src="../controller/register.js"></script>
+<script src="../controller/register-customer.js"></script>
 
 </body>
 </html>
