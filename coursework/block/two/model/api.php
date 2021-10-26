@@ -41,7 +41,6 @@ function getUserById($id)
     return array_merge($output, $res);
 }
 
-
 function registerUser($uname, $pword, $fname, $lname): array
 {
     global $conn;
@@ -80,6 +79,35 @@ function registerUser($uname, $pword, $fname, $lname): array
         "status" => "success",
         "message" => "User created!",
         "user_id" => $res["id"]
+    ];
+
+    return $output;
+}
+
+function logInUser($uname, $pword)
+{
+    global $conn;
+
+    $data = array();
+
+    $sql = "SELECT id FROM CMP306BlockTwoUsers WHERE username = '$uname'";
+
+    $res = mysqli_query($conn, $sql);
+    $row = $res->fetch_assoc();
+
+    $output = array();
+    if (mysqli_num_rows($res) !== 1) {
+        $output += [
+            "status" => "fail",
+            "message" => "There was an error!"
+        ];
+        return $output;
+    }
+
+    $output += [
+        "status" => "success",
+        "message" => "User created!",
+        "user_id" => $row["id"]
     ];
 
     return $output;
