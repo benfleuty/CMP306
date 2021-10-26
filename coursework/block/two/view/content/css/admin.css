@@ -1,0 +1,5 @@
+.admin-landing-option:hover  {
+    cursor: pointer;
+    border-color: #0a53be;
+    text-decoration: underline;
+}
