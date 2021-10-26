@@ -41,6 +41,25 @@ function getUserById($id)
     return array_merge($output, $res);
 }
 
+function isSpecialUserByID($id){
+    global $conn;
+
+    $sql = "SELECT special FROM CMP306BlockTwoUsers WHERE id = $id";
+
+    $res = mysqli_query($conn, $sql)->fetch_assoc();
+
+    $output = array();
+
+    if (!$res) {
+        $output["status"] = "fail";
+        return $output;
+    }
+
+    $output["status"] = "success";
+    $output["special"] = $res["special"] === 1;
+    return $output;
+}
+
 function registerUser($uname, $pword, $fname, $lname): array
 {
     global $conn;

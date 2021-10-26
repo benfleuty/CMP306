@@ -15,11 +15,13 @@
         <div class="collapse navbar-collapse" id="collapsibleNavId">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="../view/">Home</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
+                <?php if (isset($_SESSION["user_id"]) && isSpecialUserByID($_SESSION["user_id"])) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin.php">Admin Panel</a>
+                    </li>
+                <?php endif; ?>
             </ul>
             <?php require __DIR__ . "/signInUI.php"; ?>
         </div>
