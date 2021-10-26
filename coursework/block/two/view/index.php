@@ -23,5 +23,21 @@ include_once "../model/api.php";
 } ?>
 <?php include_once __DIR__ . "/content/modules/header.php"; ?>
 
+<div class="content mx-auto my-3">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">$productname$</h3>
+                    <img src="https://via.placeholder.com/200?text=Product+Image" alt="Image of a product" class="img-fluid rounded">
+                    <p class="card-text">$price$</p>
+                    <p class="card-text text-start">$description$</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include_once __DIR__ . "/content/modules/footer.php"; ?>
 </body>
 </html>
