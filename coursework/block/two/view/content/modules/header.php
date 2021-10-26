@@ -20,10 +20,7 @@
                     <a class="nav-link" href="#">Link</a>
                 </li>
             </ul>
-            <form class="form-inline m-2 my-lg-0">
-                <button class="btn btn-info m-1 my-sm-0 btn-login">Login</button>
-                <button class="btn btn-outline-info m-1 my-sm-0 btn-register">Sign Up</button>
-            </form>
+            <?php require __DIR__ . "/signinUI.php"; ?>
         </div>
     </nav>
 </header>
