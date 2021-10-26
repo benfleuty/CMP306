@@ -1,8 +1,5 @@
 <?php session_start();
-
 include_once "../model/api.php";
-
-
 ?>
 
 <!doctype html>
@@ -18,9 +15,6 @@ include_once "../model/api.php";
     <link rel="stylesheet" href="./content/css/header.css">
 </head>
 <body>
-<?php if (isset($_SESSION["user_id"])) {
-    echo "Welcome " . getUserById($_SESSION["user_id"])["username"];
-} ?>
 <?php include_once __DIR__ . "/content/modules/header.php"; ?>
 
 <div class="content mx-auto my-3">
@@ -29,7 +23,8 @@ include_once "../model/api.php";
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">$productname$</h3>
-                    <img src="https://via.placeholder.com/200?text=Product+Image" alt="Image of a product" class="img-fluid rounded">
+                    <img src="https://via.placeholder.com/200?text=Product+Image" alt="Image of a product"
+                         class="img-fluid rounded">
                     <p class="card-text">$price$</p>
                     <p class="card-text text-start">$description$</p>
                 </div>

@@ -18,10 +18,6 @@ include_once "../model/api.php";
     <link rel="stylesheet" href="./content/css/header.css">
 </head>
 <body>
-<?php if (isset($_SESSION["user_id"])) {
-    echo "Welcome " . getUserById($_SESSION["user_id"])["username"];
-} ?>
-
 <?php include_once __DIR__ . "/content/modules/header.php"; ?>
 
 <div class="content mx-auto my-3">
