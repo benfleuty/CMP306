@@ -1,5 +1,5 @@
 <?php ?>
-
+<script src="admin/admin-products-options.js"></script>
 <div class="container text-center">
     <div class="row row-cols-2">
         <div class="col-md-6">
