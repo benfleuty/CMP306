@@ -5,7 +5,7 @@
 <script src="content/modules/btn-register.js"></script>
 <header>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <a class="navbar-brand" href="#">B&Cue</a>
+        <a class="navbar-brand" href="/~1900040/cmp306/coursework/block/two/">B&Cue</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
                 aria-controls="collapsibleNavId"
                 aria-expanded="false" aria-label="Toggle navigation">
