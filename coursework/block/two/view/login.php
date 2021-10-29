@@ -25,6 +25,8 @@
             <input type="password" class="form-control" id="passwordInput" required aria-required="true">
         </div>
         <button id="btnLogin" type="submit" class="btn btn-primary w-100">Login</button>
+        <button class="btn btn-link text-center w-100" name="signUp" type="button">No account? Click here to register
+        </button>
     </form>
 </div>
 
