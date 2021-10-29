@@ -227,3 +227,32 @@ function deleteProduct($id): bool{
     $sql = "DELETE FROM CMP306BlockTwoProducts WHERE id = $id";
     return mysqli_query($conn, $sql);
 }
+
+function restoreDatabase()
+{
+    global $conn;
+    $clearTableQuery = "DELETE FROM CMP306BlockTwoProducts WHERE 1";
+
+    $fillTableQuery = "INSERT INTO CMP306BlockTwoProducts SELECT * FROM CMP306BlockTwoProductsBackup";
+
+    $sql = $clearTableQuery;
+    $data = array();
+
+    if (mysqli_query($conn, $sql)) {
+        // good delete
+        $sql = $fillTableQuery;
+        $res = array('drop_status' => 'success');
+    } else {
+        // delete fail
+        $res = array('drop_status' => 'fail');
+    }
+
+    $data = array_merge($data, $res);
+
+    if ($sql === $fillTableQuery && mysqli_query($conn, $sql)) {
+        // good insert
+        $res = array('fill_status' => 'success');
+        $data = array_merge($data, $res);
+    }
+    return json_encode($data);
+}
