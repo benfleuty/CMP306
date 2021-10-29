@@ -19,7 +19,7 @@
                 </li>
                 <?php if (isset($_SESSION["user_id"]) && isSpecialUserByID($_SESSION["user_id"])) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="/~1900040/cmp306/coursework/block/two/view/admin.php">Admin Panel</a>
+                        <a class="nav-link" href="/~1900040/cmp306/coursework/block/two/view/admin">Admin Panel</a>
                     </li>
                 <?php endif; ?>
             </ul>
