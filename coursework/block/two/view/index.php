@@ -17,6 +17,7 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
 </head>
 <body>
 <?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/view/content/modules/header.php"; ?>
+<script src="/~1900040/cmp306/coursework/block/two/controller/viewproduct.js"></script>
 <div class="content mx-auto my-3">
     <div class="row">
         <?php
