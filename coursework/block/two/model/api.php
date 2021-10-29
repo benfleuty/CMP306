@@ -222,3 +222,12 @@ function getProductById($id): array
     return $data;
 
 }
+
+function deleteProduct($id): bool{
+    require_once "connection.php";
+
+    global $conn;
+    $data = array();
+    $sql = "DELETE FROM CMP306BlockTwoProducts WHERE id = $id";
+    return mysqli_query($conn, $sql);
+}
