@@ -1,12 +1,43 @@
 <?php session_start();
-
 include_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.php";
+
+if (isset($_GET["id"])) {
+    $id = $_GET["id"];
+    $fail = false;
+    if (empty($id)) {
+        // id is empty
+        $fail = true;
+    }
+
+    if (!ctype_digit($id)) {
+        // id is not a number
+        $fail = true;
+    }
+
+    if ($fail) {
+        die();
+    }
+
+    $product = getProductById($id);
+    if ($product["status"] === "fail") {
+        die();
+    }
+
+    $product = $product["product"];
+    $defaultImg = $product["image"] === "https://via.placeholder.com/300";
+
+    $imgBasePath = "";
+
+    if (!$defaultImg) {
+        $imgBasePath = "/~1900040/cmp306/coursework/block/two/img/";
+    }
+}
 ?>
 
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Delete Product | Admin | Block Two | 1900040</title>
+    <title>Edit Product | Admin | Block Two | 1900040</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,29 +55,30 @@ include_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                <img src="https://via.placeholder.com/1280x720" alt="" class="img-fluid">
+                <img src="<?= $imgBasePath . $product["image"] ?>" alt="" class="img-fluid" style="max-height: 250px">
             </div>
             <div class="col-md-7">
                 <form>
                     <h2 class="text-center">Edit product</h2>
                     <span class="plant-id d-none"></span>
                     <div class="mb-3 w-100">
-                        <label for="txtProductTitle">Product Title:
-                            <input type="text" id="txtProductTitle" class="form-control" required aria-required="true">
+                        <label for="txtProductTitle" class="w-100">Product Title:
+                            <input type="text" id="txtProductTitle" class="form-control" required aria-required="true" placeholder="<?= $product["name"] ?>" value="<?= $product["name"] ?>">
                         </label>
                     </div>
                     <div class="mb-3">
-                        <label for="txtProductPrice">Product Price:
-                            <input type="text" id="txtProductPrice" class="form-control" required aria-required="true">
+                        <label for="txtProductPrice" class="w-100">Product Price:
+                            <input type="text" id="txtProductPrice" class="form-control" placeholder="<?= $product["price"] ?>" value="<?= $product["price"] ?>" required aria-required="true">
                         </label>
                     </div>
                     <div class="mb-3">
-                        <label for="txtProductDescription">Product Description:
-                            <textarea type="text" id="txtProductDescription" class="form-control" required aria-required="true"></textarea>
+                        <label for="txtProductDescription" class="w-100">Product Description:
+                            <textarea type="text" id="txtProductDescription" class="form-control" required style="min-height: 250px"
+                                      aria-required="true" placeholder="<?= $product["description"] ?>"><?= $product["description"] ?></textarea>
                         </label>
                     </div>
                     <div>
-                        <button class="btn btn-primary w-100 mb-3" id="btnSaveProduct">Save</button>
+                        <button class="btn btn-primary w-100 mb-1" id="btnSaveProduct">Save</button>
                         <button class="btn btn-warning w-100" id="btnResetForm">Reset Form</button>
                     </div>
                 </form>
