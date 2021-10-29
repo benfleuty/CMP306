@@ -27,7 +27,7 @@ $(function () {
                     return;
                 }
 
-                window.location.href = "/~1900040/cmp306/coursework/block/two/index.php";
+                window.location.href = "/~1900040/cmp306/coursework/block/two/view/admin";
             },
             error: function (a, b, c) {
                 console.log(c);
