@@ -23,7 +23,7 @@ if(!ctype_digit($id)){
     die;
 }
 
-$_SESSION["basket"] = $id;
+$_SESSION["basket"]["product_id"] = $id;
 
 $data["status"] = "success";
 $data["basket_count"] = 1;
