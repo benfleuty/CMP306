@@ -5,6 +5,11 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/produc
 ?>
 <!--<script src="admin/admin-products-options.js"></script>-->
 <div class="text-center">
+
+    <div class="new-product my-2" style="text-align: right">
+        <button class="btn btn-outline-primary " id="btnNewProduct">Add New Product</button>
+    </div>
+
     <table class="table table-hover table-sm">
         <thead>
         <tr>
