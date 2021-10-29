@@ -70,9 +70,14 @@ if (isset($_GET["id"])) {
                 <div class="product-description mt-1">
                     <?= $product["description"] ?>
                 </div>
+                <?php if (isset($_SESSION["user_id"]) && !empty($_SESSION["user_id"])): ?>
                 <form>
                     <button class="btn btn-warning w-100" id="btnAddToBasket" name="<?= $product["id"] ?>">Add to basket</button>
                 </form>
+                <?php else: ?>
+                <button class="btn btn-outline-info btn-signIn my-2">You must be logged in to add items to your basket!</button>
+                <?php endif; ?>
+
             </div>
         </div>
     </div>
