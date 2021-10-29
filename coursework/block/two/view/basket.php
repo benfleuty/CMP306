@@ -23,15 +23,16 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
         <?php
 
         if (isset($_SESSION["user_id"]) && isset($_SESSION["basket"]) && !empty($_SESSION["basket"])):
-        ?>
-        <h2>item in basket:</h2>
-        <div class="border p-2">
-            <h3>title</h3>
-            <p>£price</p>
-            <button class="btn btn-danger" id="btnRemoveFromBasket" name="id">remove</button>
-        </div>
+            $product = getProductById($_SESSION["basket"]["product_id"])["product"];
+            ?>
+            <h2>Item in basket:</h2>
+            <div class="border p-2">
+                <h3><?= $product["name"] ?></h3>
+                <p>£<?= number_format($product["price"], 2) ?></p>
+                <button class="btn btn-danger" id="btnRemoveFromBasket" name="id">remove</button>
+            </div>
         <?php else: ?>
-        <h2>Your basket is empty</h2>
+            <h2>Your basket is empty</h2>
         <?php endif; ?>
     </div>
 </div>
