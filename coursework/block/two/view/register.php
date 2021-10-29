@@ -40,6 +40,7 @@
             <input type="password" class="form-control" id="confirmPasswordInput" required aria-required="true">
         </div>
         <button id="btnRegister" type="submit" class="btn btn-primary w-100">Register</button>
+        <button class="btn btn-link text-center w-100" name="signIn" type="button">Already have an account? Click here to log in</button>
     </form>
 </div>
 
