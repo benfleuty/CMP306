@@ -43,7 +43,7 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
 
             $price = $product["price"];
             $price = number_format($price, 2);
-            $output .= '<p class="card-text">' . $price . '</p>';
+            $output .= '<p class="card-text">£' . $price . '</p>';
 
             $desc = $product["description"];
 
