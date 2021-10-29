@@ -91,10 +91,12 @@ if (isset($_POST["cardNum"], $_POST["sortCode"], $_POST["cvc"], $_SESSION["baske
     } catch (Exception $e) {
     }
 
-    $data["api-response"] = processCardPayment($product_id, $user_id, $cardNum, $sortCode, $cvc,$success);
+    $data["api-response"] = processCardPayment($product_id, $user_id, $cardNum, $sortCode, $cvc, $success);
 
-    if (!isset($data["status"])) {
+    if ($data["api-response"]["status"] === "success") {
         $data["status"] = "success";
+    } else {
+        $data["status"] = "fail";
     }
 
     echo json_encode($data);

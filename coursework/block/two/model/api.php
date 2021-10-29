@@ -269,8 +269,9 @@ function processCardPayment($product_id, $user_id, $card_number, $sort_code, $cv
     $clean_card_number = htmlspecialchars($card_number);
     $clean_sort_code = htmlspecialchars($sort_code);
     $clean_cvc = htmlspecialchars($cvc);
+    $success = ($successful) ? 1 : 0;
 
-    $sql = "INSERT INTO CMP306BlockTwoTransactions (product_id, user_id, card_num, sortcode, cvc) VALUES ($clean_product_id,$clean_user_id,'$clean_card_number','$clean_sort_code','$clean_cvc',$successful)";
+    $sql = "INSERT INTO CMP306BlockTwoTransactions (product_id, user_id, card_num, sortcode, cvc,success) VALUES ($clean_product_id,$clean_user_id,'$clean_card_number','$clean_sort_code','$clean_cvc',$success)";
 
     $res = mysqli_query($conn, $sql);
 
@@ -278,14 +279,15 @@ function processCardPayment($product_id, $user_id, $card_number, $sort_code, $cv
     if (!$res) {
         $output += [
             "status" => "fail",
-            "message" => "There was an error saving the card information!"
+            "message" => "There was an error saving the card information!",
+            "mysqli_error" => mysqli_error($conn)
         ];
         return $output;
     }
 
     $output += [
         "status" => "success",
-        "message" => "Card information stored!"
+        "message" => "Transaction stored!"
     ];
 
     return $output;
