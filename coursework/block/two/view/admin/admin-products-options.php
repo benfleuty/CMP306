@@ -3,7 +3,7 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
 require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/productTableRow.php";
 
 ?>
-<!--<script src="admin/admin-products-options.js"></script>-->
+<script src="/~1900040/cmp306/coursework/block/two/view/admin/admin-products-options.js"></script>
 <div class="text-center">
 
     <div class="new-product my-2" style="text-align: right">
@@ -29,7 +29,7 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/produc
             $output .= "<td>" . $product["name"] . "</td>";
 
             $price = $product["price"];
-            $price = number_format($price,2);
+            $price = number_format($price, 2);
 
             $output .= "<td>" . $price . "</td>";
 
@@ -44,9 +44,9 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/produc
 
             $output .= "<td style='text-align: left'>" . $desc . "</td>";
 
-            $btnView = '<button class="btn btn-primary btn-data-action btn-view">View<span class="id d-none">' . $product["id"] . '</span></button>';
-            $btnEdit = '    <button class="btn btn-warning btn-data-action btn-edit">Edit<span class="id d-none">' . $product["id"] . '</span></button>';
-            $btnDelete = '<button class="btn btn-danger btn-data-action btn-delete">Delete<span class="id d-none">' . $product["id"] . '</span></button>';
+            $btnView = '<button class="btn btn-primary btn-data-action" name="view-' . $product["id"] . '">View</button>';
+            $btnEdit = '<button class="btn btn-warning btn-data-action" name="edit-' . $product["id"] . '">Edit</button>';
+            $btnDelete = '<button class="btn btn-danger btn-data-action" name="delete-' . $product["id"] . '">Delete</button>';
 
             $buttons = $btnView . $btnEdit . $btnDelete;
 
