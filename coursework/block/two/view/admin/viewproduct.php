@@ -57,7 +57,7 @@ if (isset($_GET["id"])) {
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                <img src="<?= $imgBasePath . $product["image"] ?>" alt="" class="img-fluid float-end" style="max-height: 250px">
+                <img src="<?= $imgBasePath . $product["image"] ?>" alt="" class="img-fluid" style="max-height: 250px">
             </div>
             <div class="col-md-7">
                 <div class="product-title ">
