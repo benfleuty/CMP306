@@ -147,13 +147,9 @@ function logInUser($uname, $pword)
     return $output;
 }
 
-$salt = "this is some salt";
-
 function hash_password($pword)
 {
-    global $salt;
-    $toHash = $pword;
-    return password_hash($toHash, PASSWORD_DEFAULT);
+    return password_hash($pword, PASSWORD_DEFAULT);
 }
 
 function sanitiseUserInput($input): string
