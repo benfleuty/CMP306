@@ -44,9 +44,9 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/produc
 
             $output .= "<td style='text-align: left'>" . $desc . "</td>";
 
-            $btnView = '<button class="btn btn-primary btn-view">View<span class="id d-none">' . $product["id"] . '</span></button>';
-            $btnEdit = '    <button class="btn btn-warning btn-edit">Edit<span class="id d-none">' . $product["id"] . '</span></button>';
-            $btnDelete = '<button class="btn btn-danger btn-delete">Delete<span class="id d-none">' . $product["id"] . '</span></button>';
+            $btnView = '<button class="btn btn-primary btn-data-action btn-view">View<span class="id d-none">' . $product["id"] . '</span></button>';
+            $btnEdit = '    <button class="btn btn-warning btn-data-action btn-edit">Edit<span class="id d-none">' . $product["id"] . '</span></button>';
+            $btnDelete = '<button class="btn btn-danger btn-data-action btn-delete">Delete<span class="id d-none">' . $product["id"] . '</span></button>';
 
             $buttons = $btnView . $btnEdit . $btnDelete;
 
