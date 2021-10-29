@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+session_start();
 require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.php";
 ?>
 
@@ -31,6 +32,7 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
                 <p>£<?= number_format($product["price"], 2) ?></p>
                 <button class="btn btn-danger" id="btnRemoveFromBasket" name="id">remove</button>
             </div>
+        <button class="btn btn-warning w-100 my-1" id="btnCheckout">Checkout</button>
         <?php else: ?>
             <h2>Your basket is empty</h2>
         <?php endif; ?>
