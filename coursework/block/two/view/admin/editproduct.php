@@ -31,6 +31,10 @@ if (isset($_GET["id"])) {
     if (!$defaultImg) {
         $imgBasePath = "/~1900040/cmp306/coursework/block/two/img/";
     }
+
+    foreach ($product as $key => $value) {
+        $product[$key] = htmlspecialchars($value);
+    }
 }
 ?>
 
