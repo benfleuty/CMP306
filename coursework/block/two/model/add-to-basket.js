@@ -10,9 +10,8 @@ $(function () {
             },
             success: function (response) {
                 let jsonData = JSON.parse(response);
-                if (jsonData.basket_count > 0)
-                    $(".btn-basket").html("Basket (" + jsonData.basket_count + ")");
-                else $(".btn-basket").html("Basket");
+                window.location.href = "/~1900040/cmp306/coursework/block/two/view/basket.php";
+
 
             },
             error: function (a, b, c) {
