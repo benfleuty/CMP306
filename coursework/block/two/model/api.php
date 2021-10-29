@@ -219,7 +219,8 @@ function getProductById($id): array
 
 }
 
-function deleteProduct($id): bool{
+function deleteProduct($id): bool
+{
     require_once "connection.php";
 
     global $conn;
@@ -255,4 +256,37 @@ function restoreDatabase()
         $data = array_merge($data, $res);
     }
     return json_encode($data);
+}
+
+function processCardPayment($product_id, $user_id, $card_number, $sort_code, $cvc, $successful = true)
+{
+    global $conn;
+
+    $data = array();
+
+    $clean_product_id = htmlspecialchars($product_id);
+    $clean_user_id = htmlspecialchars($user_id);
+    $clean_card_number = htmlspecialchars($card_number);
+    $clean_sort_code = htmlspecialchars($sort_code);
+    $clean_cvc = htmlspecialchars($cvc);
+
+    $sql = "INSERT INTO CMP306BlockTwoTransactions (product_id, user_id, card_num, sortcode, cvc) VALUES ($clean_product_id,$clean_user_id,'$clean_card_number','$clean_sort_code','$clean_cvc',$successful)";
+
+    $res = mysqli_query($conn, $sql);
+
+    $output = array();
+    if (!$res) {
+        $output += [
+            "status" => "fail",
+            "message" => "There was an error saving the card information!"
+        ];
+        return $output;
+    }
+
+    $output += [
+        "status" => "success",
+        "message" => "Card information stored!"
+    ];
+
+    return $output;
 }
