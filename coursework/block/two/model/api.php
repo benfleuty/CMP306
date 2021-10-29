@@ -191,3 +191,34 @@ function getAllProducts(): array
     return $data;
 
 }
+
+function getProductById($id): array
+{
+    require_once "connection.php";
+
+    global $conn;
+    $data = array();
+    $sql = "SELECT * FROM CMP306BlockTwoProducts WHERE id = $id";
+    $res = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($res) !== 1) {
+        $data["status"] = "fail";
+        $data["message"] = "Product not found";
+        return $data;
+    }
+
+    $data["status"] = "success";
+
+    $row = $res->fetch_assoc();
+
+    $product["id"] = $row["id"];
+    $product["name"] = $row["name"];
+    $product["price"] = $row["price"];
+    $product["image"] = $row["image"];
+    $product["description"] = $row["description"];
+
+    $data["product"] = $product;
+
+    return $data;
+
+}
