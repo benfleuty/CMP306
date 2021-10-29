@@ -1,12 +1,45 @@
 <?php session_start();
-
 include_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.php";
+
+if (isset($_GET["id"])) {
+    $id = $_GET["id"];
+    $fail = false;
+    if (empty($id)) {
+        // id is empty
+        $fail = true;
+    }
+
+    if (!ctype_digit($id)) {
+        // id is not a number
+        $fail = true;
+    }
+
+
+    if ($fail) {
+        die();
+    }
+
+    $product = getProductById($id);
+    if ($product["status"] === "fail") {
+        die();
+    }
+
+    $product = $product["product"];
+    $defaultImg = $product["image"] === "https://via.placeholder.com/300";
+
+    $imgBasePath = "";
+
+    if (!$defaultImg) {
+        $imgBasePath = "/~1900040/cmp306/coursework/block/two/img/";
+    }
+}
+
 ?>
 
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Delete Product | Admin | Block Two | 1900040</title>
+    <title>View Product | Admin | Block Two | 1900040</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,17 +57,17 @@ include_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-                <img src="https://via.placeholder.com/1280x720" alt="" class="img-fluid">
+                <img src="<?= $imgBasePath . $product["image"] ?>" alt="" class="img-fluid float-end" style="max-height: 250px">
             </div>
             <div class="col-md-7">
                 <div class="product-title ">
-                    <h2>$productTitle$</h2>
+                    <h2><?= $product["name"] ?></h2>
                 </div>
                 <div class="product-price ">
-                    <span class="text-muted">$productPrice$</span>
+                    <span class="text-muted"><?= $product["price"] ?></span>
                 </div>
                 <div class="product-description mt-1">
-                    <span>lorem ipsum dolor sit amet.</span>
+                    <?= $product["description"] ?>
                 </div>
             </div>
         </div>
