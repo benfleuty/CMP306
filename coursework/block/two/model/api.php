@@ -128,7 +128,7 @@ function logInUser($uname, $pword)
     }
 
     global $salt;
-    $match = password_verify( $pword, $row["password"]);
+    $match = password_verify($pword, $row["password"]);
     if (!$match) {
         $output += [
             "status" => "fail",
@@ -159,4 +159,35 @@ function hash_password($pword)
 function sanitiseUserInput($input): string
 {
     return htmlspecialchars(addslashes($input));
+}
+
+function getAllProducts(): array
+{
+    require_once "connection.php";
+
+    global $conn;
+    $data = array();
+    $sql = "SELECT * FROM CMP306BlockTwoProducts";
+    $res = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($res) < 1) {
+        $data["status"] = "fail";
+        $data["message"] = "No products found";
+        return $data;
+    }
+
+    $data["status"] = "success";
+
+    while ($row = $res->fetch_assoc()) {
+        $product["id"] = $row["id"];
+        $product["name"] = $row["name"];
+        $product["price"] = $row["price"];
+        $product["image"] = $row["image"];
+        $product["description"] = $row["description"];
+
+        $data["products"][] = $product;
+    }
+
+    return $data;
+
 }
