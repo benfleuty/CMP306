@@ -52,6 +52,7 @@ if (isset($_GET["id"])) {
 </head>
 <body>
 <?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/view/content/modules/header.php"; ?>
+<script src="/~1900040/cmp306/coursework/block/two/model/add-to-basket.js"></script>
 
 <div class="content mx-auto my-3">
     <div class="container">
@@ -70,7 +71,7 @@ if (isset($_GET["id"])) {
                     <?= $product["description"] ?>
                 </div>
                 <form>
-                    <button class="btn btn-warning w-100" id="btnAddToBasket">Add to basket</button>
+                    <button class="btn btn-warning w-100" id="btnAddToBasket" name="<?= $product["id"] ?>">Add to basket</button>
                 </form>
             </div>
         </div>
