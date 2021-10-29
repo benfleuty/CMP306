@@ -14,12 +14,16 @@ $(function () {
             type: "POST",
             url: '/~1900040/cmp306/coursework/block/two/model/checkout.php',
             data: {
-                cardNum:cardNum,
-                sortCode:sortCode,
-                cvc:cvc
+                cardNum: cardNum,
+                sortCode: sortCode,
+                cvc: cvc
             },
             success: function (response) {
-                console.log(response);
+                let jsonData = JSON.parse(response);
+                if (jsonData.status === "success")
+                    window.location.href = "/~1900040/cmp306/coursework/block/two/view/order-confirmation.php?status=1";
+                else
+                    window.location.href = "/~1900040/cmp306/coursework/block/two/view/order-confirmation.php?status=0";
             },
             error: function (a, b, c) {
                 console.log(c);
