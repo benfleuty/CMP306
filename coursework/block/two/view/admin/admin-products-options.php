@@ -1,4 +1,4 @@
-<?php ?>
+<?php session_start(); ?>
 <!--<script src="admin/admin-products-options.js"></script>-->
 <div class="container text-center">
     <table class="table">
