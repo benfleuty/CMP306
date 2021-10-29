@@ -32,24 +32,24 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
         <p>Item: <?= $product["name"] ?></p>
         <p>Total: £<?= number_format($product["price"], 2) ?></p>
         <p>Payments handled by Aberpay</p>
-        <form>
+        <form id="checkoutForm">
             <div class="mb-3">
                 <label for="txtCardNumber"> Card number
-                    <input id="txtCardNumber" type="number" class="form-control" min="0" minlength="16" maxlength="16" placeholder="XXXX XXXX XXXX XXXX">
+                    <input id="txtCardNumber" type="text" class="form-control" min="0" maxlength="16" placeholder="XXXX XXXX XXXX XXXX" required value="1234567812345678">
                 </label>
             </div>
             <div class="mb-3">
                 <label for="txtSortCode"> Sort code
-                    <input id="txtSortCode" type="number" class="form-control" min="0" minlength="6" maxlength="6" placeholder="XX-XX-XX">
+                    <input id="txtSortCode" type="text" class="form-control" min="0" minlength="6" maxlength="6" placeholder="XX-XX-XX" required value="123456">
                 </label>
             </div>
             <div class="mb-3">
                 <label for="txtCVC" > CVC
-                    <input id="txtCVC" type="number" class="form-control" min="0" minlength="3" maxlength="3" placeholder="XXX">
+                    <input id="txtCVC" type="text" class="form-control" min="0" minlength="3" maxlength="3" placeholder="XXX" required value="123">
                 </label>
             </div>
             <div class="mb-3">
-                <button class="btn btn-primary" id="btnConfirmCheckout">Complete transaction</button>
+                <button class="btn btn-primary" id="btnConfirmCheckout" type="submit">Complete transaction</button>
             </div>
         </form>
     </div>
