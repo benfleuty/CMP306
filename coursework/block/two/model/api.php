@@ -219,6 +219,40 @@ function getProductById($id): array
 
 }
 
+function getProductByTransactionId($id): array
+{
+    require_once "connection.php";
+
+    global $conn;
+    $data = array();
+    $sql = "select CMP306BlockTwoProducts.* from CMP306BlockTwoProducts,CMP306BlockTwoTransactions
+where CMP306BlockTwoTransactions.product_id = 3
+and CMP306BlockTwoTransactions.product_id = CMP306BlockTwoProducts.id
+limit 1";
+    $res = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($res) !== 1) {
+        $data["status"] = "fail";
+        $data["message"] = "Product not found";
+        return $data;
+    }
+
+    $data["status"] = "success";
+
+    $row = $res->fetch_assoc();
+
+    $product["id"] = $row["id"];
+    $product["name"] = $row["name"];
+    $product["price"] = $row["price"];
+    $product["image"] = $row["image"];
+    $product["description"] = $row["description"];
+
+    $data["product"] = $product;
+
+    return $data;
+
+}
+
 function deleteProduct($id): bool
 {
     require_once "connection.php";
@@ -258,7 +292,7 @@ function restoreDatabase()
     return json_encode($data);
 }
 
-function processCardPayment($product_id, $user_id, $card_number, $sort_code, $cvc, $successful = true)
+function processCardPayment($product_id, $user_id, $card_number, $status): array
 {
     global $conn;
 
@@ -267,11 +301,9 @@ function processCardPayment($product_id, $user_id, $card_number, $sort_code, $cv
     $clean_product_id = htmlspecialchars($product_id);
     $clean_user_id = htmlspecialchars($user_id);
     $clean_card_number = htmlspecialchars($card_number);
-    $clean_sort_code = htmlspecialchars($sort_code);
-    $clean_cvc = htmlspecialchars($cvc);
-    $success = ($successful) ? 1 : 0;
+    $clean_status = htmlspecialchars($status);
 
-    $sql = "INSERT INTO CMP306BlockTwoTransactions (product_id, user_id, card_num, sortcode, cvc,success) VALUES ($clean_product_id,$clean_user_id,'$clean_card_number','$clean_sort_code','$clean_cvc',$success)";
+    $sql = "INSERT INTO CMP306BlockTwoTransactions (product_id, user_id, card_num, status) VALUES ($clean_product_id,$clean_user_id,'$clean_card_number',$clean_status)";
 
     $res = mysqli_query($conn, $sql);
 
@@ -280,7 +312,8 @@ function processCardPayment($product_id, $user_id, $card_number, $sort_code, $cv
         $output += [
             "status" => "fail",
             "message" => "There was an error saving the card information!",
-            "mysqli_error" => mysqli_error($conn)
+            "mysqli_error" => mysqli_error($conn),
+            "sql" => $clean_status
         ];
         return $output;
     }

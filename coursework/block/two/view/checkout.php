@@ -30,7 +30,7 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
         ?>
         <h1>Checkout</h1>
         <p>Item: <?= $product["name"] ?></p>
-        <p>Total: £<?= number_format($product["price"], 2) ?></p>
+        <p>Total: £<span id="price"><?= number_format($product["price"], 2) ?></span></p>
         <p>Payments handled by Aberpay</p>
         <form id="checkoutForm">
             <div class="mb-3">
@@ -39,17 +39,7 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
                 </label>
             </div>
             <div class="mb-3">
-                <label for="txtSortCode"> Sort code
-                    <input id="txtSortCode" type="text" class="form-control" min="0" minlength="6" maxlength="6" placeholder="XX-XX-XX" required value="123456">
-                </label>
-            </div>
-            <div class="mb-3">
-                <label for="txtCVC" > CVC
-                    <input id="txtCVC" type="text" class="form-control" min="0" minlength="3" maxlength="3" placeholder="XXX" required value="123">
-                </label>
-            </div>
-            <div class="mb-3">
-                <button class="btn btn-primary" id="btnConfirmCheckout" type="submit">Complete transaction</button>
+                <button class="btn btn-primary" id="btnConfirmCheckout" type="submit">Pay via AberPay</button>
             </div>
         </form>
     </div>
