@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="content/css/plants.css">
 </head>
 <header class="header-blue">
-
     <nav class="navbar navbar-dark navbar-expand-md navigation-clean-search">
         <div class="container-fluid"><a class="navbar-brand" href="/~1900040/cmp306/">Ben Fleuty |&nbsp;CMP 306<br>Dynamic
                 Web
@@ -41,23 +40,7 @@
             </div>
         </div>
     </nav>
-    <div class="container hero">
-        <div class="row">
-            <div class="col-12 col-lg-6 col-xl-5 offset-xl-1">
-                <h1>Meet my plants</h1>
-                <p>Help... I keep spending money</p>
-                <button id="btnRestoreDatabase" class="btn btn-light btn-lg action-button" type="button">Restore
-                    database
-                </button>
-            </div>
-            <div class="col-md-5 col-lg-5 offset-lg-1 offset-xl-0 d-none d-lg-block phone-holder">
-                <div class="phone-mockup"><img class="device" src="/~1900040/cmp306/assets/img/plants/header.png"></div>
-            </div>
-        </div>
-    </div>
 </header>
-
-
 <?php
 require_once "../model/api.php";
 
