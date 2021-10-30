@@ -30,4 +30,8 @@ $(function () {
             default:console.error("error doing action");
         }
     }
+
+    $("#btnNewProduct").on("click",function () {
+                window.location.href = "/~1900040/cmp306/coursework/block/two/view/admin/new-product.php"
+    })
 });

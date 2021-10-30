@@ -289,6 +289,38 @@ function updateProduct($id, $name, $price, $desc)
     return json_encode($data);
 }
 
+function createProduct($name, $price, $desc)
+{
+    global $conn;
+
+    $clean_name = mysqli_real_escape_string($conn, $name);
+    $clean_price = mysqli_real_escape_string($conn, $price);
+    $clean_desc = mysqli_real_escape_string($conn, $desc);
+
+    $sql = "insert into CMP306BlockTwoProducts (name, price, description) values ('$clean_name','$clean_price','$clean_desc')";
+
+    $data = [];
+
+    if (mysqli_query($conn, $sql)) {
+        $data["create_status"] = 'success';
+    } else {
+        $data["create_status"] = 'fail';
+    }
+
+    $sql = "SELECT LAST_INSERT_ID() AS id";
+
+    if ($res = mysqli_query($conn, $sql)) {
+        $data["get_id_status"] = "success";
+        $res = $res->fetch_assoc();
+        $id = $res["id"];
+        $data["id"] = $id;
+    } else {
+        $data["get_id_status"] = "fail";
+    }
+
+    return json_encode($data);
+}
+
 function restoreDatabase()
 {
     global $conn;
