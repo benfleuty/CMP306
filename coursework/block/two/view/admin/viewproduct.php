@@ -1,6 +1,10 @@
 <?php session_start();
 include_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.php";
 
+if (!isset($_SESSION["user_id"]) || !isSpecialUserByID($_SESSION["user_id"])) {
+    header("Location: /~1900040/cmp306/coursework/block/two/view/index.php");
+}
+
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
     $fail = false;

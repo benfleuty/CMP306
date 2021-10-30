@@ -21,7 +21,6 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
 <div class="content mx-auto my-3">
     <div class="row">
         <?php
-
         $products = getAllProducts();
 
         foreach ($products["products"] as $product) {
