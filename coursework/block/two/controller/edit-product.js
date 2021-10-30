@@ -66,8 +66,6 @@ $(function () {
             },
             success: function (response) {
                 let jsonData = JSON.parse(response);
-                console.log(response);
-                return;
                 window.location.href = '/~1900040/cmp306/coursework/block/two/view/admin/viewproduct.php?id='+jsonData.id;
             },
             error: function (a, b, c) {
