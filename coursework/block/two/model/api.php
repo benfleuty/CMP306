@@ -49,16 +49,11 @@ function isSpecialUserByID($id)
 
     $res = mysqli_query($conn, $sql)->fetch_assoc();
 
-    $output = array();
-
     if (!$res) {
-        $output["status"] = "fail";
-        return $output;
+        return null;
     }
 
-    $output["status"] = "success";
-    $output["special"] = $res["special"] === 1;
-    return $output;
+    return $res["special"] == true;
 }
 
 function registerUser($uname, $pword, $fname, $lname): array
