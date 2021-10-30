@@ -5,10 +5,9 @@ include_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
 if (!isset($_POST["id"], $_POST["name"], $_POST["price"], $_POST["desc"])) {
     die;
 }
-$id = mysqli_real_escape_string(($_POST["id"]));
-$name = mysqli_real_escape_string($_POST["name"]);
-$price = mysqli_real_escape_string($_POST["price"]);
-$desc = mysqli_real_escape_string($_POST["desc"]);
-
+$id = $_POST["id"];
+$name = $_POST["name"];
+$price = $_POST["price"];
+$desc = $_POST["desc"];
 
 echo updateProduct($id, $name, $price, $desc);
