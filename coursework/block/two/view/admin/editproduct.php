@@ -54,6 +54,7 @@ if (isset($_GET["id"])) {
 </head>
 <body>
 <?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/view/content/modules/header.php"; ?>
+<script src="/~1900040/cmp306/coursework/block/two/controller/edit-product.js"></script>
 
 <div class="content mx-auto my-3">
     <div class="container">
@@ -67,22 +68,27 @@ if (isset($_GET["id"])) {
                     <span class="plant-id d-none"></span>
                     <div class="mb-3 w-100">
                         <label for="txtProductTitle" class="w-100">Product Title:
-                            <input type="text" id="txtProductTitle" class="form-control" required aria-required="true" placeholder="<?= $product["name"] ?>" value="<?= $product["name"] ?>">
+                            <input type="text" id="txtProductTitle" class="form-control" required aria-required="true"
+                                   placeholder="<?= $product["name"] ?>" value="<?= $product["name"] ?>">
                         </label>
                     </div>
                     <div class="mb-3">
                         <label for="txtProductPrice" class="w-100">Product Price:
-                            <input type="text" id="txtProductPrice" class="form-control" placeholder="<?= $product["price"] ?>" value="<?= $product["price"] ?>" required aria-required="true">
+                            <input type="text" id="txtProductPrice" class="form-control"
+                                   placeholder="<?= $product["price"] ?>" value="<?= $product["price"] ?>" required
+                                   aria-required="true">
                         </label>
                     </div>
                     <div class="mb-3">
                         <label for="txtProductDescription" class="w-100">Product Description:
-                            <textarea type="text" id="txtProductDescription" class="form-control" required style="min-height: 250px"
-                                      aria-required="true" placeholder="<?= $product["description"] ?>"><?= $product["description"] ?></textarea>
+                            <textarea type="text" id="txtProductDescription" class="form-control" required
+                                      style="min-height: 250px"
+                                      aria-required="true"
+                                      placeholder="<?= $product["description"] ?>"><?= $product["description"] ?></textarea>
                         </label>
                     </div>
                     <div>
-                        <button class="btn btn-primary w-100 mb-1" id="btnSaveProduct">Save</button>
+                        <button class="btn btn-primary w-100 mb-1" id="btnSaveProduct" name="<?= $id ?>">Save</button>
                         <button class="btn btn-warning w-100" id="btnResetForm">Reset Form</button>
                     </div>
                 </form>

@@ -263,6 +263,32 @@ function deleteProduct($id): bool
     return mysqli_query($conn, $sql);
 }
 
+function updateProduct($id, $name, $price, $desc)
+{
+    global $conn;
+
+    $clean_id = mysqli_real_escape_string($conn, $_POST["id"]);
+    $clean_name = mysqli_real_escape_string($conn, $_POST["name"]);
+    $clean_price = mysqli_real_escape_string($conn, $_POST["price"]);
+    $clean_desc = mysqli_real_escape_string($conn, $_POST["desc"]);
+
+    $sql = "update CMP306BlockTwoProducts set name = '$clean_name', price = $clean_price,description = '$clean_desc' where id = $clean_id";
+
+    $data = [];
+
+    if (mysqli_query($conn, $sql)) {
+        $data["update_status"] = 'success';
+    } else {
+        $data["update_status"] = 'fail';
+    }
+
+    $data["sql"] = $sql;
+
+
+    $data["id"] = $id;
+    return json_encode($data);
+}
+
 function restoreDatabase()
 {
     global $conn;
