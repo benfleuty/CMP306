@@ -7,23 +7,17 @@ $(function () {
         }
 
         let cardNum = $("#txtCardNumber").val();
-        let sortCode = $("#txtSortCode").val();
-        let cvc = $("#txtCVC").val();
+        let amount = $("#price").html();
 
         $.ajax({
             type: "POST",
-            url: '/~1900040/cmp306/coursework/block/two/model/checkout.php',
+            url: '/~1900040/cmp306/coursework/block/two/model/aberpay.php',
             data: {
-                cardNum: cardNum,
-                sortCode: sortCode,
-                cvc: cvc
+                amount: amount,
+                card: cardNum
             },
-            success: function (response) {
-                let jsonData = JSON.parse(response);
-                if (jsonData.status === "success")
-                    window.location.href = "/~1900040/cmp306/coursework/block/two/view/order-confirmation.php?status=1";
-                else
-                    window.location.href = "/~1900040/cmp306/coursework/block/two/view/order-confirmation.php?status=0";
+            success: function () {
+                window.location.href = '/~1900040/cmp306/coursework/block/two/view/order-confirmation.php';
             },
             error: function (a, b, c) {
                 console.log(c);
@@ -32,21 +26,11 @@ $(function () {
     })
 
     function check_good_card() {
-        return good_card_num() && good_sort_code() && good_cvc();
+        return good_card_num();
     }
 
     function good_card_num() {
         let cardNum = $("#txtCardNumber").val();
         return !isNaN(parseInt(cardNum)) && cardNum.length === 16;
-    }
-
-    function good_sort_code() {
-        let sortCode = $("#txtSortCode").val();
-        return !isNaN(parseInt(sortCode)) && sortCode.length === 6;
-    }
-
-    function good_cvc() {
-        let cvc = $("#txtCVC").val();
-        return !isNaN(parseInt(cvc)) && cvc.length === 3;
     }
 })
