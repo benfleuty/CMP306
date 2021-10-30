@@ -35,6 +35,8 @@ if (isset($_GET["id"])) {
     foreach ($product as $key => $value) {
         $product[$key] = htmlspecialchars($value);
     }
+
+    $product["price"] = number_format($product["price"], 2);
 }
 ?>
 
