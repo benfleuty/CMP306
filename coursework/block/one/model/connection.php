@@ -1,7 +1,5 @@
 <?php
 
-include_once "config.php";
-
 //  Database connections
 $servername = "lochnagar.abertay.ac.uk";
 $username = "sql1900040";
