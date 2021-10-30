@@ -91,7 +91,7 @@ if (isset($_GET["id"])) {
                     </div>
                     <div>
                         <button class="btn btn-primary w-100 mb-1" id="btnSaveProduct" name="<?= $id ?>">Save</button>
-                        <button class="btn btn-warning w-100" id="btnResetForm">Reset Form</button>
+                        <button class="btn btn-warning w-100" id="btnResetProductForm">Reset Form</button>
                     </div>
                 </form>
             </div>
