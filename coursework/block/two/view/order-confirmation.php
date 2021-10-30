@@ -21,11 +21,10 @@ if (!isset($_SESSION["transaction"])) {
 </head>
 <body>
 <?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/view/content/modules/header.php"; ?>
-<script src="/~1900040/cmp306/coursework/block/two/controller/checkout.js"></script>
 <div class="content mx-auto my-3">
     <div>
         <?php
-        $product = getProductByTransactionId($_SESSION["basket"]["product_id"])["product"];
+        $product = getProductByTransactionId($_SESSION["transaction"]["api-response"]["id"])["product"];
         $status = $_SESSION["transaction"]["aberpay-response"]["status"];
         if ($status):
             ?>

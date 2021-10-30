@@ -226,7 +226,7 @@ function getProductByTransactionId($id): array
     global $conn;
     $data = array();
     $sql = "select CMP306BlockTwoProducts.* from CMP306BlockTwoProducts,CMP306BlockTwoTransactions
-where CMP306BlockTwoTransactions.product_id = 3
+where CMP306BlockTwoTransactions.id = $id
 and CMP306BlockTwoTransactions.product_id = CMP306BlockTwoProducts.id
 limit 1";
     $res = mysqli_query($conn, $sql);
@@ -354,8 +354,6 @@ function processCardPayment($product_id, $user_id, $card_number, $status): array
 {
     global $conn;
 
-    $data = array();
-
     $clean_product_id = htmlspecialchars($product_id);
     $clean_user_id = htmlspecialchars($user_id);
     $clean_card_number = htmlspecialchars($card_number);
@@ -376,9 +374,20 @@ function processCardPayment($product_id, $user_id, $card_number, $status): array
         return $output;
     }
 
+    $sql = "SELECT LAST_INSERT_ID() AS id";
+
+    if ($res = mysqli_query($conn, $sql)) {
+        $output["get_id_status"] = "success";
+        $res = $res->fetch_assoc();
+        $id = $res["id"];
+        $output["id"] = $id;
+    } else {
+        $output["get_id_status"] = "fail";
+    }
+
     $output += [
         "status" => "success",
-        "message" => "Transaction stored!"
+        "message" => "Transaction stored!",
     ];
 
     return $output;
