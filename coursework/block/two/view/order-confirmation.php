@@ -1,14 +1,9 @@
 <?php
 session_start();
 require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.php";
-
-if (!isset($_GET["status"])){
-    die;
+if (!isset($_SESSION["transaction"])) {
+    header("Location: /~1900040/cmp306/coursework/block/two/view/index.php");
 }
-
-unset($_SESSION["basket"]);
-
-$status = $_GET["status"] == 1;
 ?>
 
 <!doctype html>
@@ -30,12 +25,13 @@ $status = $_GET["status"] == 1;
 <div class="content mx-auto my-3">
     <div>
         <?php
-        $product = getProductById($_SESSION["basket"]["product_id"])["product"];
-        if($status):
-        ?>
-        <h1>Order confirmed</h1>
+        $product = getProductByTransactionId($_SESSION["basket"]["product_id"])["product"];
+        $status = $_SESSION["transaction"]["aberpay-response"]["status"];
+        if ($status):
+            ?>
+            <h1>Order confirmed</h1>
         <?php else: ?>
-        <h1>Order failed</h1>
+            <h1>Order failed</h1>
         <?php endif; ?>
         <p>Item: <?= $product["name"] ?></p>
         <p>Total: £<?= number_format($product["price"], 2) ?></p>
@@ -45,3 +41,5 @@ $status = $_GET["status"] == 1;
 <?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/view/content/modules/footer.php"; ?>
 </body>
 </html>
+<?php
+unset($_SESSION["basket"],$_SESSION["transaction"]);
