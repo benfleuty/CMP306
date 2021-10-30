@@ -67,8 +67,7 @@ $plant = [];
 
 if (!empty($_GET["plant_id"]) && ctype_digit($_GET["plant_id"])) {
     $pid = $_GET["plant_id"];
-}
-else {
+} else {
     $isplant = false;
 }
 
@@ -81,8 +80,7 @@ if ($isplant):
 
     if (is_array($images)) {
         $add_carousel = count($images) > 1;
-    }
-    else {
+    } else {
         $custom = empty($images);
     }
 
@@ -113,6 +111,27 @@ if ($isplant):
                             <span class="link">
                                 <a href="deleteplant.php?plant_id=<?= $plant["id"] ?>">Delete</a>
                             </span>
+                        </p>
+                        <?php
+
+                        $data = getLinkedArticles($plant["id"]);
+
+                        if ($data["status"] === "success") {
+                            $data = $data["ids"];
+                        } else {
+                            die;
+                        }
+                        ?>
+
+                        <p class="text-center">
+                            Articles linked to this plant:
+                            <?php
+                            for ($i = 0, $MAX = count($data); $i < $MAX; $i++):
+                            ?>
+                            <span class="link">
+                                <a href="../view/viewarticle.php?id=<?= $data[$i] ?>">Article <?= $data[$i] ?></a>
+                            </span>
+                            <?php endfor; ?>
                         </p>
                         <?php if ($add_carousel): ?>
                             <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
