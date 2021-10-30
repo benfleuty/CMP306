@@ -97,7 +97,7 @@ function deletePlant($id)
     return json_encode($data);
 }
 
-function updatePlant($id,$common,$scientific, $description, $link)
+function updatePlant($id, $common, $scientific, $description, $link)
 {
     global $conn;
     $sql = "UPDATE CMP306BlockOnePlants SET common_name = '$common', scientific_name = '$scientific', description = '$description',link = '$link' WHERE id = $id";
@@ -173,6 +173,76 @@ function createPlant($common_name, $scientific_name, $description, $link)
     }
 
     return json_encode($data);
+}
+
+function getLinkedArticles($id)
+{
+    global $conn;
+
+    $clean_id = sanitiseUserInput($id);
+
+    $sql = 'SELECT CMP306BlockOneArticles.id as art_id
+from CMP306BlockOneArticles,CMP306BlockOnePlantArticles
+where CMP306BlockOneArticles.id = CMP306BlockOnePlantArticles.id
+and CMP306BlockOnePlantArticles.id = ' . $clean_id;
+
+    $data = [];
+
+    $res = mysqli_query($conn, $sql);
+
+    if (!$res) {
+        $data["status"] = "fail";
+        $data["sql"] = mysqli_error($conn);
+        return json_encode($data);
+    }
+
+    $data["status"] = "success";
+
+    $data["ids"] = [];
+
+    while ($row = $res->fetch_assoc()) {
+        $data["ids"][] = $row["art_id"];
+    }
+
+    return $data;
+}
+
+function getArticle($id)
+{
+    global $conn;
+
+    $clean_id = sanitiseUserInput($id);
+
+    $sql = 'SELECT * from CMP306BlockOneArticles where id =  ' . $clean_id;
+
+    $data = [];
+
+    $res = mysqli_query($conn, $sql);
+
+    if (!$res) {
+        $data["status"] = "fail";
+        $data["sql"] = mysqli_error($conn);
+        return json_encode($data);
+    }
+
+    $data["status"] = "success";
+
+    $data["article"] = $res->fetch_assoc();
+
+
+    $sql = 'SELECT plantImg_id as img from CMP306BlockOneArticleImages where article_id =  ' . $clean_id . ' limit 1';
+
+    $res = mysqli_query($conn, $sql);
+
+    if (!$res) {
+        $data["status"] = "fail";
+        $data["sql"] = mysqli_error($conn);
+        return json_encode($data);
+    }
+
+    $data["article"]["image"] = $res->fetch_assoc()["img"];
+
+    return $data;
 }
 
 function sanitiseUserInput($input): string
