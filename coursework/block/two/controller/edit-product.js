@@ -47,7 +47,6 @@ $(function () {
     }
 
     $("#btnSaveProduct").on("click", function (e) {
-        e.preventDefault();
         if (!check_title() || !check_price() || !check_description()) {
             return;
         }
@@ -76,5 +75,11 @@ $(function () {
             }
         });
 
+    })
+    
+    $("#btnResetProductForm").on("click",function () {
+        titleSel.val(og_title);
+        priceSel.val(og_price);
+        descSel.val(og_desc);
     })
 });
