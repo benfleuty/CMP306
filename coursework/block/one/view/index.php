@@ -88,17 +88,18 @@
                 $link = $item[$i]["link"];
                 $imageHeader = $item[$i]["image"];
                 $description = $item[$i]["description"];
+                $description = trim(substr($description, 0, 99)) . "...";
 
                 echo "<div class=\"col-md-6 col-lg-4 item\" id=\"plant-$id\">";
                 echo "<div class=\"box\">";
                 if (!is_null($imageHeader)) {
                     echo "<img class=\" img-thumbnail overflow-hidden\" src=\"/~1900040/cmp306/assets/img/plants/block1/$id/$imageHeader\" alt=\"Image of a $common_name\">";
-                }
-                else {
+                } else {
                     echo "<img class=\" img-thumbnail overflow-hidden\" src=\"https://via.placeholder.com/150\" alt=\"Image of a $common_name\">";
                 }
                 echo "<h3 class=\"name\">$common_name</h3>";
                 echo "<p class=\"title\">$scientific_name</p>";
+                echo "<p>" . $description . "</p>";
                 echo "<button type=\"button\" class=\"btn btn-primary plant-button\" id=\"$id\">";
                 echo "Learn More";
                 echo "</button>";
