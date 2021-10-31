@@ -21,7 +21,7 @@ if (!isset($_SESSION["user_id"]) || !isSpecialUserByID($_SESSION["user_id"])) {
 </head>
 <body>
 <?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/content/modules/header.php"; ?>
-<script src="/~1900040/cmp306/coursework/block/two/controller/new-product.js"></script>
+<script src="/~1900040/cmp306/coursework/block/two/content/js/new-product.js"></script>
 
 <div class="content mx-auto my-3">
     <div class="container">

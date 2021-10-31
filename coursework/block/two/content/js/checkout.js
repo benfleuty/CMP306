@@ -17,7 +17,7 @@ $(function () {
                 card: cardNum
             },
             success: function (r) {
-                window.location.href = '../../view/order-confirmation.php';
+                window.location.href = '/~1900040/cmp306/coursework/block/two/view/order-confirmation.php';
             },
             error: function (a, b, c) {
                 console.log(c);
