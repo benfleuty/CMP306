@@ -1,36 +1,25 @@
 <?php session_start();
 include_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.php";
 
-if (isset($_GET["id"])) {
-    $id = $_GET["id"];
-    $fail = false;
-    if (empty($id)) {
-        // id is empty
-        $fail = true;
-    }
+$fail = !isset($_GET["id"]) || empty($_GET["id"]) || !ctype_digit($_GET["id"]);
 
-    if (!ctype_digit($id)) {
-        // id is not a number
-        $fail = true;
-    }
+if ($fail) {
+    header("Location: /~1900040/cmp306/coursework/block/two/404");
+}
 
+$id = "";
+$res = "";
 
-    if ($fail) {
-        die();
-    }
+$id = $_GET["id"];
+$res = getProductById($id);
 
-    $product = getProductById($id);
-    if ($product["status"] === "fail") {
-        die();
-    }
+if ($res["status"] === "fail") {
+    $fail = true;
+} else {
+    $product = $res["product"];
 
-    $product = $product["product"];
-    $defaultImg = $product["image"] === "https://via.placeholder.com/300";
-
-    $imgBasePath = "";
-
-    if (!$defaultImg) {
-        $imgBasePath = "/~1900040/cmp306/coursework/block/two/img/";
+    if ($product["image"] !== "https://via.placeholder.com/300") {
+        $product["image"] = "/~1900040/cmp306/coursework/block/two/img/" . $product["image"];
     }
 }
 
@@ -56,30 +45,43 @@ if (isset($_GET["id"])) {
 
 <div class="content mx-auto my-3">
     <div class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <img src="<?= $imgBasePath . $product["image"] ?>" alt="" class="img-fluid" style="max-height: 250px">
+        <?php if ($fail) : ?>
+            <div class="text-center">
+                <h2>
+                    Product not found
+                </h2>
             </div>
-            <div class="col-md-7">
-                <div class="product-title ">
-                    <h2><?= $product["name"] ?></h2>
+        <?php else: ?>
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="<?= $product["image"] ?>" alt="" class="img-fluid" style="max-height: 250px">
                 </div>
-                <div class="product-price ">
-                    <span class="text-muted">£<?= $product["price"] ?></span>
-                </div>
-                <div class="product-description mt-1">
-                    <?= $product["description"] ?>
-                </div>
-                <?php if (isset($_SESSION["user_id"]) && !empty($_SESSION["user_id"])): ?>
-                <form>
-                    <button class="btn btn-warning w-100" id="btnAddToBasket" name="<?= $product["id"] ?>">Add to basket</button>
-                </form>
-                <?php else: ?>
-                <button class="btn btn-outline-info btn-signIn my-2">You must be logged in to add items to your basket!</button>
-                <?php endif; ?>
+                <div class="col-md-7">
+                    <div class="product-title ">
+                        <h2><?= $product["name"] ?></h2>
+                    </div>
+                    <div class="product-price ">
+                        <span class="text-muted">£<?= $product["price"] ?></span>
+                    </div>
+                    <div class="product-description mt-1">
+                        <?= $product["description"] ?>
+                    </div>
+                    <?php if (isset($_SESSION["user_id"]) && !empty($_SESSION["user_id"])): ?>
+                        <form>
+                            <button class="btn btn-warning w-100" id="btnAddToBasket" name="<?= $product["id"] ?>">Add
+                                to
+                                basket
+                            </button>
+                        </form>
+                    <?php else: ?>
+                        <button class="btn btn-outline-info btn-signIn my-2">You must be logged in to add items to your
+                            basket!
+                        </button>
+                    <?php endif; ?>
 
+                </div>
             </div>
-        </div>
+        <?php endif; ?>
     </div>
 </div>
 
