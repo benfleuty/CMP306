@@ -42,7 +42,7 @@ $(function () {
                     alert("There was an error and you were not registered!");
                     return;
                 }
-                window.location.href = "../../view/index.php";
+                window.location.href = "/~1900040/cmp306/coursework/block/two/view/index.php";
             },
             error: function (a, b, c) {
                 console.log(c);
@@ -53,6 +53,6 @@ $(function () {
 
     $('[name="signIn"]').on("click", function (e) {
         e.preventDefault();
-        window.location.href = "../../view/login.php";
+        window.location.href = "/~1900040/cmp306/coursework/block/two/view/login.php";
     });
 })
