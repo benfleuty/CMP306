@@ -10,7 +10,7 @@ $(function () {
             },
             success: function (response) {
                 let jsonData = JSON.parse(response);
-                window.location.href = "/~1900040/cmp306/coursework/block/two/view/basket.php";
+                window.location.href = "../../view/basket.php";
 
 
             },

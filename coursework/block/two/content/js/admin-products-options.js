@@ -32,6 +32,6 @@ $(function () {
     }
 
     $("#btnNewProduct").on("click",function () {
-                window.location.href = "/~1900040/cmp306/coursework/block/two/view/admin/new-product.php"
+                window.location.href = "../../view/admin/new-product.php"
     })
 });

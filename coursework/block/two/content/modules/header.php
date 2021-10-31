@@ -1,10 +1,10 @@
 <?php ?>
 
-<?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/view/content/modules/body-scripts.php"; ?>
-<script src="/~1900040/cmp306/coursework/block/two/view/content/modules/btn-signIn.js"></script>
-<script src="/~1900040/cmp306/coursework/block/two/view/content/modules/btn-signUp.js"></script>
-<script src="/~1900040/cmp306/coursework/block/two/view/content/modules/btn-signOut.js"></script>
-<script src="/~1900040/cmp306/coursework/block/two/view/content/modules/open-basket.js"></script>
+<?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/content/modules/body-scripts.php"; ?>
+<script src="/~1900040/cmp306/coursework/block/two/content/modules/btn-signIn.js"></script>
+<script src="/~1900040/cmp306/coursework/block/two/content/modules/btn-signUp.js"></script>
+<script src="/~1900040/cmp306/coursework/block/two/content/modules/btn-signOut.js"></script>
+<script src="/~1900040/cmp306/coursework/block/two/content/modules/open-basket.js"></script>
 <header>
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="/~1900040/cmp306/coursework/block/two/">Bee&Cue</a>
@@ -24,7 +24,7 @@
                     </li>
                 <?php endif; ?>
             </ul>
-            <?php require "/home/1900040/public_html/cmp306/coursework/block/two/view/content/modules/signInUI.php"; ?>
+            <?php require "/home/1900040/public_html/cmp306/coursework/block/two/content/modules/signInUI.php"; ?>
         </div>
     </nav>
 </header>
