@@ -1,19 +1,30 @@
 $(function () {
-    let loginButton = $("#btnLogin");
+    let registerButton = $("#btnRegister");
 
-    $(loginButton).on("click", function (e) {
+    $(registerButton).on("click", function (e) {
         e.preventDefault();
+        let fname = $("#firstNameInput").val();
+        let lname = $("#lastNameInput").val();
         let uname = $("#usernameInput").val();
         let pword = $("#passwordInput").val();
+        let pword2 = $("#confirmPasswordInput").val();
+        let match = pword === pword2;
 
-        if (!uname.length || !pword.length) {
+        if (!fname.length || !lname.length || !uname.length || !pword.length || !pword2.length) {
             document.forms[0].reportValidity();
+        }
+
+        if (!match) {
+            alert("Your passwords do not match!");
+            return;
         }
 
         $.ajax({
             type: "POST",
-            url: '/~1900040/cmp306/coursework/block/two/model/login-user.php',
+            url: '/~1900040/cmp306/coursework/block/two/model/register-user.php',
             data: {
+                fname: fname,
+                lname: lname,
                 uname: uname,
                 pword: pword
             },
@@ -28,11 +39,10 @@ $(function () {
                 }
 
                 if (fail) {
-                    alert("There was an error and you were not logged in!");
+                    alert("There was an error and you were not registered!");
                     return;
                 }
-
-                window.location.href = "index.php";
+                window.location.href = "../../view/index.php";
             },
             error: function (a, b, c) {
                 console.log(c);
@@ -40,8 +50,9 @@ $(function () {
         })
     })
 
-    $('[name="signUp"]').on("click", function (e) {
+
+    $('[name="signIn"]').on("click", function (e) {
         e.preventDefault();
-        window.location.href = "/~1900040/cmp306/coursework/block/two/view/register.php";
+        window.location.href = "../../view/login.php";
     });
 })

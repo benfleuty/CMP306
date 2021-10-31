@@ -13,11 +13,11 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/~1900040/cmp306/coursework/block/two/view/content/css/header.css">
-    <link rel="stylesheet" href="/~1900040/cmp306/coursework/block/two/view/content/css/global-body.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/coursework/block/two/content/css/header.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/coursework/block/two/content/css/global-body.css">
 </head>
 <body>
-<?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/view/content/modules/header.php"; ?>
+<?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/content/modules/header.php"; ?>
 <script src="/~1900040/cmp306/coursework/block/two/controller/checkout.js"></script>
 <div class="content mx-auto my-3">
     <div>
@@ -45,6 +45,6 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
     </div>
 </div>
 
-<?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/view/content/modules/footer.php"; ?>
+<?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/content/modules/footer.php"; ?>
 </body>
 </html>

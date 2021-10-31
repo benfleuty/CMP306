@@ -1,16 +1,21 @@
 $(function () {
-    $("#btnDeleteProduct").on("click", function (e) {
-        e.preventDefault();
-        let yes = confirm("Are you sure you want to delete this product?");
-        if (!yes) return;
+    let loginButton = $("#btnLogin");
 
-        let id = e.target.name;
+    $(loginButton).on("click", function (e) {
+        e.preventDefault();
+        let uname = $("#usernameInput").val();
+        let pword = $("#passwordInput").val();
+
+        if (!uname.length || !pword.length) {
+            document.forms[0].reportValidity();
+        }
 
         $.ajax({
             type: "POST",
-            url: '/~1900040/cmp306/coursework/block/two/model/delete-product.php',
+            url: '/~1900040/cmp306/coursework/block/two/model/login-user.php',
             data: {
-                id:id
+                uname: uname,
+                pword: pword
             },
             success: function (response) {
                 console.log(response);
@@ -27,12 +32,16 @@ $(function () {
                     return;
                 }
 
-                window.location.href = "/~1900040/cmp306/coursework/block/two/view/admin";
+                window.location.href = "index.php";
             },
             error: function (a, b, c) {
                 console.log(c);
             }
         })
-
     })
+
+    $('[name="signUp"]').on("click", function (e) {
+        e.preventDefault();
+        window.location.href = "../../view/register.php";
+    });
 })
