@@ -51,12 +51,12 @@ if (isset($_GET["id"])) {
     <!-- Bootstrap CSS -->
     <!--suppress JSUnresolvedLibraryURL -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/~1900040/cmp306/coursework/block/two/view/content/css/header.css">
-    <link rel="stylesheet" href="/~1900040/cmp306/coursework/block/two/view/content/css/global-body.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/coursework/block/two/content/css/header.css">
+    <link rel="stylesheet" href="/~1900040/cmp306/coursework/block/two/content/css/global-body.css">
 </head>
 <body>
-<?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/view/content/modules/header.php"; ?>
-<script src="/~1900040/cmp306/coursework/block/two/view/admin/delete-product.js"></script>
+<?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/content/modules/header.php"; ?>
+<script src="/~1900040/cmp306/coursework/block/two/content/js/delete-product.js"></script>
 
 
 <div class="content mx-auto my-3">
@@ -70,7 +70,7 @@ if (isset($_GET["id"])) {
                     <h2><?= $product["name"] ?></h2>
                 </div>
                 <div class="product-price ">
-                    <span class="text-muted"><?= $product["price"] ?></span>
+                    <span class="text-muted">£<?= number_format($product["price"],2) ?></span>
                 </div>
                 <div class="product-description mt-1">
                     <?= $product["description"] ?>
@@ -87,6 +87,6 @@ if (isset($_GET["id"])) {
     </div>
 </div>
 
-<?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/view/content/modules/footer.php"; ?>
+<?php include_once "/home/1900040/public_html/cmp306/coursework/block/two/content/modules/footer.php"; ?>
 </body>
 </html>

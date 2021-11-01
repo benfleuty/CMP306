@@ -135,7 +135,7 @@ endif;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="/~1900040/cmp306/assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="../controller/send-edit-plant-data.js"></script>
+<script src="../content/js/send-edit-plant-data.js"></script>
 
 </body>
 
