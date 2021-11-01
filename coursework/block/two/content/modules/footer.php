@@ -8,6 +8,8 @@
                 <p>Ben Fleuty and whoever owns the stuff I'm... borrowing © 2021</p>
                 <script src="/~1900040/cmp306/coursework/block/two/content/js/restore-database.js"></script>
                 <button class="btn btn-danger" id="btnResetProducts">Restore Product Database</button>
+                <a href="/~1900040/cmp306/coursework/block/two/report">View my report for block 2</a>
+
             </div>
         </div>
     </div>
