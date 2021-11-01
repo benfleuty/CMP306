@@ -70,7 +70,7 @@ if (isset($_GET["id"])) {
                     <h2><?= $product["name"] ?></h2>
                 </div>
                 <div class="product-price ">
-                    <span class="text-muted"><?= $product["price"] ?></span>
+                    <span class="text-muted">£<?= number_format($product["price"],2) ?></span>
                 </div>
                 <div class="product-description mt-1">
                     <?= $product["description"] ?>
