@@ -31,6 +31,7 @@ if (!isset($_SESSION["transaction"])) {
             <h1>Order confirmed</h1>
         <?php else: ?>
             <h1>Order failed</h1>
+        <p class="text-muted">AberPay error: <?= $_SESSION["transaction"]["aberpay-response"]["error"] ?></p>
         <?php endif; ?>
         <p>Item: <?= $product["name"] ?></p>
         <p>Total: £<?= number_format($product["price"], 2) ?></p>
