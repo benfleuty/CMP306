@@ -2,7 +2,7 @@
 require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.php";
 
 ?>
-<script src="/~1900040/cmp306/coursework/block/two/view/admin/admin-products-options.js"></script>
+<script src="/~1900040/cmp306/coursework/block/two/content/js/admin-products-options.js"></script>
 <div class="text-center">
 
     <div class="new-product my-2" style="text-align: right">
