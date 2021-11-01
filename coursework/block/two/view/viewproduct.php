@@ -3,26 +3,24 @@ include_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
 
 $fail = !isset($_GET["id"]) || empty($_GET["id"]) || !ctype_digit($_GET["id"]);
 
-if ($fail) {
-    header("Location: /~1900040/cmp306/coursework/block/two/404");
-}
+if (!$fail) {
 
-$id = "";
-$res = "";
+    $id = "";
+    $res = "";
 
-$id = $_GET["id"];
-$res = getProductById($id);
+    $id = $_GET["id"];
+    $res = getProductById($id);
 
-if ($res["status"] === "fail") {
-    $fail = true;
-} else {
-    $product = $res["product"];
+    if ($res["status"] === "fail") {
+        $fail = true;
+    } else {
+        $product = $res["product"];
 
-    if ($product["image"] !== "https://via.placeholder.com/300") {
-        $product["image"] = "/~1900040/cmp306/coursework/block/two/img/" . $product["image"];
+        if ($product["image"] !== "https://via.placeholder.com/300") {
+            $product["image"] = "/~1900040/cmp306/coursework/block/two/img/" . $product["image"];
+        }
     }
 }
-
 ?>
 
 <!doctype html>
