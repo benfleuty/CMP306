@@ -11,7 +11,7 @@ $(function () {
 
         $.ajax({
             type: "POST",
-            url: '/~1900040/cmp306/coursework/block/two/model/aberpay.php',
+            url: '/~1900040/cmp306/coursework/block/two/controller/aberpay.php',
             data: {
                 amount: amount,
                 card: cardNum
