@@ -12,7 +12,7 @@ $(function () {
 
         $.ajax({
             type: "POST",
-            url: '/~1900040/cmp306/coursework/block/two/model/login-user.php',
+            url: '/~1900040/cmp306/coursework/block/two/controller/login-user.php',
             data: {
                 uname: uname,
                 pword: pword

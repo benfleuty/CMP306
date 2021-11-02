@@ -55,7 +55,7 @@ $(function () {
 
         $.ajax({
             type: "POST",
-            url: '/~1900040/cmp306/coursework/block/two/model/new-product.php',
+            url: '/~1900040/cmp306/coursework/block/two/controller/new-product.php',
             data: {
                 name: title,
                 price: price,

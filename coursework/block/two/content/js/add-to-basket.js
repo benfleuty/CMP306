@@ -4,7 +4,7 @@ $(function () {
         let id = e.target.name;
         $.ajax({
             type: "POST",
-            url: '/~1900040/cmp306/coursework/block/two/model/add-to-basket.php',
+            url: '/~1900040/cmp306/coursework/block/two/controller/add-to-basket.php',
             data: {
                 id: id
             },

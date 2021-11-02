@@ -57,7 +57,7 @@ $(function () {
         let id = e.target.name;
         $.ajax({
             type: "POST",
-            url: '/~1900040/cmp306/coursework/block/two/model/edit-product.php',
+            url: '/~1900040/cmp306/coursework/block/two/controller/edit-product.php',
             data: {
                 id:id,
                 name:title,

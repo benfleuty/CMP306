@@ -3,7 +3,7 @@ $(function () {
         e.preventDefault();
         $.ajax({
             type:"POST",
-            url:"/~1900040/cmp306/coursework/block/two/model/sign-out.php",
+            url:"/~1900040/cmp306/coursework/block/two/controller/sign-out.php",
             success: function () {
                 window.location.href="/~1900040/cmp306/coursework/block/two/view/index.php"
             },

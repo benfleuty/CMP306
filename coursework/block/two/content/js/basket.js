@@ -3,7 +3,7 @@ $(function(){
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: '/~1900040/cmp306/coursework/block/two/model/empty-basket.php',
+            url: '/~1900040/cmp306/coursework/block/two/controller/empty-basket.php',
             success: function (response) {
                 window.location.reload();
             },

@@ -21,7 +21,7 @@ $(function () {
 
         $.ajax({
             type: "POST",
-            url: '/~1900040/cmp306/coursework/block/two/model/register-user.php',
+            url: '/~1900040/cmp306/coursework/block/two/controller/register-user.php',
             data: {
                 fname: fname,
                 lname: lname,
