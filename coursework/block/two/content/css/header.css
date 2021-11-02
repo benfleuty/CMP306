@@ -1,0 +1,10 @@
+.navbar-light .navbar-brand {
+    background-color: orange;
+    color: white;
+    padding: 1em;
+    font-size: 2em;
+}
+
+.user-welcome::before {
+    content: "Welcome, ";
+}
