@@ -24,7 +24,8 @@ function getPlant($id, $json_encode = false)
 {
     global $conn;
 
-    $sql = "SELECT * FROM CMP306BlockOnePlants WHERE id = $id";
+
+    $sql = "SELECT * FROM CMP306BlockOnePlants WHERE id = {mysqli_real_escape_string($id)}";
 
 
     $res = mysqli_query($conn, $sql)->fetch_assoc();
@@ -66,7 +67,7 @@ function getAllPlantImages()
 function getPlantImages($id)
 {
     global $conn;
-    $sql = "SELECT plant_id, image FROM CMP306BlockOnePlantsImages WHERE plant_id = $id";
+    $sql = "SELECT plant_id, image FROM CMP306BlockOnePlantsImages WHERE plant_id = {mysqli_real_escape_string($id)}";
     $result = mysqli_query($conn, $sql);
     $images = array();
     while ($r = mysqli_fetch_assoc($result)) {
@@ -84,13 +85,11 @@ function getLinkedArticles($id)
 {
     global $conn;
 
-    // todo binding
-    $clean_id = $id;
 
-    $sql = 'SELECT CMP306BlockOneArticles.id as art_id
+    $sql = "SELECT CMP306BlockOneArticles.id as art_id
 from CMP306BlockOneArticles,CMP306BlockOnePlantArticles
 where CMP306BlockOneArticles.id = CMP306BlockOnePlantArticles.id
-and CMP306BlockOnePlantArticles.id = ' . $clean_id;
+and CMP306BlockOnePlantArticles.id = {mysqli_real_escape_string($id)}";
 
     $data = [];
 
@@ -117,10 +116,8 @@ function getArticle($id)
 {
     global $conn;
 
-    // todo binding
-    $clean_id = $id;
 
-    $sql = 'SELECT * from CMP306BlockOneArticles where id =  ' . $clean_id;
+    $sql = "SELECT * from CMP306BlockOneArticles where id =  {mysqli_real_escape_string($id)}";
 
     $data = [];
 
