@@ -1,0 +1,15 @@
+.content {
+    width: 80%;
+}
+
+@media screen  and (max-width: 767px) {
+    .content {
+        width: 100%;
+    }
+}
+
+footer {
+    padding: 0 2em;
+    background-color: #2c3034;
+    color: whitesmoke;
+}
