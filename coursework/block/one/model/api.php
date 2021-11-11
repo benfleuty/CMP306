@@ -10,11 +10,22 @@ function getAllPlants()
     global $conn;
     $sql = "SELECT CMP306BlockOnePlants.id, scientific_name, common_name, link, description,CMP306BlockOnePlantsImages.image
 FROM CMP306BlockOnePlants left join CMP306BlockOnePlantsImages on CMP306BlockOnePlants.id = CMP306BlockOnePlantsImages.id;";
-    $result = mysqli_query($conn, $sql);
-    //  convert to JSON
-    $rows = array();
 
-    while ($r = mysqli_fetch_assoc($result)) {
+    $stmt = $conn->init();
+
+    if (!$stmt = $conn->prepare($sql)) {
+        die("could not prepare sql");
+    }
+
+    if (!$stmt->execute()) {
+        die("could not execute sql statement");
+    }
+
+    //  convert to JSON
+    $result = $stmt->get_result();
+
+    $rows = array();
+    while ($r = $result->fetch_assoc()) {
         $rows[] = $r;
     }
     return json_encode($rows, JSON_INVALID_UTF8_IGNORE);
@@ -24,17 +35,28 @@ function getPlant($id, $json_encode = false)
 {
     global $conn;
 
+    $sql = "SELECT * FROM CMP306BlockOnePlants WHERE id = ?";
 
-    $sql = "SELECT * FROM CMP306BlockOnePlants WHERE id = {mysqli_real_escape_string($id)}";
+    $stmt = $conn->init();
+
+    if (!$stmt = $conn->prepare($sql)) {
+        die("could not prepare sql");
+    }
+
+    $stmt->bind_param("i", $id);
+
+    if (!$stmt->execute()) {
+        die("could not execute sql statement");
+    }
 
 
-    $res = mysqli_query($conn, $sql)->fetch_assoc();
+    $result = $stmt->get_result()->fetch_assoc();
 
-    $plant_id = $res["id"];
-    $scientific_name = $res["scientific_name"];
-    $common_name = $res["common_name"];
-    $link = $res["link"];
-    $description = $res["description"];
+    $plant_id = $result["id"];
+    $scientific_name = $result["scientific_name"];
+    $common_name = $result["common_name"];
+    $link = $result["link"];
+    $description = $result["description"];
     $images = getPlantImages($id);
 
     $data = array(
@@ -45,6 +67,7 @@ function getPlant($id, $json_encode = false)
         'description' => $description,
         'images' => $images
     );
+
     if ($json_encode) {
         return json_encode($data, JSON_INVALID_UTF8_IGNORE);
     }
@@ -55,9 +78,20 @@ function getAllPlantImages()
 {
     global $conn;
     $sql = "SELECT plant_id, image FROM CMP306BlockOnePlantsImages";
-    $result = mysqli_query($conn, $sql);
+
+    $stmt = $conn->init();
+
+    if (!$stmt = $conn->prepare($sql)) {
+        die("could not prepare sql");
+    }
+
+    if (!$stmt->execute()) {
+        die("could not execute sql statement");
+    }
+
+    $result = $stmt->get_result();
     $images = array();
-    while ($r = mysqli_fetch_assoc($result)) {
+    while ($r = $result->fetch_assoc()) {
         $images[] = $r;
     }
 
@@ -67,10 +101,25 @@ function getAllPlantImages()
 function getPlantImages($id)
 {
     global $conn;
-    $sql = "SELECT plant_id, image FROM CMP306BlockOnePlantsImages WHERE plant_id = {mysqli_real_escape_string($id)}";
-    $result = mysqli_query($conn, $sql);
+    $sql = "SELECT plant_id, image FROM CMP306BlockOnePlantsImages WHERE plant_id = ?";
+
+    $stmt = $conn->init();
+
+
+    if (!$stmt = $conn->prepare($sql)) {
+        die("could not prepare sql");
+    }
+
+    $stmt->bind_param("i", $id);
+
+    if (!$stmt->execute()) {
+        die("could not execute sql statement");
+    }
+
+    $result = $stmt->get_result();
+
     $images = array();
-    while ($r = mysqli_fetch_assoc($result)) {
+    while ($r = $result->fetch_assoc()) {
         $images[] = $r["image"];
     }
 
@@ -89,13 +138,25 @@ function getLinkedArticles($id)
     $sql = "SELECT CMP306BlockOneArticles.id as art_id
 from CMP306BlockOneArticles,CMP306BlockOnePlantArticles
 where CMP306BlockOneArticles.id = CMP306BlockOnePlantArticles.id
-and CMP306BlockOnePlantArticles.id = {mysqli_real_escape_string($id)}";
+and CMP306BlockOnePlantArticles.id = ?";
 
     $data = [];
 
-    $res = mysqli_query($conn, $sql);
+    $stmt = $conn->init();
 
-    if (!$res) {
+    if (!$stmt = $conn->prepare($sql)) {
+        die("could not prepare sql");
+    }
+
+    $stmt->bind_param("i",$id);
+
+    if (!$stmt->execute()) {
+        die("could not execute sql statement");
+    }
+
+    $result = $stmt->get_result();
+
+    if (!$result) {
         $data["status"] = "fail";
         $data["sql"] = mysqli_error($conn);
         return json_encode($data);
@@ -105,7 +166,7 @@ and CMP306BlockOnePlantArticles.id = {mysqli_real_escape_string($id)}";
 
     $data["ids"] = [];
 
-    while ($row = $res->fetch_assoc()) {
+    while ($row = $result->fetch_assoc()) {
         $data["ids"][] = $row["art_id"];
     }
 
@@ -116,14 +177,25 @@ function getArticle($id)
 {
     global $conn;
 
+    $sql = "SELECT * from CMP306BlockOneArticles where id =  ?";
 
-    $sql = "SELECT * from CMP306BlockOneArticles where id =  {mysqli_real_escape_string($id)}";
+    $stmt = $conn->init();
+
+    if (!$stmt = $conn->prepare($sql)) {
+        die("could not prepare sql");
+    }
+
+    $stmt->bind_param("i",$id);
+
+    if (!$stmt->execute()) {
+        die("could not execute sql statement");
+    }
 
     $data = [];
 
-    $res = mysqli_query($conn, $sql);
+    $result = $stmt->get_result();
 
-    if (!$res) {
+    if (!$result) {
         $data["status"] = "fail";
         $data["sql"] = mysqli_error($conn);
         return json_encode($data);
@@ -131,8 +203,7 @@ function getArticle($id)
 
     $data["status"] = "success";
 
-    $data["article"] = $res->fetch_assoc();
-
+    $data["article"] = $result->fetch_assoc();
 
 
     return $data;
