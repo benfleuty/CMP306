@@ -96,19 +96,25 @@ if ($isplant):
                         } else {
                             die;
                         }
-                        ?>
+                        if (count($data) > 0):
+                            ?>
 
-                        <p class="text-center">
-                            Articles linked to this plant:
-                            <?php
-                            for ($i = 0, $MAX = count($data); $i < $MAX; $i++):
-                                ?>
-                                <span class="link">
+                            <p class="text-center">
+                                Articles linked to this plant:
+                                <?php
+                                for ($i = 0, $MAX = count($data); $i < $MAX; $i++):
+                                    ?>
+                                    <span class="link">
                                 <a href="../view/viewarticle.php?id=<?= $data[$i] ?>">Article <?= $data[$i] ?></a>
                             </span>
-                            <?php endfor; ?>
-                        </p>
-                        <?php if ($add_carousel): ?>
+                                <?php endfor; ?>
+                            </p>
+                        <?php else: ?>
+
+                            <p class="text-center">No articles for this plant</p>
+
+                        <?php endif;
+                        if ($add_carousel): ?>
                             <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
