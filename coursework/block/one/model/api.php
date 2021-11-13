@@ -59,6 +59,8 @@ function getPlant($id, $json_encode = false)
     $description = $result["description"];
     $images = getPlantImages($id);
 
+    $images = json_decode($images,true);
+
     $data = array(
         'id' => $plant_id,
         'scientific_name' => $scientific_name,
@@ -68,10 +70,7 @@ function getPlant($id, $json_encode = false)
         'images' => $images
     );
 
-    if ($json_encode) {
-        return json_encode($data, JSON_INVALID_UTF8_IGNORE);
-    }
-    return $data;
+    return json_encode($data, JSON_INVALID_UTF8_IGNORE);
 }
 
 function getAllPlantImages()
@@ -95,7 +94,7 @@ function getAllPlantImages()
         $images[] = $r;
     }
 
-    return $images;
+    return json_encode($images);
 }
 
 function getPlantImages($id)
@@ -127,7 +126,7 @@ function getPlantImages($id)
         $images = "";
     }
 
-    return $images;
+    return json_encode($images);
 }
 
 function getLinkedArticles($id)
@@ -137,8 +136,8 @@ function getLinkedArticles($id)
 
     $sql = "SELECT CMP306BlockOneArticles.id as art_id
 from CMP306BlockOneArticles,CMP306BlockOnePlantArticles
-where CMP306BlockOneArticles.id = CMP306BlockOnePlantArticles.id
-and CMP306BlockOnePlantArticles.id = ?";
+where CMP306BlockOneArticles.id = CMP306BlockOnePlantArticles.article_id
+  and CMP306BlockOnePlantArticles.plant_id = ?";
 
     $data = [];
 
@@ -148,7 +147,7 @@ and CMP306BlockOnePlantArticles.id = ?";
         die("could not prepare sql");
     }
 
-    $stmt->bind_param("i",$id);
+    $stmt->bind_param("i", $id);
 
     if (!$stmt->execute()) {
         die("could not execute sql statement");
@@ -170,7 +169,7 @@ and CMP306BlockOnePlantArticles.id = ?";
         $data["ids"][] = $row["art_id"];
     }
 
-    return $data;
+    return json_encode($data);
 }
 
 function getArticle($id)
@@ -185,7 +184,7 @@ function getArticle($id)
         die("could not prepare sql");
     }
 
-    $stmt->bind_param("i",$id);
+    $stmt->bind_param("i", $id);
 
     if (!$stmt->execute()) {
         die("could not execute sql statement");
@@ -206,6 +205,6 @@ function getArticle($id)
     $data["article"] = $result->fetch_assoc();
 
 
-    return $data;
+    return json_encode($data);
 }
 

@@ -56,6 +56,8 @@ if (!empty($_GET["plant_id"]) && ctype_digit($_GET["plant_id"])) {
 
 if ($isplant):
     $plant = getPlant($pid);
+    $plant = json_decode($plant, true);
+
     $images = $plant["images"];
 
     $custom = false;
@@ -89,12 +91,13 @@ if ($isplant):
                         </p>
                         <?php
 
-                        $data = getLinkedArticles($plant["id"]);
+                        $articles = getLinkedArticles($plant["id"]);
+                        $articles = json_decode($articles, true);
 
-                        if ($data["status"] === "success") {
-                            $data = $data["ids"];
-                        } else {
-                            die;
+                        $data = 0;
+
+                        if ($articles["status"] === "success") {
+                            $data = $articles["ids"];
                         }
                         if (count($data) > 0):
                             ?>
