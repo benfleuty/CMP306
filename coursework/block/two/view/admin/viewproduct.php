@@ -24,6 +24,8 @@ if (isset($_GET["id"])) {
     }
 
     $product = getProductById($id);
+    $product = json_decode($product, true);
+
     if ($product["status"] === "fail") {
         die();
     }

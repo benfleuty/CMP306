@@ -1,4 +1,7 @@
-<?php session_start();
+<?php
+session_start();
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.php";
 ?>
 
@@ -22,6 +25,8 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
     <div class="row">
         <?php
         $products = getAllProducts();
+
+        $products = json_decode($products,true);
 
         foreach ($products["products"] as $product) :
             $defaultImg = $product["image"] === "https://via.placeholder.com/300";

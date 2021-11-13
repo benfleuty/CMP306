@@ -3,17 +3,19 @@ session_start();
 unset($_SESSION["user_id"]);
 
 require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.php";
-if (!isset($_POST["uname"]) || empty($_POST["uname"]) || !isset($_POST["pword"])) {
+if (!isset($_POST["uname"], $_POST["pword"]) || empty($_POST["uname"])) {
     die();
 }
 
-$uname = sanitiseUserInput($_POST["uname"]);
+$uname = $_POST["uname"];
 $pword = $_POST["pword"];
 
 $output = logInUser($uname, $pword);
 
-if ($output["status"] === "success") {
-    $_SESSION["user_id"] = $output["user_id"];
+$decoded = json_decode($output, true);
+
+if ($decoded["status"] === "success") {
+    $_SESSION["user_id"] = $decoded["user_id"];
 }
 
 echo json_encode($output);

@@ -23,6 +23,8 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
 
         $products = getAllProducts();
 
+        $products = json_decode($products, true);
+
         foreach ($products["products"] as $product) {
             $output = "<tr>";
             $output .= "<td>" . $product["name"] . "</td>";
@@ -35,7 +37,7 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
 
             $desc = $product["description"];
 
-            if (count_chars($desc) > 100) {
+            if (strlen($desc) > 100) {
                 $desc = substr($desc, 0, 100);
                 $desc = trim($desc);
                 $desc .= "...";

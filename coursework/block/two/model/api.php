@@ -1,206 +1,399 @@
 <?php
 
 // Connect to database
-include("/home/1900040/public_html/cmp306/coursework/block/two/model/connection.php");
+include("connection.php");
 
-function getUserByUsername($uname)
+function getUserByUsername($username)
 {
     global $conn;
 
-    $sql = "SELECT * FROM CMP306BlockTwoUsers WHERE username = '$uname'";
+    $sql = "SELECT * FROM CMP306BlockTwoUsers WHERE username = ?";
 
-    $res = mysqli_query($conn, $sql)->fetch_assoc();
+    $stmt = $conn->init();
 
-    $output = array();
+    $output = [];
 
-    if (!$res) {
-        $output["status"] = "fail";
-        return $output;
+    if (!$stmt = $conn->prepare($sql)) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
+        ];
+        return json_encode($output);
+    }
+
+    $stmt->bind_param("s", $username);
+
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9901.'
+        ];
+        return json_encode($output);
+    }
+
+    $result = $stmt->get_result();
+
+    if (!$result) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error getting the user!'
+        ];
+        return json_encode($output);
     }
 
     $output["status"] = "success";
-    return array_merge($output, $res);
+    $output["user"] = $result;
+
+    return json_encode($output);
 }
 
 function getUserById($id)
 {
     global $conn;
 
-    $sql = "SELECT * FROM CMP306BlockTwoUsers WHERE id = $id";
+    $sql = "SELECT special, id, username, first_name, last_name
+FROM CMP306BlockTwoUsers WHERE id = ?";
 
-    $res = mysqli_query($conn, $sql)->fetch_assoc();
+    $stmt = $conn->init();
 
-    $output = array();
+    $output = [];
 
-    if (!$res) {
-        $output["status"] = "fail";
-        return $output;
+    if (!$stmt = $conn->prepare($sql)) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
+        ];
+        return json_encode($output);
     }
 
+    $stmt->bind_param("i", $id);
+
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9901.'
+        ];
+        return json_encode($output);
+    }
+
+    $result = $stmt->get_result();
+
+    if (!$result) {
+        $output["status"] = "fail";
+        return json_encode($output);
+    }
+
+    $result = $result->fetch_assoc();
+
     $output["status"] = "success";
-    return array_merge($output, $res);
+    $output["user"] = $result;
+
+    return json_encode($output);
 }
 
 function isSpecialUserByID($id)
 {
     global $conn;
 
-    $sql = "SELECT special FROM CMP306BlockTwoUsers WHERE id = $id";
+    $sql = "SELECT special FROM CMP306BlockTwoUsers WHERE id = ?";
 
-    $res = mysqli_query($conn, $sql)->fetch_assoc();
+    $stmt = $conn->init();
 
-    if (!$res) {
-        return null;
+    $output = [];
+
+    if (!$stmt = $conn->prepare($sql)) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
+        ];
+        return json_encode($output);
     }
 
-    return $res["special"] == true;
+    $stmt->bind_param("i", $id);
+
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9901.'
+        ];
+        return json_encode($output);
+    }
+
+    $result = $stmt->get_result();
+
+    if (!$result) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error!',
+            'special' => false
+        ];
+        return $output;
+    }
+
+    $row = $result->fetch_assoc();
+
+    $output['special'] = $row['special'];
+
+    return json_encode($output);
 }
 
-function registerUser($uname, $pword, $fname, $lname): array
+function registerUser($username, $password, $first_name, $last_name)
 {
     global $conn;
 
-    $data = array();
+    $output = [];
 
-    $sql = "SELECT COUNT(id) AS count FROM CMP306BlockTwoUsers WHERE username = '$uname'";
+    $sql = "SELECT COUNT(id) AS count FROM CMP306BlockTwoUsers WHERE username = ?";
 
-    $res = mysqli_query($conn, $sql)->fetch_assoc();
+    $stmt = $conn->init();
 
-    $output = array();
-    if ($res["count"] > 0) {
+    if (!$stmt = $conn->prepare($sql)) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
+        ];
+        return json_encode($output);
+    }
+
+    $stmt->bind_param("s", $username);
+
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9901.'
+        ];
+        return json_encode($output);
+    }
+
+    $result = $stmt->get_result();
+    $result = $result->fetch_assoc();
+
+    if ($result["count"] > 0) {
         $output += [
             "status" => "fail",
             "message" => "This username is already in use!"
         ];
-        return $output;
+        return json_encode($output);
     }
 
-    $sql = "INSERT INTO CMP306BlockTwoUsers (username, password, first_name, last_name) VALUES ('$uname','$pword','$fname','$lname')";
+    $sql = "INSERT INTO CMP306BlockTwoUsers (username, password, first_name, last_name) VALUES (?,?,?,?)";
 
-    $success = mysqli_query($conn, $sql);
-
-    if (!$success) {
+    if (!$stmt = $conn->prepare($sql)) {
         $output += [
-            "status" => "fail",
-            "message" => "There was an error creating this user."
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
         ];
-        return $output;
+        return json_encode($output);
     }
 
-    $sql = "SELECT id FROM CMP306BlockTwoUsers WHERE username = '$uname'";
-    $res = mysqli_query($conn, $sql)->fetch_assoc();
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    $stmt->bind_param('ssss', $username, $hashed_password, $first_name, $last_name);
+
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error creating this user.'
+        ];
+        return json_encode($output);
+    }
+
+    $sql = "SELECT id FROM CMP306BlockTwoUsers WHERE username = ?";
+
+    if (!$stmt = $conn->prepare($sql)) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
+        ];
+        return json_encode($output);
+    }
+
+    $stmt->bind_param('s', $username);
+
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9901.'
+        ];
+        return json_encode($output);
+    }
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows !== 1) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'Error getting user!'
+        ];
+        return json_encode($output);
+    }
+
+    $result = $result->fetch_assoc();
 
     $output += [
         "status" => "success",
         "message" => "User created!",
-        "user_id" => $res["id"]
+        "user_id" => $result["id"]
     ];
 
-    return $output;
+    return json_encode($output);
 }
 
-function logInUser($uname, $pword)
+function logInUser($username, $password)
 {
     global $conn;
 
-    $data = array();
+    $output = [];
 
-    $sql = "SELECT id,password FROM CMP306BlockTwoUsers WHERE username = '$uname'";
+    $sql = "SELECT id,password FROM CMP306BlockTwoUsers WHERE username = ?";
 
-    $res = mysqli_query($conn, $sql);
+    $stmt = $conn->init();
 
-    // TODO: add error handling here if res is false
-
-    $row = $res->fetch_assoc();
-
-    $output = array();
-    if (mysqli_num_rows($res) !== 1) {
+    if (!$stmt = $conn->prepare($sql)) {
         $output += [
-            "status" => "fail",
-            "message" => "There was an error!"
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
         ];
-        return $output;
+        return json_encode($output);
     }
 
-    global $salt;
-    $match = password_verify($pword, $row["password"]);
+    $stmt->bind_param('s', $username);
+
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9901.'
+        ];
+        return json_encode($output);
+    }
+
+    $result = $stmt->get_result();
+
+    if (!$result) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'User not found'
+        ];
+        return json_encode($output);
+    }
+
+    if ($result->num_rows !== 1) {
+        $output += [
+            "status" => "fail",
+            "message" => "There was an error!",
+            "num_rows" => $result->num_rows
+        ];
+        return json_encode($output);
+    }
+
+    $result = $result->fetch_assoc();
+
+    $match = password_verify($password, $result["password"]);
+
     if (!$match) {
         $output += [
             "status" => "fail",
             "message" => "Wrong username/password!",
-            "input" => $pword,
-            "pass" => $row["password"]
+            "input" => $password,
+            "pass" => $result["password"]
         ];
-        return $output;
+        return json_encode($output);
     }
 
     $output += [
         "status" => "success",
-        "user_id" => $row["id"]
+        "user_id" => $result["id"]
     ];
 
-    return $output;
+    return json_encode($output);
 }
 
-function hash_password($pword)
+function getAllProducts()
 {
-    return password_hash($pword, PASSWORD_DEFAULT);
-}
-
-function sanitiseUserInput($input): string
-{
-    return htmlspecialchars(addslashes($input));
-}
-
-function getAllProducts(): array
-{
-    require_once "connection.php";
-
     global $conn;
-    $data = array();
+    $output = [];
     $sql = "SELECT * FROM CMP306BlockTwoProducts";
-    $res = mysqli_query($conn, $sql);
 
-    if (mysqli_num_rows($res) < 1) {
-        $data["status"] = "fail";
-        $data["message"] = "No products found";
-        return $data;
+    $stmt = $conn->init();
+
+    $output = [];
+
+    if (!$stmt = $conn->prepare($sql)) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
+        ];
+        return json_encode($output);
     }
 
-    $data["status"] = "success";
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9901.'
+        ];
+        return json_encode($output);
+    }
 
-    while ($row = $res->fetch_assoc()) {
+    $result = $stmt->get_result();
+
+    if ($result->num_rows < 1) {
+        $output["status"] = "fail";
+        $output["message"] = "No products found";
+        return json_encode($output);
+    }
+
+    $output["status"] = "success";
+
+    while ($row = $result->fetch_assoc()) {
         $product["id"] = $row["id"];
         $product["name"] = $row["name"];
         $product["price"] = $row["price"];
         $product["image"] = $row["image"];
         $product["description"] = $row["description"];
 
-        $data["products"][] = $product;
+        $output["products"][] = $product;
     }
 
-    return $data;
-
+    return json_encode($output);
 }
 
-function getProductById($id): array
+function getProductById($id)
 {
-    require_once "connection.php";
-
     global $conn;
-    $data = array();
-    $sql = "SELECT * FROM CMP306BlockTwoProducts WHERE id = $id";
-    $res = mysqli_query($conn, $sql);
+    $output = [];
+    $sql = "SELECT * FROM CMP306BlockTwoProducts WHERE id = ?";
 
-    if (mysqli_num_rows($res) !== 1) {
-        $data["status"] = "fail";
-        $data["message"] = "Product not found";
-        return $data;
+    $stmt = $conn->init();
+
+    if (!$stmt = $conn->prepare($sql)) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
+        ];
+        return json_encode($output);
     }
 
-    $data["status"] = "success";
+    $stmt->bind_param('i', $id);
 
-    $row = $res->fetch_assoc();
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9901.'
+        ];
+        return json_encode($output);
+    }
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows !== 1) {
+        $output["status"] = "fail";
+        $output["message"] = "Product not found";
+        return json_encode($output);
+    }
+
+    $output["status"] = "success";
+
+    $row = $result->fetch_assoc();
 
     $product["id"] = $row["id"];
     $product["name"] = $row["name"];
@@ -208,33 +401,51 @@ function getProductById($id): array
     $product["image"] = $row["image"];
     $product["description"] = $row["description"];
 
-    $data["product"] = $product;
+    $output["product"] = $product;
 
-    return $data;
-
+    return json_encode($output);
 }
 
-function getProductByTransactionId($id): array
+function getProductByTransactionId($id)
 {
-    require_once "connection.php";
-
     global $conn;
-    $data = array();
+    $output = [];
     $sql = "select CMP306BlockTwoProducts.* from CMP306BlockTwoProducts,CMP306BlockTwoTransactions
-where CMP306BlockTwoTransactions.id = $id
+where CMP306BlockTwoTransactions.id = ?
 and CMP306BlockTwoTransactions.product_id = CMP306BlockTwoProducts.id
-limit 1";
-    $res = mysqli_query($conn, $sql);
+";
 
-    if (mysqli_num_rows($res) !== 1) {
-        $data["status"] = "fail";
-        $data["message"] = "Product not found";
-        return $data;
+    $stmt = $conn->init();
+
+    if (!$stmt = $conn->prepare($sql)) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
+        ];
+        return json_encode($output);
     }
 
-    $data["status"] = "success";
+    $stmt->bind_param('i', $id);
 
-    $row = $res->fetch_assoc();
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9901.'
+        ];
+        return json_encode($output);
+    }
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows !== 1) {
+        $output["status"] = "fail";
+        $output["message"] = "Product not found";
+        return json_encode($output);
+    }
+
+    $output["status"] = "success";
+
+    $row = $result->fetch_assoc();
 
     $product["id"] = $row["id"];
     $product["name"] = $row["name"];
@@ -242,78 +453,133 @@ limit 1";
     $product["image"] = $row["image"];
     $product["description"] = $row["description"];
 
-    $data["product"] = $product;
+    $output["product"] = $product;
 
-    return $data;
-
+    return json_encode($output);
 }
 
 function deleteProduct($id): bool
 {
-    require_once "connection.php";
-
     global $conn;
-    $data = array();
-    $sql = "DELETE FROM CMP306BlockTwoProducts WHERE id = $id";
-    return mysqli_query($conn, $sql);
+    $output = [];
+    $sql = "DELETE FROM CMP306BlockTwoProducts WHERE id = ?";
+
+    $stmt = $conn->init();
+
+    if (!$stmt = $conn->prepare($sql)) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
+        ];
+        return json_encode($output);
+    }
+
+    $stmt->bind_param('i', $id);
+
+    return $stmt->execute();
 }
 
-function updateProduct($id, $name, $price, $desc)
+function updateProduct($id, $name, $price, $description)
 {
     global $conn;
 
-    $clean_id = mysqli_real_escape_string($conn, $id);
-    $clean_name = mysqli_real_escape_string($conn, $name);
-    $clean_price = mysqli_real_escape_string($conn, $price);
-    $clean_desc = mysqli_real_escape_string($conn, $desc);
+    $sql = "update CMP306BlockTwoProducts set name = ?, price = ?, description = ? where id = ?";
 
-    $sql = "update CMP306BlockTwoProducts set name = '$clean_name', price = $clean_price,description = '$clean_desc' where id = $clean_id";
+    $output = [];
 
-    $data = [];
+    $stmt = $conn->init();
 
-    if (mysqli_query($conn, $sql)) {
-        $data["update_status"] = 'success';
-    } else {
-        $data["update_status"] = 'fail';
+    if (!$stmt = $conn->prepare($sql)) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
+        ];
+        return json_encode($output);
     }
 
-    $data["sql"] = $sql;
+    $stmt->bind_param('sdsi', $name, $price, $description, $id);
 
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9901.',
+            'update_status' => 'fail'
+        ];
+        return json_encode($output);
+    }
 
-    $data["id"] = $id;
-    return json_encode($data);
+    $output["update_status"] = 'success';
+
+    $output["id"] = $id;
+    return json_encode($output);
 }
 
-function createProduct($name, $price, $desc)
+function createProduct($name, $price, $description)
 {
     global $conn;
 
-    $clean_name = mysqli_real_escape_string($conn, $name);
-    $clean_price = mysqli_real_escape_string($conn, $price);
-    $clean_desc = mysqli_real_escape_string($conn, $desc);
+    $sql = "insert into CMP306BlockTwoProducts (name, price, description) values (?,?,?)";
 
-    $sql = "insert into CMP306BlockTwoProducts (name, price, description) values ('$clean_name','$clean_price','$clean_desc')";
+    $output = [];
 
-    $data = [];
+    $stmt = $conn->init();
 
-    if (mysqli_query($conn, $sql)) {
-        $data["create_status"] = 'success';
-    } else {
-        $data["create_status"] = 'fail';
+    if (!$stmt = $conn->prepare($sql)) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
+        ];
+        return json_encode($output);
     }
+
+    $stmt->bind_param('sds', $name, $price, $description);
+
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9901.',
+            'create_status' => 'fail'
+        ];
+        return json_encode($output);
+    }
+
+
+    $output["create_status"] = 'success';
 
     $sql = "SELECT LAST_INSERT_ID() AS id";
 
-    if ($res = mysqli_query($conn, $sql)) {
-        $data["get_id_status"] = "success";
-        $res = $res->fetch_assoc();
-        $id = $res["id"];
-        $data["id"] = $id;
-    } else {
-        $data["get_id_status"] = "fail";
+
+    $stmt = $conn->init();
+
+    if (!$stmt = $conn->prepare($sql)) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
+        ];
+        return json_encode($output);
     }
 
-    return json_encode($data);
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9901.',
+            'get_id_status' => 'fail'
+        ];
+        return json_encode($output);
+    }
+
+    $result = $stmt->get_result();
+
+    if ($result->num_rows !== 1) {
+        $output['get_id_status'] = 'fail';
+    }
+
+    $output["get_id_status"] = "success";
+    $row = $result->fetch_assoc();
+    $id = $row["id"];
+    $output["id"] = $id;
+
+    return json_encode($output);
 }
 
 function restoreDatabase()
@@ -324,66 +590,118 @@ function restoreDatabase()
     $fillTableQuery = "INSERT INTO CMP306BlockTwoProducts SELECT * FROM CMP306BlockTwoProductsBackup";
 
     $sql = $clearTableQuery;
-    $data = array();
+    $output = [];
 
-    if (mysqli_query($conn, $sql)) {
-        // good delete
-        $sql = $fillTableQuery;
-        $res = array('drop_status' => 'success');
-    } else {
-        // delete fail
-        $res = array('drop_status' => 'fail');
+    $stmt = $conn->init();
+
+    if (!$stmt = $conn->prepare($sql)) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
+        ];
+        return json_encode($output);
     }
 
-    $data = array_merge($data, $res);
-
-    if ($sql === $fillTableQuery && mysqli_query($conn, $sql)) {
-        // good insert
-        $res = array('fill_status' => 'success');
-        $data = array_merge($data, $res);
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9901.',
+            'drop_status' => 'fail'
+        ];
+        return json_encode($output);
     }
-    return json_encode($data);
+
+    $output["drop_status"] = "success";
+    $sql = $fillTableQuery;
+
+    // fill db
+
+    $stmt = $conn->init();
+
+    if (!$stmt = $conn->prepare($sql)) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
+        ];
+        return json_encode($output);
+    }
+
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9901.',
+            'fill_status' => 'fail'
+        ];
+        return json_encode($output);
+    }
+
+    $output['fill_status'] = 'success';
+
+    return json_encode($output);
 }
 
-function processCardPayment($product_id, $user_id, $card_number, $status): array
+function processCardPayment($product_id, $user_id, $card_number, $status)
 {
     global $conn;
 
-    $clean_product_id = htmlspecialchars($product_id);
-    $clean_user_id = htmlspecialchars($user_id);
-    $clean_card_number = htmlspecialchars($card_number);
-    $clean_status = htmlspecialchars($status);
+    $sql = "INSERT INTO CMP306BlockTwoTransactions (product_id, user_id, card_num, status) VALUES (?,?,?,?)";
 
-    $sql = "INSERT INTO CMP306BlockTwoTransactions (product_id, user_id, card_num, status) VALUES ($clean_product_id,$clean_user_id,'$clean_card_number',$clean_status)";
+    $stmt = $conn->init();
 
-    $res = mysqli_query($conn, $sql);
+    $output = [];
 
-    $output = array();
-    if (!$res) {
+    if (!$stmt = $conn->prepare($sql)) {
         $output += [
-            "status" => "fail",
-            "message" => "There was an error saving the card information!",
-            "mysqli_error" => mysqli_error($conn),
-            "sql" => $clean_status
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
         ];
-        return $output;
+        return json_encode($output);
+    }
+
+    $stmt->bind_param('iiii', $product_id, $user_id, $card_number, $status);
+
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error saving the card information!'
+        ];
+        return json_encode($output);
     }
 
     $sql = "SELECT LAST_INSERT_ID() AS id";
 
-    if ($res = mysqli_query($conn, $sql)) {
-        $output["get_id_status"] = "success";
-        $res = $res->fetch_assoc();
-        $id = $res["id"];
-        $output["id"] = $id;
-    } else {
-        $output["get_id_status"] = "fail";
+    $stmt = $conn->init();
+
+    if (!$stmt = $conn->prepare($sql)) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9900.'
+        ];
+        return json_encode($output);
     }
+
+    if (!$stmt->execute()) {
+        $output += [
+            'status' => 'fail',
+            'message' => 'There was an error! 9901.',
+            'get_id_status' => 'fail'
+        ];
+        return json_encode($output);
+    }
+
+    $output['get_id_status'] = 'success';
+
+    $result = $stmt->get_result();
+
+    $row = $result->fetch_assoc();
+
+    $id = $row["id"];
+    $output["id"] = $id;
 
     $output += [
         "status" => "success",
         "message" => "Transaction stored!",
     ];
 
-    return $output;
+    return json_encode($output);
 }

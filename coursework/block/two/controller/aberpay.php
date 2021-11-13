@@ -37,6 +37,8 @@ $product_id = $_SESSION["basket"]["product_id"];
 $user_id = $_SESSION["user_id"];
 $status = $aberpay_response["status"];
 
-$api_response = processCardPayment($product_id, $user_id, $card, $status);
+$api_response =  processCardPayment($product_id, $user_id, $card, $status);
+$api_response = json_decode($api_response, true);
+
 
 $_SESSION["transaction"]["api-response"] = $api_response;
