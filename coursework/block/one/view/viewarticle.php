@@ -64,12 +64,8 @@ if ($isarticle):
 
     $article = $article["article"];
 
-    $image = $article["image"];
-
-    $dir_base = "/~1900040/cmp306/assets/img/plants/block1";
-    //$img_base = "$dir_base/$id";
-
-    $img_base = "https://via.placeholder.com/150";
+    $dir_base = "/~1900040/cmp306/assets/img/plants/block1/articles/";
+    $img= "$dir_base/$id/header.png";
 
     ?>
     <body>
@@ -85,7 +81,7 @@ if ($isarticle):
                                 <a><?= $article["author"] ?></a>
                             </span>
                         </p>
-                      <?='<img class="img-fluid mx-auto d-block" src="'. $img_base . '" alt="Picture">' ?>
+                      <?='<img class="img-fluid mx-auto d-block" src="'. $img . '" alt="Picture">' ?>
                     </div>
                     <div class="text">
                         <p><?= $article["text"] ?></p>

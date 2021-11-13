@@ -1,0 +1,19 @@
+pre.schema:before{
+    content: '(';
+}
+
+pre.schema:after{
+    content: ')';
+}
+
+.pk, .fk {
+    text-decoration: underline;
+}
+
+.pk {
+    font-weight: bold;
+}
+
+.fk {
+    font-style: italic;
+}
