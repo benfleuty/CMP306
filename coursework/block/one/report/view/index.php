@@ -34,8 +34,8 @@
                     <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false"
                                                      data-bs-toggle="dropdown">Block One</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="../coursework/block/one">Work</a>
-                            <a class="dropdown-item" href="../coursework/block/one/report">Report</a>
+                            <a class="dropdown-item" href="../../">Work</a>
+                            <a class="dropdown-item" href="./">Report</a>
                         </div>
                     </li>
                 </ul>
