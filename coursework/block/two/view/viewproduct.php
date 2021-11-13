@@ -10,6 +10,7 @@ if (!$fail) {
 
     $id = $_GET["id"];
     $res = getProductById($id);
+    $res = json_decode($res, true);
 
     if ($res["status"] === "fail") {
         $fail = true;

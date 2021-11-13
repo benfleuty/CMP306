@@ -24,7 +24,13 @@ if (!isset($_SESSION["transaction"])) {
 <div class="content mx-auto my-3">
     <div>
         <?php
-        $product = getProductByTransactionId($_SESSION["transaction"]["api-response"]["id"])["product"];
+        $id = $_SESSION['transaction']['api-response']['id'];
+
+        $product = getProductByTransactionId($id);
+        $product = json_decode($product, true);
+        $product = $product['product'];
+
+
         $status = $_SESSION["transaction"]["aberpay-response"]["status"];
         if ($status):
             ?>

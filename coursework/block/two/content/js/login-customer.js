@@ -17,6 +17,7 @@ $(function () {
                 uname: uname,
                 pword: pword
             },
+            dataType:"json",
             success: function (response) {
                 console.log(response);
                 let jsonData = JSON.parse(response);

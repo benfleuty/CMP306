@@ -26,7 +26,9 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
             header("Location: /~1900040/cmp306/coursework/block/two/view/index.php");
         }
 
-        $product = getProductById($_SESSION["basket"]["product_id"])["product"];
+        $product = getProductById($_SESSION["basket"]["product_id"]);
+        $product = json_decode($product, true);
+        $product = $product['product'];
         ?>
         <h1>Checkout</h1>
         <p>Item: <?= $product["name"] ?></p>

@@ -22,6 +22,7 @@ $(function () {
         $.ajax({
             type: "POST",
             url: '/~1900040/cmp306/coursework/block/two/controller/register-user.php',
+            dataType: "json",
             data: {
                 fname: fname,
                 lname: lname,
@@ -45,6 +46,7 @@ $(function () {
                 window.location.href = "/~1900040/cmp306/coursework/block/two/view/index.php";
             },
             error: function (a, b, c) {
+                console.log(b);
                 console.log(c);
             }
         })
