@@ -21,6 +21,10 @@ if (!$fail) {
             $product["image"] = "/~1900040/cmp306/coursework/block/two/img/" . $product["image"];
         }
     }
+
+    foreach ($product as $key => $value) {
+        $product[$key] = htmlspecialchars($value);
+    }
 }
 ?>
 

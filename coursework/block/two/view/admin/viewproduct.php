@@ -1,27 +1,11 @@
 <?php session_start();
-include_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.php";
+include_once '/home/1900040/public_html/cmp306/coursework/block/two/model/api.php';
+include_once '/home/1900040/public_html/cmp306/coursework/block/two/content/modules/specialusercheck.php';
 
-if (!isset($_SESSION["user_id"]) || !isSpecialUserByID($_SESSION["user_id"])) {
-    header("Location: /~1900040/cmp306/coursework/block/two/view/index.php");
-}
+$fail = !isset($_GET['id']) || empty($_GET['id']) || !ctype_digit($_GET['id']);
 
-if (isset($_GET["id"])) {
-    $id = $_GET["id"];
-    $fail = false;
-    if (empty($id)) {
-        // id is empty
-        $fail = true;
-    }
-
-    if (!ctype_digit($id)) {
-        // id is not a number
-        $fail = true;
-    }
-
-
-    if ($fail) {
-        die();
-    }
+if (!$fail) {
+    $id = $_GET['id'];
 
     $product = getProductById($id);
     $product = json_decode($product, true);
@@ -31,6 +15,10 @@ if (isset($_GET["id"])) {
     }
 
     $product = $product["product"];
+    foreach ($product as $key => $value) {
+        $product[$key] = htmlspecialchars($value);
+    }
+
     $defaultImg = $product["image"] === "https://via.placeholder.com/300";
 
     $imgBasePath = "";
@@ -38,8 +26,9 @@ if (isset($_GET["id"])) {
     if (!$defaultImg) {
         $imgBasePath = "/~1900040/cmp306/coursework/block/two/img/";
     }
+} else {
+    die('The given product ID is not valid');
 }
-
 ?>
 
 <!doctype html>

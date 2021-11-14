@@ -1,5 +1,6 @@
 <?php session_start();
-require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.php";
+require_once '/home/1900040/public_html/cmp306/coursework/block/two/model/api.php';
+include_once '/home/1900040/public_html/cmp306/coursework/block/two/content/modules/specialusercheck.php';
 
 ?>
 <script src="/~1900040/cmp306/coursework/block/two/content/js/admin-products-options.js"></script>
