@@ -27,6 +27,9 @@ require_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.ph
             $product = getProductById($_SESSION["basket"]["product_id"]);
             $product = json_decode($product, true);
             $product = $product["product"];
+            foreach ($product as $key => $value) {
+                $product[$key] = htmlspecialchars($value);
+            }
             ?>
             <h2>Item in basket:</h2>
             <div class="border p-2">

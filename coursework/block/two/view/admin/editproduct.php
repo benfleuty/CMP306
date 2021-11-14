@@ -1,31 +1,17 @@
 <?php session_start();
-include_once "/home/1900040/public_html/cmp306/coursework/block/two/model/api.php";
-if (!isset($_SESSION["user_id"]) || !isSpecialUserByID($_SESSION["user_id"])) {
-    header("Location: /~1900040/cmp306/coursework/block/two/view/index.php");
-}
+include_once '/home/1900040/public_html/cmp306/coursework/block/two/model/api.php';
+include_once '/home/1900040/public_html/cmp306/coursework/block/two/content/modules/specialusercheck.php';
 
-if (isset($_GET["id"])) {
-    $id = $_GET["id"];
-    $fail = false;
-    if (empty($id)) {
-        // id is empty
-        $fail = true;
-    }
+$fail = !isset($_GET['id']) || empty($_GET['id']) || !ctype_digit($_GET['id']);
 
-    if (!ctype_digit($id)) {
-        // id is not a number
-        $fail = true;
-    }
-
-    if ($fail) {
-        die();
-    }
+if (!$fail) {
+    $id = $_GET['id'];
 
     $product = getProductById($id);
     $product = json_decode($product, true);
 
     if ($product["status"] === "fail") {
-        die();
+        die("There was an error and your request could not be completed");
     }
 
     $product = $product["product"];
@@ -42,6 +28,8 @@ if (isset($_GET["id"])) {
     }
 
     $product["price"] = number_format($product["price"], 2);
+}else{
+    die("The given product ID is not valid");
 }
 ?>
 

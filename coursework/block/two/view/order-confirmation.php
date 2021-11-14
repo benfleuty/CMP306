@@ -30,6 +30,10 @@ if (!isset($_SESSION["transaction"])) {
         $product = json_decode($product, true);
         $product = $product['product'];
 
+        foreach ($product as $key => $value) {
+            $product[$key] = htmlspecialchars($value);
+        }
+
 
         $status = $_SESSION["transaction"]["aberpay-response"]["status"];
         if ($status):
@@ -37,7 +41,7 @@ if (!isset($_SESSION["transaction"])) {
             <h1>Order confirmed</h1>
         <?php else: ?>
             <h1>Order failed</h1>
-        <p class="text-muted">AberPay error: <?= $_SESSION["transaction"]["aberpay-response"]["error"] ?> - <?= $_SESSION["transaction"]["aberpay-response"]["errortxt"] ?></p>
+        <p class="text-muted">AberPay error: <?= htmlspecialchars($_SESSION["transaction"]["aberpay-response"]["error"]) ?> - <?= htmlspecialchars($_SESSION["transaction"]["aberpay-response"]["errortxt"]) ?></p>
         <?php endif; ?>
         <p>Item: <?= $product["name"] ?></p>
         <p>Total: £<?= number_format($product["price"], 2) ?></p>
