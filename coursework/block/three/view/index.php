@@ -31,6 +31,49 @@
     </nav>
 </header>
 
+<section>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Red LED</h3>
+                    <button class="btn btn-primary btn-red-led" name="on">Turn on</button>
+                    <button class="btn btn-danger btn-red-led" name="off">Turn off</button>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <div class='card'>
+                <div class='card-body'>
+                    <h3 class='card-title'>Green LED</h3>
+                    <button class='btn btn-success btn-green-led' name='on'>Turn on</button>
+                    <button class='btn btn-danger btn-green-led' name='off'>Turn off</button>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <div class='card'>
+                <div class='card-body'>
+                    <h3 class='card-title'>Internal temperature</h3>
+                    <ul>
+                        <li>temps</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <div class='card'>
+                <div class='card-body'>
+                    <h3 class='card-title'>External Temperature</h3>
+                    <ul>
+                        <li>temps</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
