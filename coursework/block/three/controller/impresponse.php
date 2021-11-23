@@ -1,20 +1,42 @@
 <?php
 
-$message = file_get_contents('php://input');
+$encoded = file_get_contents('php://input');
 
-$message = json_decode($message, true)[0];
-$output = "";
+$message = json_decode($encoded, true)[0];
 
-if ($message['pin'] === '5') {
-    $output .= 'red state set to';
-}elseif ($message['pin'] === '7') {
-    $output .= 'green state set to';
-}elseif ($message['pin'] === '8') {
-    $output .= 'internal temp is ';
-}elseif ($message['pin'] === '9') {
-    $output .= 'external temp is';
+if (!isset($message['pin'], $message['value']) || !is_numeric($message['pin']) || !is_numeric($message['value'])) {
+    httpError(400, 'Malformed data:');
 }
 
-$output .= $message["value"];
+include_once "../model/api.php";
+$pin = $message['pin'];
+$value = $message['value'];
+
+$response = null;
+
+if ($pin === '5' || $pin === '7') {
+    $response = log_led_imp($pin, $value);
+} elseif ($pin === '8' || $pin === '9') {
+    $response = log_temperature_imp($pin, $value);
+} else {
+    httpError(400, "Malformed data");
+}
+
+$output = "";
+
+$response = json_decode($response, true);
+
+if (isset($response['status'], $response['insert_status']) && $response['status'] === 'success' && $response['insert_status'] === 'success') {
+    $output = "success";
+} else {
+    httpError(500, "Error processing data on the server!");
+}
 
 echo $output;
+
+function httpError($code, $message)
+{
+    http_response_code($code);
+    echo $message;
+    exit;
+}
