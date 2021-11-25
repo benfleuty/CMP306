@@ -1,0 +1,13 @@
+.btn-led {
+    width: 100%;
+}
+
+.temp-now {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.25em;
+}
+
+.temp-now:after{
+    content: "\00B0 C";
+}
