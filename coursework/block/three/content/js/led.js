@@ -70,10 +70,6 @@ $(function () {
         });
     }
 
-    function onLoadCheckLed(pin) {
-        check_led(pin)
-    }
-
     function check_led(pin) {
         let url = 'https://agent.electricimp.com/nXgBWwvudB8w';
         $.ajax({
@@ -138,6 +134,29 @@ $(function () {
         }
     }
 
-    onLoadCheckLed(5);
-    onLoadCheckLed(7);
+    check_led(5);
+    check_led(7);
+
+    function check_temp(temp) {
+        let url = 'https://agent.electricimp.com/nXgBWwvudB8w';
+        $.ajax({
+            type: "get",
+            url: url,
+            data: {
+                temp: temp
+            },
+            success: function (response) {
+                let res = JSON.parse(response);
+
+                let currtemp = res["value"];
+                $(".temp-" + temp).html(currtemp);
+            },
+            error: function (a, b, c) {
+                console.log(c);
+            }
+        });
+    }
+
+    check_temp("internal");
+    check_temp("external");
 })

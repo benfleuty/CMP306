@@ -10,7 +10,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
-    <link rel='stylesheet' href='../content/css/buttons.css'>
+    <link rel='stylesheet' href='../content/css/index.css'>
 </head>
 <body>
 <header>
@@ -56,6 +56,7 @@
             <div class='card'>
                 <div class='card-body'>
                     <h3 class='card-title'>Internal temperature</h3>
+                    <p class="temp-now temp-internal"></p>
                     <ul>
                         <li>temps</li>
                     </ul>
@@ -66,6 +67,7 @@
             <div class='card'>
                 <div class='card-body'>
                     <h3 class='card-title'>External Temperature</h3>
+                    <p class='temp-now temp-external'></p>
                     <ul>
                         <li>temps</li>
                     </ul>
