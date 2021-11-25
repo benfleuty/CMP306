@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='../content/css/buttons.css'>
 </head>
 <body>
 <header>
@@ -37,8 +38,8 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Red LED</h3>
-                    <button class="btn btn-primary btn-red-led" name="on">Turn on</button>
-                    <button class="btn btn-danger btn-red-led" name="off">Turn off</button>
+                    <button class="btn btn-primary btn-led" id="btnRedOn" name="on">Turn on</button>
+                    <button class="btn btn-danger btn-led" id='btnRedOff' name="off">Turn off</button>
                 </div>
             </div>
         </div>
@@ -46,8 +47,8 @@
             <div class='card'>
                 <div class='card-body'>
                     <h3 class='card-title'>Green LED</h3>
-                    <button class='btn btn-success btn-green-led' name='on'>Turn on</button>
-                    <button class='btn btn-danger btn-green-led' name='off'>Turn off</button>
+                    <button class='btn btn-success btn-led' id='btnGreenOn' name='on'>Turn on</button>
+                    <button class='btn btn-danger btn-led' id='btnGreenOff' name='off'>Turn off</button>
                 </div>
             </div>
         </div>
@@ -80,5 +81,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src='../content/js/led.js'></script>
 </body>
 </html>
