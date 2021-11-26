@@ -34,7 +34,7 @@
 
 <section>
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title">Red LED</h3>
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class='col-sm-4'>
+        <div class='col-sm-6'>
             <div class='card'>
                 <div class='card-body'>
                     <h3 class='card-title'>Green LED</h3>
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-        <div class='col-sm-4'>
+        <div class='col-sm-6'>
             <div class='card'>
                 <div class='card-body'>
                     <h3 class='card-title'>Internal temperature</h3>
@@ -67,7 +67,7 @@
                 </div>
             </div>
         </div>
-        <div class='col-sm-4'>
+        <div class='col-sm-6'>
             <div class='card'>
                 <div class='card-body'>
                     <h3 class='card-title'>External Temperature</h3>
