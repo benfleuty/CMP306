@@ -4,10 +4,18 @@
 
 .temp-now {
     font-weight: bold;
-    text-align: center;
     font-size: 1.25em;
 }
 
 .temp-now:after{
     content: "\00B0 C";
+}
+
+.temp-update-time{
+    margin: 0;
+    padding: 0;
+}
+
+.temp-update-time:before{
+    content: "Last updated: ";
 }

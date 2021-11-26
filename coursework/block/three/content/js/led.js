@@ -149,7 +149,10 @@ $(function () {
                 let res = JSON.parse(response);
 
                 let currtemp = res["value"];
-                $(".temp-" + temp).html(currtemp);
+                $(".temp-" + temp + "-temp").html(currtemp);
+                const date = new Date();
+                let now = date.toTimeString().split(' ')[0];
+                $(".temp-" + temp + "-time").html(now);
             },
             error: function (a, b, c) {
                 console.log(c);
