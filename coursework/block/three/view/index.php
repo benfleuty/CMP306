@@ -56,7 +56,11 @@
             <div class='card'>
                 <div class='card-body'>
                     <h3 class='card-title'>Internal temperature</h3>
-                    <p class="temp-now temp-internal"></p>
+                    <p class='text-center'>
+                        <span class='temp-now temp-internal-temp'>getting temp</span>
+                        <br/>
+                        <span class='temp-update-time temp-internal-time text-muted'>updating now</span>
+                    </p>
                     <ul>
                         <li>temps</li>
                     </ul>
@@ -67,7 +71,11 @@
             <div class='card'>
                 <div class='card-body'>
                     <h3 class='card-title'>External Temperature</h3>
-                    <p class='temp-now temp-external'></p>
+                    <p class='text-center'>
+                        <span class="temp-now temp-external-temp">getting temp</span>
+                        <br/>
+                        <span class="temp-update-time temp-external-time text-muted">updating now</span>
+                    </p>
                     <ul>
                         <li>temps</li>
                     </ul>
