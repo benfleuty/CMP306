@@ -5,7 +5,7 @@ $encoded = file_get_contents('php://input');
 $message = json_decode($encoded, true)[0];
 
 if (!isset($message['pin'], $message['value']) || !is_numeric($message['pin']) || !is_numeric($message['value'])) {
-    httpError(400, 'Malformed data:');
+    httpResponse(400, 'Malformed data:');
 }
 
 include_once "../model/api.php";
@@ -19,7 +19,7 @@ if ($pin === '5' || $pin === '7') {
 } elseif ($pin === '8' || $pin === '9') {
     $response = log_temperature_imp($pin, $value);
 } else {
-    httpError(400, "Malformed data");
+    httpResponse(400, "Malformed data");
 }
 
 $output = "";
@@ -29,7 +29,7 @@ $response = json_decode($response, true);
 if (isset($response['status'], $response['insert_status']) && $response['status'] === 'success' && $response['insert_status'] === 'success') {
     $output = "success";
 } else {
-    httpError(500, "Error processing data on the server!");
+    httpResponse(500, "Error processing data on the server!");
 }
 
 echo $output;
