@@ -111,7 +111,7 @@ function get_temperatures_lastX(int $location, int $count)
     return json_encode($output);
 }
 
-function get_temperatures_last_24h($location)
+function get_temperatures_last_24h(int $location)
 {
     global $conn;
 
@@ -125,6 +125,8 @@ function get_temperatures_last_24h($location)
         $output += [
             'status' => 'fail'
         ];
+
+        return json_encode($output);
     }
 
     $sql = 'select dttm, value from CMP306_BlockThreeJSONTemps where pin = ? order by dttm desc limit 144';
@@ -150,8 +152,17 @@ function get_temperatures_last_24h($location)
 
     $output += [
         'status' => 'success',
-        'insert_status' => 'success'
+        'get_status' => 'success'
     ];
+
+    $result = $stmt->get_result();
+
+    while ($row = $result->fetch_assoc()) {
+        $reading['dttm'] = $row['dttm'];
+        $reading['value'] = $row['value'];
+
+        $output['readings'][] = $reading;
+    }
 
     return json_encode($output);
 }

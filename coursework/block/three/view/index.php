@@ -11,6 +11,13 @@
     <!-- Bootstrap CSS -->
     <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
     <link rel='stylesheet' href='../content/css/index.css'>
+
+    <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js'></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js'></script>
+    <script src='../content/js/led.js'></script>
+    <script src='../content/js/temps.js'></script>
 </head>
 <body>
 <header>
@@ -66,7 +73,8 @@
                             <div class='card'>
                                 <div class='card-header' role='tab' id='internalTempListHeader'>
                                     <h5 class='mb-0'>
-                                        <a data-toggle='collapse' data-parent='#internalTempsAccordion' href='#internalTempContent'
+                                        <a data-toggle='collapse' data-parent='#internalTempsAccordion'
+                                           href='#internalTempContent'
                                            aria-expanded='true' aria-controls='internalTempContent'>
                                             Historical Temperatures
                                         </a>
@@ -94,7 +102,9 @@
                                 <div id='internalTempGraphContent' class='collapse in' role='tabpanel'
                                      aria-labelledby='internalTempGraphHeader'>
                                     <div class='card-body'>
-                                        <div class="internal-temperature-graph"></div>
+                                        <div class="internal-temperature-graph">
+                                            <canvas id="internalChart" width="500" height="500"></canvas>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +129,8 @@
                             <div class="card">
                                 <div class="card-header" role="tab" id="externalTempListHeader">
                                     <h5 class="mb-0">
-                                        <a data-toggle="collapse" data-parent="#externalTempsAccordion" href="#externalTempContent"
+                                        <a data-toggle="collapse" data-parent="#externalTempsAccordion"
+                                           href="#externalTempContent"
                                            aria-expanded="true" aria-controls="externalTempContent">
                                             Historical Temperatures
                                         </a>
@@ -147,7 +158,9 @@
                                 <div id="externalTempGraphContent" class="collapse in" role="tabpanel"
                                      aria-labelledby="externalTempGraphHeader">
                                     <div class="card-body">
-                                        <div class='external-temperature-graph'></div>
+                                        <div class='external-temperature-graph'>
+                                            <canvas id='externalChart' width='500' height='500'></canvas>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -159,14 +172,5 @@
         </div>
     </div>
 </section>
-
-
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src='../content/js/led.js'></script>
-<script src='../content/js/temps.js'></script>
 </body>
 </html>
