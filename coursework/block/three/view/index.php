@@ -59,7 +59,9 @@
                 </div>
             </div>
         </div>
-        <div class='col-sm-6'>
+    </div>
+    <div class="row">
+        <div class='col-lg-6'>
             <div class='card'>
                 <div class='card-body'>
                     <h3 class='card-title'>Internal temperature</h3>
@@ -115,7 +117,7 @@
         </div>
 
 
-        <div class='col-sm-6'>
+        <div class="col-lg-6" >
             <div class='card'>
                 <div class='card-body'>
                     <h3 class='card-title'>External Temperature</h3>
