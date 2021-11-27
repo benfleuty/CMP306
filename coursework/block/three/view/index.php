@@ -61,8 +61,8 @@
                         <br/>
                         <span class='temp-update-time temp-internal-time text-muted'>updating now</span>
                     </p>
-                    <ul>
-                        <li>temps</li>
+                    <ul class="historical-temps historical-temps-internal">
+                        <li>getting historical temperatures...</li>
                     </ul>
                 </div>
             </div>
@@ -76,8 +76,8 @@
                         <br/>
                         <span class="temp-update-time temp-external-time text-muted">updating now</span>
                     </p>
-                    <ul>
-                        <li>temps</li>
+                    <ul class="historical-temps historical-temps-external">
+                        <li>getting historical temperatures...</li>
                     </ul>
                 </div>
             </div>
@@ -92,5 +92,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src='../content/js/led.js'></script>
+<script src='../content/js/temps.js'></script>
 </body>
 </html>
