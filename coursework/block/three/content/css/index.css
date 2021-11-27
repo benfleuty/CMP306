@@ -1,0 +1,27 @@
+.btn-led {
+    width: 100%;
+}
+
+.temp-now {
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
+.celcius:after{
+    content: "\00B0 C";
+}
+
+.temp-update-time{
+    margin: 0;
+    padding: 0;
+}
+
+.temp-update-time:before{
+    content: "Last updated: ";
+}
+
+ul{
+    text-align: center;
+    list-style: none;
+    margin: 0;
+}
