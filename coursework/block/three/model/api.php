@@ -1,6 +1,13 @@
 <?php
 include('../model/connection.php');
 
+function httpResponse ($code, $message)
+{
+    http_response_code($code);
+    echo $message;
+    exit;
+}
+
 function log_to_db($table, $pin, $value)
 {
     global $conn;
