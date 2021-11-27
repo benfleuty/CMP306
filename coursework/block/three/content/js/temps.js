@@ -33,10 +33,10 @@ function get_last_10_temps(pin) {
                 let datetime = readings[i]["dttm"].split(' ');
                 let date = datetime[0];
                 let time = datetime[1];
-                let temp = readings[i]["value"];
+                let temp = "<strong>" + readings[i]["value"] + "</strong>";
                 let payload = date + " at " + time +": " + temp;
 
-                list.append("<li>" + payload + "</li>\n");
+                list.append("<li class='celcius'>" + payload + "</li>\n");
             }
         },
         error: function (a, b, c) {
