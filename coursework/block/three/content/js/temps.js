@@ -36,7 +36,7 @@ function get_last_10_temps(pin) {
                 let temp = "<strong>" + readings[i]["value"] + "</strong>";
                 let payload = date + " at " + time +": " + temp;
 
-                list.append("<li class='celcius'>" + payload + "</li>\n");
+                list.append("<li class='list-group-item celcius'>" + payload + "</li>\n");
             }
         },
         error: function (a, b, c) {
