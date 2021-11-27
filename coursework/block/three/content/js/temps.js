@@ -47,4 +47,5 @@ function get_last_10_temps(pin) {
 
 $(function () {
     get_last_10_temps(8);
+    get_last_10_temps(9);
 })
