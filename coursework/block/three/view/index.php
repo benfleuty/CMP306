@@ -61,12 +61,50 @@
                         <br/>
                         <span class='temp-update-time temp-internal-time text-muted'>updating now</span>
                     </p>
-                    <ul class="historical-temps historical-temps-internal">
-                        <li>getting historical temperatures...</li>
-                    </ul>
+                    <div class='temps-options'>
+                        <div id='internalTempsAccordion' role='tablist' aria-multiselectable='true'>
+                            <div class='card'>
+                                <div class='card-header' role='tab' id='internalTempListHeader'>
+                                    <h5 class='mb-0'>
+                                        <a data-toggle='collapse' data-parent='#internalTempsAccordion' href='#internalTempContent'
+                                           aria-expanded='true' aria-controls='internalTempContent'>
+                                            Historical Temperatures
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id='internalTempContent' class='collapse in' role='tabpanel'
+                                     aria-labelledby='internalTempListHeader'>
+                                    <div class='card-body'>
+                                        <ul class='historical-temps historical-temps-internal list-group list-group-flush'>
+                                            <li>getting historical temperatures...</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='card'>
+                                <div class='card-header' role='tab' id='internalTempGraphHeader'>
+                                    <h5 class='mb-0'>
+                                        <a data-toggle='collapse' data-parent='#internalTempsAccordion'
+                                           href='#internalTempGraphContent'
+                                           aria-expanded='true' aria-controls='section2ContentId'>
+                                            Graphed Temperatures (24h)
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id='internalTempGraphContent' class='collapse in' role='tabpanel'
+                                     aria-labelledby='internalTempGraphHeader'>
+                                    <div class='card-body'>
+                                        <div class="internal-temperature-graph"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+
         <div class='col-sm-6'>
             <div class='card'>
                 <div class='card-body'>
@@ -76,10 +114,47 @@
                         <br/>
                         <span class="temp-update-time temp-external-time text-muted">updating now</span>
                     </p>
-                    <ul class="historical-temps historical-temps-external">
-                        <li>getting historical temperatures...</li>
-                    </ul>
+                    <div class="temps-options">
+                        <div id="externalTempsAccordion" role="tablist" aria-multiselectable="true">
+                            <div class="card">
+                                <div class="card-header" role="tab" id="externalTempListHeader">
+                                    <h5 class="mb-0">
+                                        <a data-toggle="collapse" data-parent="#externalTempsAccordion" href="#externalTempContent"
+                                           aria-expanded="true" aria-controls="externalTempContent">
+                                            Historical Temperatures
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="externalTempContent" class="collapse in" role="tabpanel"
+                                     aria-labelledby="externalTempListHeader">
+                                    <div class="card-body">
+                                        <ul class='historical-temps historical-temps-external list-group list-group-flush'>
+                                            <li>getting historical temperatures...</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header" role="tab" id="externalTempGraphHeader">
+                                    <h5 class="mb-0">
+                                        <a data-toggle="collapse" data-parent="#externalTempsAccordion"
+                                           href="#externalTempGraphContent"
+                                           aria-expanded="true" aria-controls="section2ContentId">
+                                            Graphed Temperatures (24h)
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id="externalTempGraphContent" class="collapse in" role="tabpanel"
+                                     aria-labelledby="externalTempGraphHeader">
+                                    <div class="card-body">
+                                        <div class='external-temperature-graph'></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
