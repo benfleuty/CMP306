@@ -1,0 +1,210 @@
+class newRequest{
+    response = null;
+}
+
+class ledRequest extends newRequest {
+    pin = null;
+    state = null;
+
+    requestId = null;
+
+    function set_pin(data){
+        pin = data;
+    }
+
+    function set_state(data){
+        state = data;
+    }
+
+    function get_pin(){
+        return pin;
+    }
+
+    function get_state(){
+        return state;
+    }
+
+    constructor (r,p,id,s = null){
+        response = r;
+        pin = p;
+        requestId = id;
+
+        state = s;
+
+        response.header("Access-Control-Allow-Origin","*");
+    }
+
+    function send(){
+        if ( state == null ){
+            sendGetData();
+        }else{
+            sendSetData();
+        }
+    }
+
+    function sendGetData(){
+        local payload = {"pos":requestId};
+    if (pin == 5){
+        device.send("getred", payload);
+     }
+     else if (pin == 7){
+         device.send("getgreen", payload);
+     } else {
+         response.send(400, "Bad pin syntax");
+     }
+    }
+
+    function sendSetData(){
+        local payload = {"state":state,"pos":requestId};
+    if (pin == 5){
+        device.send("setred",payload);
+     }
+     else if (pin == 7){
+         device.send("setgreen", payload);
+     } else {
+         response.send(400, "Bad pin syntax");
+     }
+    }
+}
+
+class tempRequest extends newRequest {
+    temp = null;
+    requestId = null;
+
+    function set_temp(data){
+        temp = data;
+    }
+
+    function get_temp(){
+        return temp;
+    }
+
+    constructor (r,t,id){
+        response = r;
+        temp = t;
+        requestId = id;
+
+        response.header("Access-Control-Allow-Origin","*");
+    }
+
+    function send(){
+        if ( temp == "internal" ){
+            get_internal_temperature();
+        }else if (temp =="external") {
+            get_external_temperature();
+        }else{
+         response.send(400, "Bad syntax");
+        }
+    }
+
+    function get_internal_temperature(){
+        local payload = {"pos":requestId};
+        device.send("getinternaltemp", payload);
+     }
+
+    function get_external_temperature(){
+        local payload = {"pos":requestId};
+        device.send("getexternaltemp", payload);
+     }
+
+}
+
+requester <- null;
+
+requests <- array();
+
+// Agent Code
+// define the http handler
+function requestHandler(request, response) {
+
+    requests.append(request);
+    local pos = requests.len() - 1;
+
+    local status_update = null;
+
+    /*
+     * 5 - Red
+     * 7 - Green
+    */
+    local pin = null;
+
+    /*
+     * 0 - Off
+     * 1 - On
+    */
+    local state = null;
+
+    local temp = null;
+
+    try{status_update = request.query["status_update"].tointeger();} catch(exception){}
+
+    try{pin = request.query["pin"].tointeger();} catch(exception){}
+
+    try{state = request.query["state"].tointeger();} catch(exception){}
+
+    try{temp = request.query["temp"];} catch(exception){}
+
+
+    if(pin != null) {
+        if (state != null){
+             requests[pos] = ledRequest(response,pin,pos, state);
+        } else {
+             requests[pos] = ledRequest(response,pin, pos);
+        }
+
+    }else if(temp != null) {
+        requests[pos] = tempRequest(response,temp,pos);
+    }else{
+        response.send(400,"Bad data!");
+        return;
+    }
+
+
+    requests[pos].send();
+}
+
+
+function get_temp(response, temp){
+    if (temp == "internal"){
+        device.send("getinternaltemp",null);
+    } else if (temp == "external"){
+        device.send("getexternaltemp",null);
+    } else {
+         response.send(400, "Bad temperature syntax");
+    }
+}
+
+function http_led_state(message){
+    local pos = message["pos"];
+    message.rawdelete("pos");
+
+    local json = http.jsonencode(message);
+    requests[pos].response.send(200, json);
+    server.log("led: " + json + "  ///  200: success");
+}
+
+function http_current_temperature(message){
+    local pos = message["pos"];
+    message.rawdelete("pos");
+
+    local json = http.jsonencode(message);
+    requests[pos].response.send(200, json);
+    server.log("temperature: " + json + "  ///  200: success");
+    log_temperature_to_db(message);
+}
+
+function log_temperature_to_db(message){
+    local url = "https://mayar.abertay.ac.uk/~1900040/cmp306/coursework/block/three/controller/impresponse.php"
+    local header = { "Content-Type" : "application/json" };
+    local json = http.jsonencode(message);
+    local request = http.post(url, header, json);
+    local response = request.sendsync();
+    server.log("logging temperature to db: " + json + "  ///  " + response.statuscode + ": " + response.body);
+}
+
+// register the http handler
+http.onrequest(requestHandler);
+
+device.on("log_temperature_to_db", log_temperature_to_db);
+device.on("http_led_state", http_led_state);
+device.on("http_current_temperature", http_current_temperature);

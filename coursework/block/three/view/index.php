@@ -60,7 +60,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class='row'>
         <div class='col-lg-6'>
             <div class='card'>
                 <div class='card-body'>
@@ -104,8 +104,8 @@
                                 <div id='internalTempGraphContent' class='collapse in' role='tabpanel'
                                      aria-labelledby='internalTempGraphHeader'>
                                     <div class='card-body'>
-                                        <div class="internal-temperature-graph">
-                                            <canvas id="internalChart" width="500" height="500"></canvas>
+                                        <div class='internal-temperature-graph'>
+                                            <canvas id='internalChart' width='500' height='500'></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -117,49 +117,49 @@
         </div>
 
 
-        <div class="col-lg-6" >
+        <div class='col-lg-6'>
             <div class='card'>
                 <div class='card-body'>
                     <h3 class='card-title'>External Temperature</h3>
                     <p class='text-center'>
-                        <span class="temp-external-temp celcius">getting temp</span>
+                        <span class='temp-external-temp celcius'>getting temp</span>
                         <br/>
-                        <span class="temp-update-time temp-external-time text-muted">updating now</span>
+                        <span class='temp-update-time temp-external-time text-muted'>updating now</span>
                     </p>
-                    <div class="temps-options">
-                        <div id="externalTempsAccordion" role="tablist" aria-multiselectable="true">
-                            <div class="card">
-                                <div class="card-header" role="tab" id="externalTempListHeader">
-                                    <h5 class="mb-0">
-                                        <a data-toggle="collapse" data-parent="#externalTempsAccordion"
-                                           href="#externalTempContent"
-                                           aria-expanded="true" aria-controls="externalTempContent">
+                    <div class='temps-options'>
+                        <div id='externalTempsAccordion' role='tablist' aria-multiselectable='true'>
+                            <div class='card'>
+                                <div class='card-header' role='tab' id='externalTempListHeader'>
+                                    <h5 class='mb-0'>
+                                        <a data-toggle='collapse' data-parent='#externalTempsAccordion'
+                                           href='#externalTempContent'
+                                           aria-expanded='true' aria-controls='externalTempContent'>
                                             Historical Temperatures
                                         </a>
                                     </h5>
                                 </div>
-                                <div id="externalTempContent" class="collapse in" role="tabpanel"
-                                     aria-labelledby="externalTempListHeader">
-                                    <div class="card-body">
+                                <div id='externalTempContent' class='collapse in' role='tabpanel'
+                                     aria-labelledby='externalTempListHeader'>
+                                    <div class='card-body'>
                                         <ul class='historical-temps historical-temps-external list-group list-group-flush'>
                                             <li>getting historical temperatures...</li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-header" role="tab" id="externalTempGraphHeader">
-                                    <h5 class="mb-0">
-                                        <a data-toggle="collapse" data-parent="#externalTempsAccordion"
-                                           href="#externalTempGraphContent"
-                                           aria-expanded="true" aria-controls="section2ContentId">
+                            <div class='card'>
+                                <div class='card-header' role='tab' id='externalTempGraphHeader'>
+                                    <h5 class='mb-0'>
+                                        <a data-toggle='collapse' data-parent='#externalTempsAccordion'
+                                           href='#externalTempGraphContent'
+                                           aria-expanded='true' aria-controls='section2ContentId'>
                                             Graphed Temperatures (24h)
                                         </a>
                                     </h5>
                                 </div>
-                                <div id="externalTempGraphContent" class="collapse in" role="tabpanel"
-                                     aria-labelledby="externalTempGraphHeader">
-                                    <div class="card-body">
+                                <div id='externalTempGraphContent' class='collapse in' role='tabpanel'
+                                     aria-labelledby='externalTempGraphHeader'>
+                                    <div class='card-body'>
                                         <div class='external-temperature-graph'>
                                             <canvas id='externalChart' width='500' height='500'></canvas>
                                         </div>
@@ -170,6 +170,66 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-lg-6'>
+            <div class='card'>
+                <div class='card-body'>
+                    <h3 class='card-title'>Agent Code</h3>
+                    <div class='agent-code'>
+                        <div id='agentCodeAccordion' role='tablist' aria-multiselectable='true'>
+                            <div class='card'>
+                                <div class='card-header' role='tab' id='agentCodeAccordion'>
+                                    <h5 class='mb-0'>
+                                        <a data-toggle='collapse' data-parent='#agentCodeAccordion'
+                                           href='#agentCodeContent'
+                                           aria-expanded='true' aria-controls='agentCodeContent'>
+                                            View agent code
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id='agentCodeContent' class='collapse in' role='tabpanel'
+                                     aria-labelledby='agentCodeContentListHeader'>
+                                    <div class='card-body'>
+                                        <code class='device-code-display'>
+                                            <embed src='../content/imp/agent.txt'>
+                                        </code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class='col-lg-6'>
+            <div class='card'>
+                <div class='card-body'>
+                    <h3 class='card-title'>Device Code</h3>
+                    <div class='device-code'>
+                        <div id='deviceCodeAccordion' role='tablist' aria-multiselectable='true'>
+                            <div class='card'>
+                                <div class='card-header' role='tab' id='deviceCodeAccordion'>
+                                    <h5 class='mb-0'>
+                                        <a data-toggle='collapse' data-parent='#deviceCodeAccordion'
+                                           href='#deviceCodeContent'
+                                           aria-expanded='true' aria-controls='deviceCodeContent'>
+                                            View device code
+                                        </a>
+                                    </h5>
+                                </div>
+                                <div id='deviceCodeContent' class='collapse in' role='tabpanel'
+                                     aria-labelledby='deviceCodeContentListHeader'>
+                                    <div class='card-body'>
+                                        <code class='device-code-display'><embed src="../content/imp/device.txt"></code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
