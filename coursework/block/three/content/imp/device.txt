@@ -1,0 +1,154 @@
+class LED {
+    pin = null;
+
+    constructor (hardware_pin){
+       pin = hardware_pin;
+       pin.configure(DIGITAL_OUT);
+    }
+
+    function set_state(state){
+        pin.write(state);
+    }
+
+    function get_state(ignoreme){
+        local state = pin.read();
+        return state;
+    }
+
+    function turn_on(){
+        pin.write(1);
+    }
+
+    function turn_off(){
+        pin.write(0);
+    }
+
+    function is_on(){
+        return pin.read() == 1;
+    }
+}
+
+class Thermister {
+    pin = null;
+
+    constructor (hardware_pin){
+       pin = hardware_pin;
+       pin.configure(ANALOG_IN);
+    }
+
+    //  Define the relevant constants for this thermister
+    aconst = 65535.0 ;
+    bconst = 3988;
+    t0const = 298.15;
+    vconst = hardware.voltage() ;
+
+    //  convert from raw voltage to temperature C
+    function get_raw_temp_data() {
+        local raw = pin.read();
+        local v1 = raw * vconst / aconst ;
+        local r1 = 10000.0 / ( (vconst / v1) - 1);
+        local ln1 = math.log(10000.0 / r1);
+        local temp = (t0const * bconst) / (bconst - t0const * ln1) ;
+        return temp;
+    }
+
+    function get_temperature(type = 'c'){
+        local temp = get_raw_temp_data();
+
+        if(type == 'c') {temp = kTOc(temp)}  // Convert Kelvin to Celcius
+        else if(type == 'f') {temp = kTOf(temp);}  // Convert Kelvin to f
+        else if(type != 'k') {return null}  // Null on bad param
+
+        temp =  format("%.01f", temp);
+        return temp;
+    }
+
+    function kTOc(temp){
+        return temp - 273.15;
+    }
+
+    function kTOf(kelvin){
+        local temp = kelvin - 273.15;
+        temp *= (9/5);
+        temp += 32;
+        return temp;
+    }
+}
+
+red <- LED(hardware.pin5);
+green <- LED(hardware.pin7)
+internal <- Thermister(hardware.pin8);
+external <- Thermister(hardware.pin9);
+
+function setred(data){
+    local state = data["state"];
+    local pos = data["pos"];
+    red.set_state(state);
+    local message = {"pin":"5","value":red.get_state(null),"pos":pos};
+    agent.send("http_led_state",message);
+}
+
+function getred(data){
+    local pos = data["pos"];
+    local message = {"pin":"5","value":red.get_state(null).tointeger(),"pos":pos};
+    agent.send("http_led_state",message);
+}
+
+
+function setgreen(data){
+    local state = data["state"];
+    local pos = data["pos"];
+    green.set_state(state);
+    local message = {"pin":"7","value":green.get_state(null),"pos":pos};
+    agent.send("http_led_state",message);
+}
+
+function getgreen(data){
+    local pos = data["pos"];
+    local message = {"pin":"7","value":green.get_state(null),"pos":pos};
+    agent.send("http_led_state",message);
+}
+
+function getinternaltemp(data){
+    if(data){
+    local pos = data["pos"];
+    local message = {"pin":"8","value":internal.get_temperature(),"pos":pos};
+    agent.send("http_current_temperature",message);
+    return;
+    }
+    local message = [{"pin":"8","value":internal.get_temperature()}];
+    agent.send("log_temperature_to_db",message);
+}
+
+function getexternaltemp(data){
+    if(data){
+    local pos = data["pos"];
+    local message = {"pin":"9","value":external.get_temperature(),"pos":pos};
+    agent.send("http_current_temperature",message);
+    return;
+    }
+
+    local message = [{"pin":"9","value":external.get_temperature()}];
+    agent.send("log_temperature_to_db",message);
+}
+
+agent.on("getred", getred);
+agent.on("setred", setred);
+
+agent.on("getgreen", getgreen);
+agent.on("setgreen", setgreen);
+
+agent.on("getinternaltemp", getinternaltemp);
+agent.on("getexternaltemp", getexternaltemp);
+
+function report_temp_timed(){
+    getinternaltemp(null);
+    getexternaltemp(null);
+
+    local x = 10; // time in mins
+    local report_every_x_mins = 60 * x;
+
+    imp.wakeup(report_every_x_mins, report_temp_timed);
+}
+
+report_temp_timed();
