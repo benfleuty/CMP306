@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^norwich.php/([0-9]+)?$ norwich.php?id=$1 [NC,L]
