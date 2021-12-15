@@ -60,13 +60,13 @@ function insert_article($xml)
     $stmt = $conn->init();
 
     if (!$stmt = $conn->prepare($query)) {
-        // todo handle failure
+        return 0;
     }
 
     $stmt->bind_param('ssss', $data->title, $data->description, $data->image, $data->link);
 
     if (!$stmt->execute()) {
-        // todo handle failure
+        return 0;
     }
 
     $response = mysqli_query($conn, $query);
@@ -84,13 +84,13 @@ function update_article($id, $xml)
     $stmt = $conn->init();
 
     if (!$stmt = $conn->prepare($query)) {
-        // todo handle failure
+        return 0;
     }
 
     $stmt->bind_param('ssssi', $data->title, $data->description, $data->image, $data->link, $id);
 
     if (!$stmt->execute()) {
-        // todo handle failure
+        return 0;
     }
 
     $response = mysqli_query($conn, $query);
@@ -106,13 +106,13 @@ function delete_article($id)
     $stmt = $conn->init();
 
     if (!$stmt = $conn->prepare($query)) {
-        // todo handle failure
+        return 0;
     }
 
     $stmt->bind_param('i', $id);
 
     if (!$stmt->execute()) {
-        // todo handle failure
+        return 0;
     }
 
     $response = mysqli_query($conn, $query);
