@@ -4,7 +4,18 @@ function get_all_articles()
 {
     global $conn;
     $query = 'select * from CMP306_BlockFour_NewsArticles order by id';
-    $result = mysqli_query($conn, $query);
+    $stmt = $conn->init();
+
+    if (!$stmt = $conn->prepare($query)) {
+        return 0;
+    }
+
+    if (!$stmt->execute()) {
+        return 0;
+    }
+
+    $result = $stmt->get_result();
+
     $txt = '<articles>';
     while ($row = mysqli_fetch_array($result)) {
         $txt .= convert_to_xml($row);
