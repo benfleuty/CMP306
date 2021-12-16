@@ -63,7 +63,7 @@ function update_article($id, $xml)
 {
     global $conn;
     $data = simplexml_load_string($xml);
-    $query = 'UPDATE CMP306_BlockFour_NewsArticles SET title =?, description=?, image=?, link=? WHERE id = ?';
+    $query = 'UPDATE CMP306_BlockFour_NewsArticles SET title = ?, description= ?, image= ?, link= ? WHERE id = ?';
 
     $stmt = $conn->init();
 
@@ -71,7 +71,12 @@ function update_article($id, $xml)
         return 0;
     }
 
-    $stmt->bind_param('ssssi', $data->title, $data->description, $data->image, $data->link, $id);
+    $title = (string)$data->title;
+    $description = (string)$data->description;
+    $image = (string)$data->image;
+    $link = (string)$data->link;
+
+    $stmt->bind_param('ssss', $title, $description, $image, $link, $id);
 
     if (!$stmt->execute()) {
         return 0;
@@ -85,7 +90,7 @@ function update_article($id, $xml)
 function delete_article($id)
 {
     global $conn;
-    $query = 'DELETE FROM CMP306_BlockFour_NewsArticles WHERE id=?';
+    $query = 'DELETE FROM CMP306_BlockFour_NewsArticles WHERE id = ?';
 
     $stmt = $conn->init();
 
