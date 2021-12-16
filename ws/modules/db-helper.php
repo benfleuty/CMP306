@@ -17,7 +17,7 @@ function get_all_articles()
 function get_article($id)
 {
     global $conn;
-    $query = 'select * FROM CMP306_BlockFour_NewsArticles where id= ?';
+    $query = 'select * FROM CMP306_BlockFour_NewsArticles where id = ?';
 
     $stmt = $conn->init();
 
