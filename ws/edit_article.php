@@ -2,6 +2,9 @@
 //  URL of the web service
 include 'location.php';
 
+var_dump($_POST);
+
+exit;
 $fail = false;
 $fail_message = 'error(s): missing: ';
 
@@ -11,24 +14,29 @@ $image = '';
 $link = '';
 
 // not set or empty
-if (!isset($_POST['title']) || empty($title = $_POST['title'])) {
+if (!isset($_PUT['title']) || empty($title = $_PUT['title'])) {
     $fail = true;
     $fail_message .= 'title ';
 }
 
-if (!isset($_POST['description']) || empty($description = $_POST['description'])) {
+if (!isset($_PUT['description']) || empty($description = $_PUT['description'])) {
     $fail = true;
     $fail_message .= 'description ';
 }
 
-if (!isset($_POST['image']) || empty($image = $_POST['image'])) {
+if (!isset($_PUT['image']) || empty($image = $_PUT['image'])) {
     $fail = true;
     $fail_message .= 'image ';
 }
 
-if (!isset($_POST['link']) || empty($link = $_POST['link'])) {
+if (!isset($_PUT['link']) || empty($link = $_PUT['link'])) {
     $fail = true;
     $fail_message .= 'link ';
+}
+
+if (!isset($_PUT['id']) || empty($id = $_PUT['id'])) {
+    $fail = true;
+    $fail_message .= 'id ';
 }
 
 if ($fail) {
@@ -41,6 +49,7 @@ $data .= "<title>{$title}</title>";
 $data .= "<description>{$description}</description>";
 $data .= "<image>{$image}</image>";
 $data .= "<link>{$link}</link>";
+$data .= "<id>{$id}</id>";
 $data .= '</news_article>';
 
 //  set up the curl

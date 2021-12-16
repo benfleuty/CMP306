@@ -28,13 +28,20 @@ switch ($method) {
     case 'POST':
         // get post data
         $xml = file_get_contents("php://input");
+return "nnnn";
+        return $xml;
 
         // insert to db and store response
         $response = insert_article($xml);
         break;
 
     case 'PUT':
-        echo 'method: put';
+        // get post data
+        $xml = file_get_contents('php://input');
+        return $xml;
+
+        // insert to db and store response
+        $response = update_article($xml);
         break;
 
     case 'DELETE':
