@@ -31,9 +31,9 @@ function get_article(int $id)
         return 0;
     }
 
-    $result = mysqli_query($conn, $query);
-    $response = mysqli_fetch_array($result);
-    return convert_to_xml($response);
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    return convert_to_xml($row);
 }
 
 //  function to insert an article
