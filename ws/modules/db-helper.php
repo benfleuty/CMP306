@@ -70,7 +70,7 @@ function insert_article($xml)
 }
 
 //  function to update an article
-function update_article($id, $xml)
+function update_article($xml)
 {
     global $conn;
     $data = simplexml_load_string($xml);
@@ -86,6 +86,7 @@ function update_article($id, $xml)
     $description = (string)$data->description;
     $image = (string)$data->image;
     $link = (string)$data->link;
+    $id = (int)$data->id;
 
     $stmt->bind_param('ssss', $title, $description, $image, $link, $id);
 
