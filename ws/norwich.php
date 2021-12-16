@@ -11,9 +11,17 @@ $response = "undefined";
 switch ($method) {
     case 'GET':
         if (isset($_GET['id'])) {
-            echo "getting id:" . $_GET['id'];
-        } else {
-            echo "getting all";
+            // if id is set then get a specific article
+            $id = $_GET['id'];
+            if (!empty($id) && ctype_digit($id)) {
+                exit(get_article($id));
+            }
+
+            if (!ctype_digit($id)) {
+                die('invalid id');
+            }
+        }else{
+            get_all_articles();
         }
         break;
 
