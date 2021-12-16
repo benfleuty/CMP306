@@ -5,35 +5,34 @@ function get_all_articles()
     global $conn;
     $query = 'select * from CMP306_BlockFour_NewsArticles order by id';
     $result = mysqli_query($conn, $query);
-    $txt = '<employees>';
+    $txt = '<articles>';
     while ($row = mysqli_fetch_array($result)) {
         $txt .= convert_to_xml($row);
     }
-    $txt .= '</employees>';
+    $txt .= '</articles>';
     return $txt;
 }
 
 //  function to get a specific article
-function get_article($id)
+function get_article(int $id)
 {
     global $conn;
-    $query = 'select * FROM CMP306_BlockFour_NewsArticles where id = ?';
+    $query = "select * FROM CMP306_BlockFour_NewsArticles where id = ?";
 
     $stmt = $conn->init();
 
     if (!$stmt = $conn->prepare($query)) {
-        // todo handle failure
+        return 0;
     }
 
     $stmt->bind_param('i', $id);
 
     if (!$stmt->execute()) {
-        // todo handle failure
+        return 0;
     }
 
     $result = mysqli_query($conn, $query);
     $response = mysqli_fetch_array($result);
-
     return convert_to_xml($response);
 }
 
