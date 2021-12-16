@@ -6,6 +6,7 @@ include_once "wsmethods.php";
 $conn = connect();
 
 $method = $_SERVER['REQUEST_METHOD'];
+$response = "undefined";
 
 switch ($method) {
     case 'GET':
@@ -17,8 +18,11 @@ switch ($method) {
         break;
 
     case 'POST':
-        $xml = file_get_contents('php://input');
-        echo insert_article($xml);
+        // get post data
+        $xml = file_get_contents("php://input");
+
+        // insert to db and store response
+        $response = insert_article($xml);
         break;
 
     case 'PUT':
@@ -32,3 +36,5 @@ switch ($method) {
     default:
         die("unsupported request method");
 }
+
+exit((string)$response);
