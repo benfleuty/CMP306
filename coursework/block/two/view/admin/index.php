@@ -1,6 +1,6 @@
 <?php session_start();
-include_once '/home/1900040/public_html/cmp306/coursework/block/two/content/modules/specialusercheck.php';
-include_once '/home/1900040/public_html/cmp306/coursework/block/two/model/api.php';
+require_once '/home/1900040/public_html/cmp306/coursework/block/two/content/modules/specialusercheck.php';
+require_once '/home/1900040/public_html/cmp306/coursework/block/two/model/api.php';
 
 ?>
 
