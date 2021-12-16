@@ -3,7 +3,7 @@
 include 'location.php';
 
 $fail = false;
-$fail_message = "error(s):";
+$fail_message = "error(s): missing: ";
 
 $title = '';
 $description = '';
@@ -13,30 +13,34 @@ $link = '';
 // not set or empty
 if (!isset($_POST['title']) || empty($title = $_POST['title'])) {
     $fail = true;
-    $fail_message .= 'missing title ';
+    $fail_message .= 'title ';
 }
 
 if (!isset($_POST['description']) || empty($description = $_POST['description'])) {
     $fail = true;
-    $fail_message .= 'missing description ';
+    $fail_message .= 'description ';
 }
 
 if (!isset($_POST['image']) || empty($image = $_POST['image'])) {
     $fail = true;
-    $fail_message .= 'missing image ';
+    $fail_message .= 'image ';
 }
 
 if (!isset($_POST['link']) || empty($link = $_POST['link'])) {
     $fail = true;
-    $fail_message .= 'missing link ';
+    $fail_message .= 'link ';
+}
+
+if ($fail){
+    die($fail_message);
 }
 
 //  create data in XML format
 $data = "<news_article>";
-$data .= "<title>`$title`</title>";
-$data .= "<description>`$description`</description>";
-$data .= "<image>`$image`</image>";
-$data .= "<link>`$link`</link>";
+$data .= "<title>{$title}</title>";
+$data .= "<description>{$description}</description>";
+$data .= "<image>{$image}</image>";
+$data .= "<link>{$link}</link>";
 $data .= "</news_article>";
 
 //  set up the curl
