@@ -5,10 +5,14 @@ include 'location.php';
 if(isset($_GET["id"])){
     // if id is set then get a specific article
     $id = $_GET['id'];
-    if(!empty($id)){
+    if (!empty($id) && ctype_digit($id)) {
         include_once "get_an_article.php";
         get_an_article($id);
         exit;
+    }
+
+    if(!ctype_digit($id)) {
+        die("invalid id");
     }
 }
 
