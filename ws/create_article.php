@@ -54,7 +54,7 @@ curl_setopt($curl, CURLOPT_HTTPHEADER, array(
 );
 
 $resp = curl_exec($curl);
-exit($resp);
+
 if (!$resp) {
     die('Error : "' . curl_error($curl) . '" - Code: ' . curl_errno($curl));
 }
