@@ -55,23 +55,21 @@ function insert_article($xml)
 {
     global $conn;
     $data = simplexml_load_string($xml);
-    $query = "INSERT INTO CMP306_BlockFour_NewsArticles (title, description, image, link) VALUES (title ='?', description='?', image='?', link='?')";
-
+    $query = 'INSERT INTO CMP306_BlockFour_NewsArticles (title, description, image, link) VALUES (?,?,?,?)';
     $stmt = $conn->init();
 
     if (!$stmt = $conn->prepare($query)) {
         return 0;
     }
 
-    $stmt->bind_param('ssss', $data->title, $data->description, $data->image, $data->link);
+    $title = (string) $data->title;
+    $description = (string) $data->description;
+    $image = (string) $data->image;
+    $link = (string) $data->link;
 
-    if (!$stmt->execute()) {
-        return 0;
-    }
+    $stmt->bind_param('ssss', $title, $description, $image, $link);
 
-    $response = mysqli_query($conn, $query);
-
-    return ($response) ? 1 : 0;
+    return $stmt->execute();
 }
 
 //  function to update an article
@@ -79,7 +77,7 @@ function update_article($id, $xml)
 {
     global $conn;
     $data = simplexml_load_string($xml);
-    $query = "UPDATE CMP306_BlockFour_NewsArticles SET title ='?', description='?', image='?', link='?' WHERE id = ?";
+    $query = "UPDATE CMP306_BlockFour_NewsArticles SET title =?, description=?, image=?, link=? WHERE id = ?";
 
     $stmt = $conn->init();
 
